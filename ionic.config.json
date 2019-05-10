@@ -1,0 +1,7 @@
+{
+  "name": "nutt",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}

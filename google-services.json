@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "780702072390",
+    "firebase_url": "https://nutt-b9d1a.firebaseio.com",
+    "project_id": "nutt-b9d1a",
+    "storage_bucket": "nutt-b9d1a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:780702072390:android:403962cc87fc6bce",
+        "android_client_info": {
+          "package_name": "co.za.moralemedia.nutt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "780702072390-upqifkdboamnp2v9b7k29h3rbq2ooehq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "co.za.moralemedia.nutt",
+            "certificate_hash": "06d378e7a1bd2252db7d43ab4d2ce3e2275e8ead"
+          }
+        },
+        {
+          "client_id": "780702072390-seqltk9n2556vhgl53ueg6c9c8btnt5f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4Xuv8sjcPZfcxllCYbdEBijHfzg8kSAo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "780702072390-seqltk9n2556vhgl53ueg6c9c8btnt5f.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "780702072390-m29c7jg069kajd3s7f5ls3ggvj8nes5u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "nutt"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

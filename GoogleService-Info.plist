@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>780702072390-15pjejcssb9gnhu12qvt46hti67jemgn.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.780702072390-15pjejcssb9gnhu12qvt46hti67jemgn</string>
+	<key>API_KEY</key>
+	<string>AIzaSyAgiksD34zh2wB0YelkaZpU8Fd-0wr13Tk</string>
+	<key>GCM_SENDER_ID</key>
+	<string>780702072390</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>co.za.moralemedia.nutt</string>
+	<key>PROJECT_ID</key>
+	<string>nutt-b9d1a</string>
+	<key>STORAGE_BUCKET</key>
+	<string>nutt-b9d1a.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:780702072390:ios:403962cc87fc6bce</string>
+	<key>DATABASE_URL</key>
+	<string>https://nutt-b9d1a.firebaseio.com</string>
+</dict>
+</plist>
