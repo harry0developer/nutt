@@ -22,6 +22,8 @@ import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
 import { UsersPage } from '../pages/users/users';
 import { UserDetailsPage } from '../pages/user-details/user-details';
 
+import { RatingModule } from "ngx-rating";
+
 @NgModule({
   declarations: [
     MyApp,
@@ -35,7 +37,8 @@ import { UserDetailsPage } from '../pages/user-details/user-details';
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    RatingModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

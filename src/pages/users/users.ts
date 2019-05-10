@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { User } from '../../models/user';
 import { DataProvider } from '../../providers/data/data';
+import { UserDetailsPage } from '../user-details/user-details';
 
 
 
@@ -15,6 +16,7 @@ export class UsersPage {
     {
       nickname: "Mia Mommy Tee Low",
       id: 1,
+      rating: "3.5",
       dob: "1991-02-22",
       gender: "female",
       race: "black",
@@ -29,6 +31,7 @@ export class UsersPage {
     {
       nickname: "Kitty Mami",
       id: 2,
+      rating: "4.5",
       dob: "1993-07-19",
       gender: "female",
       race: "black",
@@ -43,6 +46,7 @@ export class UsersPage {
     {
       nickname: "Queen Slay",
       id: 3,
+      rating: "4",
       dob: "1993-07-18",
       gender: "female",
       race: "coloured",
@@ -57,6 +61,7 @@ export class UsersPage {
     {
       nickname: "Mia Low",
       id: 4,
+      rating: "4.8",
       dob: "1996-03-20",
       gender: "female",
       race: "indian",
@@ -71,6 +76,7 @@ export class UsersPage {
     {
       nickname: "Sally Sea",
       id: 5,
+      rating: "3.5",
       dob: "1990-12-24",
       gender: "female",
       race: "black",
@@ -86,8 +92,10 @@ export class UsersPage {
   constructor(public navCtrl: NavController, public dataProvider: DataProvider) {
   }
 
-  ionViewDidLoad() {
+  ionViewDidLoad() { }
 
+  viewUserProfile(user) {
+    this.navCtrl.push(UserDetailsPage, { user });
   }
 
   getAge(date: string): string {

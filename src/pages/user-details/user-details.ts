@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the UserDetailsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { DataProvider } from '../../providers/data/data';
 
 @IonicPage()
 @Component({
@@ -14,12 +8,22 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'user-details.html',
 })
 export class UserDetailsPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user: any;
+  img: string = "";
+  category: string = 'info';
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private dataProvider: DataProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad UserDetailsPage');
+    this.user = this.navParams.get('user');
+    this.img = `assets/imgs/users/user${this.user.id}.jpg`;
+  }
+
+  getAge(date: string): string {
+    return this.dataProvider.getAgeFromDate(date);
   }
 
 }
