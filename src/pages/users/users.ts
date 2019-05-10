@@ -20,6 +20,7 @@ export class UsersPage {
       dob: "1991-02-22",
       gender: "female",
       race: "black",
+      bodyType: "slim-thick",
       location: {
         address: "123 Arcadia, Pretoria",
         geo: {
@@ -35,6 +36,7 @@ export class UsersPage {
       dob: "1993-07-19",
       gender: "female",
       race: "black",
+      bodyType: "thick",
       location: {
         address: "9090 Heart street, Menlyn, Pretoria",
         geo: {
@@ -50,6 +52,7 @@ export class UsersPage {
       dob: "1993-07-18",
       gender: "female",
       race: "coloured",
+      bodyType: "bbw",
       location: {
         address: "900 Sunnyside, Pretoria,",
         geo: {
@@ -65,6 +68,7 @@ export class UsersPage {
       dob: "1996-03-20",
       gender: "female",
       race: "indian",
+      bodyType: "thick",
       location: {
         address: "891 Centurion, Pretoria",
         geo: {
@@ -80,6 +84,7 @@ export class UsersPage {
       dob: "1990-12-24",
       gender: "female",
       race: "black",
+      bodyType: "thick",
       location: {
         address: "123 Arcadia, Pretoria",
         geo: {

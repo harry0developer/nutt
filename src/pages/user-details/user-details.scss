@@ -34,9 +34,35 @@ page-user-details {
         font-size: 1em !important;
     } 
 
-    .text-on-bottom > .button-inner {
-        flex-direction: column;
-      }
+    .tags {
+        display: block;
+        margin: 10px 0
+    }
+    .info {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        h2, p {
+            margin: 0;
+            padding: 0
+        }
+        h2 {
+            font-size: 1em;
+            font-weight: bold;
+        }
+        p {
+            font-size: 0.9em;
+        }
+    }
+    .images {
+        margin-top: 10px;
+        .col {
+            padding: 0;
+        }
+        img {
+            border: 2px solid white;
+            border-radius: 4px;
+        }
+    }
 
     ion-content {
         background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
