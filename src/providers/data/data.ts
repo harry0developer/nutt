@@ -206,4 +206,12 @@ export class DataProvider {
     return moment(date, "YYYY/MM/DD").month(0).from(moment().month(0)).split(" ")[0];
   }
 
+  getLocationFromGeo(geo) {
+    const myLocation = {
+      lat: -25.850187,
+      lng: 28.998042
+    };
+    return this.getDistanceBetweenPoints(myLocation, geo, 'miles').toFixed(0);;
+  }
+
 }

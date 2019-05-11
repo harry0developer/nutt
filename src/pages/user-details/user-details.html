@@ -11,7 +11,7 @@
       <h2 class="nickname">{{user.nickname}} 
         <ion-badge class="age" item-end>{{getAge(user.dob)}}</ion-badge>
       </h2>
-      <p class="address">{{user.location.address}}</p>
+      <p class="address"> <i class="fa fa-map-marker"></i>{{getDistance(user.location.geo)}} km away</p>
       <rating [float]="true" [(ngModel)]="user.rating" [readonly]="true"></rating>
       <div class="tags">
         <ion-badge primary>{{user.gender}}</ion-badge>

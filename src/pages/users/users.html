@@ -24,7 +24,7 @@
               </ion-row> 
               <div class="info">
                 <p> <i class="fa fa-flag"></i>{{user.race}}</p>
-                <p> <i class="fa fa-calendar"></i>{{user.location.address}}</p>
+                <p> <i class="fa fa-map-marker"></i>{{getDistance(user.location.geo)}} km away</p>
               </div>
             </ion-card-content>
           </ion-card> 

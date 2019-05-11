@@ -26,4 +26,8 @@ export class UserDetailsPage {
     return this.dataProvider.getAgeFromDate(date);
   }
 
+  getDistance(geo) {
+    return this.dataProvider.getLocationFromGeo(geo);
+  }
+
 }

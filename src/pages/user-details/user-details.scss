@@ -22,7 +22,11 @@ page-user-details {
         margin-bottom: 2px;
     }
     .address {
-        margin-bottom: 2px;
+        margin: 2px;
+        i {
+          padding-right: 4px;
+          color: $primary;
+        }
     }
 
     .star-icon {
@@ -128,27 +132,5 @@ page-user-details {
           font-size: 2.5rem;
         }
       }
-      // Following, Followers and all..
-      .profile-numbers {
-        p {
-          color: #444;
-          font-size: medium;
-          margin-bottom: 3px;
-        }
-        span {
-          font-weight: bold;
-          font-size: 2.4rem;
-          color: #34354c;
-        }
-      }
-      hr {
-        border: 0;
-        height: 1px;
-        background: #444;
-        background: -webkit-linear-gradient(left, hsla(0, 0%, 0%, 0) 0%, rgb(188, 198, 214) 50%, hsla(0, 0%, 0%, 0) 100%);
-      }
-      // Posts feed
-      #posts {
-        text-align: justify;
-      }
+   
     }

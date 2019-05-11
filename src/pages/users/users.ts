@@ -24,8 +24,8 @@ export class UsersPage {
       location: {
         address: "123 Arcadia, Pretoria",
         geo: {
-          lat: 23.900,
-          lng: -18.3883
+          lat: -25.950187,
+          lng: 28.998042
         }
       }
     },
@@ -40,8 +40,8 @@ export class UsersPage {
       location: {
         address: "9090 Heart street, Menlyn, Pretoria",
         geo: {
-          lat: 24.900,
-          lng: -18.3883
+          lat: -25.910187,
+          lng: 28.998042
         }
       }
     },
@@ -56,8 +56,8 @@ export class UsersPage {
       location: {
         address: "900 Sunnyside, Pretoria,",
         geo: {
-          lat: 28.900,
-          lng: -15.3883
+          lat: -25.910187,
+          lng: 28.898042
         }
       }
     },
@@ -72,8 +72,8 @@ export class UsersPage {
       location: {
         address: "891 Centurion, Pretoria",
         geo: {
-          lat: 33.900,
-          lng: -28.3883
+          lat: -25.910187,
+          lng: 28.698042
         }
       }
     },
@@ -88,8 +88,8 @@ export class UsersPage {
       location: {
         address: "123 Arcadia, Pretoria",
         geo: {
-          lat: 23.900,
-          lng: -18.3883
+          lat: -25.610187,
+          lng: 28.998042
         }
       }
     }
@@ -105,6 +105,10 @@ export class UsersPage {
 
   getAge(date: string): string {
     return this.dataProvider.getAgeFromDate(date);
+  }
+
+  getDistance(geo) {
+    return this.dataProvider.getLocationFromGeo(geo);
   }
 
 }
