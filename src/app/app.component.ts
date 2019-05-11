@@ -7,6 +7,8 @@ import { LoginPage } from '../pages/login/login';
 
 import * as firebase from 'firebase';
 import { UsersPage } from '../pages/users/users';
+import { RequestsPage } from '../pages/requests/requests';
+import { ProfilePage } from '../pages/profile/profile';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,18 +18,28 @@ export class MyApp {
 
   rootPage: any = UsersPage;
 
-  pages: Array<{ title: string, component: any }>;
-
+  pages: any;
+  user;
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
-    // used for an example of ngFor and navigation
-    this.pages = [
-      { title: 'Login', component: LoginPage }
-    ];
+    this.user = {
+      nickname: "Jon Snow",
+      id: 113,
+      dob: "1992-01-02",
+      gender: "male",
+      race: "white"
+
+    }
+
+
+    this.pages = {
+      usersPage: UsersPage,
+      requestsPage: RequestsPage,
+      profilePage: ProfilePage
+    }
 
   }
-
   initializeApp() {
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -41,5 +53,9 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
+  }
+
+  getProfilePic(user) {
+    return `assets/imgs/users/${user.gender}.svg`;
   }
 }

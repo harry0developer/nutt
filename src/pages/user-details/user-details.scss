@@ -3,6 +3,10 @@ page-user-details {
         margin-top: 0 !important;
     }
 
+    .back-button {
+      background: white;
+      color: $primary;
+    }
     .toolbar-background {
         background-color: transparent !important;
     }
@@ -68,18 +72,10 @@ page-user-details {
         }
     }
 
-    ion-content {
+      ion-content {
         background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
       }
-      button,
-      ion-button,
-      .button-md,
-      .button-ios {
-        text-transform: none !important;
-      }
-      p {
-        color: #444;
-      }
+   
       // Cover image
       #profile-bg {
         position: absolute;
