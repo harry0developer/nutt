@@ -1,5 +1,8 @@
 @import '../theme/main.scss';
-
+* {
+	font-family: Quicksand;
+	font-weight: 600;
+}
 .user-profile {
   background-color: $primary !important;
 	color: $white !important;

@@ -38,7 +38,7 @@ page-signup {
     }
     ion-item.item-input {
         margin: 10px 0;
-        height: 4em !important;
+        // height: em !important;
     }
     ion-label.label {
         width: 120px;
@@ -47,13 +47,18 @@ page-signup {
         margin-top: 40px;
         p {
             text-align: center;
-            color: $white;
+            color: $light-grey;
         }
     }
-    .controls .col {
+    .termsAndConditions {
+        color: $light-grey;
+        text-align: center;
+        font-size: 10px;
+    }
+    .controls {
         text-align: center;
         .button {
-            color: white;
+            color: $light-grey;
         }
     } 
 }

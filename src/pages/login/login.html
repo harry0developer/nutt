@@ -12,10 +12,10 @@
       </ion-input>
     </ion-item>
     <div [hidden]="phone.valid || phone.pristine" class="validation">
-      <p class="animated tada" [hidden]="!phone.hasError('required')">Phone number is required</p>
-      <p class="animated tada" [hidden]="!phone.hasError('pattern')">Invalid phone number</p>
+      <p class="animated bounceIn" [hidden]="!phone.hasError('required')">Phone number is required</p>
+      <p class="animated bounceIn" [hidden]="!phone.hasError('pattern')">Invalid phone number</p>
     </div>
-    <button ion-button block color="light" class="dark border" [disabled]="!phone.valid" (click)="loginWithPhoneNumber()">Login</button>
+    <button ion-button block outline color="light" [disabled]="!phone.valid" (click)="loginWithPhoneNumber()">Login</button>
   </ion-list>
 
   <ion-list  *ngIf="loginType === 'otp'">
@@ -24,9 +24,9 @@
       <ion-input [(ngModel)]="data.otp" required otp="otp" #otp="ngModel" maxlength="15" type="text"></ion-input>
     </ion-item>
     <div [hidden]="otp.valid || otp.pristine" class="validation">
-      <p class="animated tada" [hidden]="!otp.hasError('required')">OTP otp is required</p> 
+      <p class="animated bounceIn" [hidden]="!otp.hasError('required')">OTP otp is required</p> 
     </div>
-    <button ion-button block color="light" class="dark border" [disabled]="!otp.valid" (click)="loginWithPhoneNumber()">Login</button>
+    <button ion-button block outline color="light" [disabled]="!otp.valid" (click)="loginWithPhoneNumber()">Login</button>
   </ion-list>
 
 
@@ -38,8 +38,8 @@
       </ion-input>
     </ion-item>
     <div [hidden]="email.valid || email.pristine" class="validation">
-      <p class="animated tada" [hidden]="!email.hasError('required')">Email address is required</p>
-      <p class="animated tada" [hidden]="!email.hasError('pattern')">Invalid email address</p>
+      <p class="animated bounceIn" [hidden]="!email.hasError('required')">Email address is required</p>
+      <p class="animated bounceIn" [hidden]="!email.hasError('pattern')">Invalid email address</p>
     </div>
 
     <ion-item class="animated pulse">
@@ -53,10 +53,11 @@
       </button>
     </ion-item>
     <div [hidden]="password.valid || password.pristine" class="validation">
-      <p class="animated tada" [hidden]="!password.hasError('required')">Password is required</p>
-      <p class="animated tada" [hidden]="!password.hasError('pattern')">Password must be 4 characters or longer</p>
+      <p class="animated bounceIn" [hidden]="!password.hasError('required')">Password is required</p>
+      <p class="animated bounceIn" [hidden]="!password.hasError('pattern')">Password must be 4 characters or longer</p>
     </div>
-    <button ion-button block color="light" class="dark border" [disabled]="!email.valid || !password.valid " (click)="signinWithEmailAndPassword()">Login</button>
+    <button ion-button block outline color="light" [disabled]="!email.valid || !password.valid " (click)="signinWithEmailAndPassword()">Login</button>
+    <p class="termsAndConditions">Terms & Conditions apply</p>
   </ion-list>
 
   <ion-list class="login-type">
@@ -64,14 +65,17 @@
     <p>LOGIN WITH</p>
     <div class="row controls">
       <div class="col col-6 left"> 
-        <button ion-button block small color="light" class="dark border" (click)="loginWithFacebook()">Facebook</button>
+        <button ion-button block outline color="light" icon-start (click)="loginWithFacebook()">
+          <ion-icon name="logo-facebook"></ion-icon>
+          Facebook
+        </button>
       </div>
       <div class="col col-6 left" *ngIf="loginType === 'EmailAndPassword'"> 
-        <button ion-button block small color="light" class="dark border" (click)="switchTologinWithPhoneNumber()">Phone Number</button>
-      </div>
-      <div class="col col-6 left" *ngIf="loginType === 'PhoneNumber' || loginType === 'otp'"> 
-        <button ion-button block small color="light" class="dark border" (click)="switchTologinWithEmailAndPassword()">Email Address</button>
-      </div>
+        <button ion-button block outline color="light" icon-start (click)="switchTologinWithPhoneNumber()">
+          <ion-icon name="call"></ion-icon>
+          Phone Number
+        </button>
+      </div> 
     </div>
   </ion-list>
  </ion-content>
@@ -79,10 +83,10 @@
 <ion-footer>
   <div class="row controls">
     <div class="col col-6 left">
-      <button ion-button clear small class="clear" (click)="goToSignup()">Sign up</button>
+      <button ion-button clear (click)="goToSignup()">Sign up</button>
     </div>
     <div class="col col-6 right">
-      <button ion-button clear small class="clear" (click)="goToForgotPassword()">Forgot password</button>
+      <button ion-button clear (click)="goToForgotPassword()">Forgot password</button>
     </div>
   </div>
 </ion-footer>

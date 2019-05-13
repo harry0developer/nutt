@@ -18,6 +18,11 @@ page-login {
     ion-label.label {
         width: 120px;
     }
+    .termsAndConditions {
+        color: $light-grey;
+        text-align: center;
+        font-size: 10px;
+    }
     .login-type {
         margin-top: 40px;
         p {

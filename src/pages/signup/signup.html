@@ -12,10 +12,10 @@
       </ion-input>
     </ion-item>
     <div [hidden]="phone.valid || phone.pristine" class="validation">
-      <p class="animated tada" [hidden]="!phone.hasError('required')">Phone number is required</p>
-      <p class="animated tada" [hidden]="!phone.hasError('pattern')">Invalid phone number</p>
+      <p class="animated bounceIn" [hidden]="!phone.hasError('required')">Phone number is required</p>
+      <p class="animated bounceIn" [hidden]="!phone.hasError('pattern')">Invalid phone number</p>
     </div>
-    <button ion-button block color="light" class="dark border" [disabled]="!phone.valid" (click)="loginWithPhoneNumber()">Login</button>
+    <button ion-button block outline color="light" [disabled]="!phone.valid" (click)="loginWithPhoneNumber()">Login</button>
   </ion-list>
 
   <ion-list  *ngIf="signupType === 'otp'">
@@ -24,9 +24,9 @@
       <ion-input [(ngModel)]="data.otp" required otp="otp" #otp="ngModel" maxlength="15" type="text"></ion-input>
     </ion-item>
     <div [hidden]="otp.valid || otp.pristine" class="validation">
-      <p class="animated tada" [hidden]="!otp.hasError('required')">OTP otp is required</p> 
+      <p class="animated bounceIn" [hidden]="!otp.hasError('required')">OTP otp is required</p> 
     </div>
-    <button ion-button block color="light" class="dark border" [disabled]="!otp.valid" (click)="loginWithPhoneNumber()">Login</button>
+    <button ion-button block outline color="light" [disabled]="!otp.valid" (click)="loginWithPhoneNumber()">Login</button>
   </ion-list>
 
 
@@ -38,8 +38,8 @@
       </ion-input>
     </ion-item>
     <div [hidden]="email.valid || email.pristine" class="validation">
-      <p class="animated tada" [hidden]="!email.hasError('required')">Email address is required</p>
-      <p class="animated tada" [hidden]="!email.hasError('pattern')">Invalid email address</p>
+      <p class="animated bounceIn" [hidden]="!email.hasError('required')">Email address is required</p>
+      <p class="animated bounceIn" [hidden]="!email.hasError('pattern')">Invalid email address</p>
     </div>
 
     <ion-item class="animated pulse">
@@ -48,8 +48,8 @@
       </ion-input>
     </ion-item>
     <div [hidden]="nickname.valid || nickname.pristine" class="validation">
-      <p class="animated tada" [hidden]="!nickname.hasError('required')">Nickname is required</p>
-      <p class="animated tada" [hidden]="!nickname.hasError('minlength')">Nickname is too short</p>
+      <p class="animated bounceIn" [hidden]="!nickname.hasError('required')">Nickname is required</p>
+      <p class="animated bounceIn" [hidden]="!nickname.hasError('minlength')">Nickname is too short</p>
     </div>
 
     <ion-row>
@@ -63,7 +63,7 @@
           </ion-select>
         </ion-item>
         <div [hidden]="gender.valid || gender.pristine" class="validation">
-          <p class="animated tada" [hidden]="!gender.hasError('required')">Gender is required</p>
+          <p class="animated bounceIn" [hidden]="!gender.hasError('required')">Gender is required</p>
         </div>
       </ion-col>
       <ion-col col-6>
@@ -77,7 +77,7 @@
           </ion-select>
         </ion-item>
         <div [hidden]="race.valid || race.pristine" class="validation">
-          <p class="animated tada" [hidden]="!race.hasError('required')">Race is required</p>
+          <p class="animated bounceIn" [hidden]="!race.hasError('required')">Race is required</p>
         </div>
       </ion-col>
     </ion-row>
@@ -86,10 +86,10 @@
       <ion-col col-6>
         <ion-item class="animated pulse">
           <ion-label floating>Date of birth</ion-label>
-          <ion-datetime displayFormat="YYYY MM DD" max="{{minYear}}"  [(ngModel)]="data.dob" required dob="dob" #dob="ngModel"></ion-datetime>
+          <ion-datetime displayFormat="YYYY/MM/DD" max="{{minYear}}"  [(ngModel)]="data.dob" required dob="dob" #dob="ngModel"></ion-datetime>
         </ion-item>
         <div [hidden]="dob.valid || dob.pristine" class="validation">
-          <p class="animated tada" [hidden]="!dob.hasError('required')">Date of birth is required</p>
+          <p class="animated bounceIn" [hidden]="!dob.hasError('required')">Date of birth is required</p>
         </div>
       </ion-col>
       <ion-col col-6>
@@ -103,7 +103,7 @@
           </ion-select>
         </ion-item>
         <div [hidden]="bodyType.valid || bodyType.pristine" class="validation">
-          <p class="animated tada" [hidden]="!bodyType.hasError('required')">Body type is required</p>
+          <p class="animated bounceIn" [hidden]="!bodyType.hasError('required')">Body type is required</p>
         </div>
       </ion-col>
     </ion-row>
@@ -118,20 +118,16 @@
       </button>
     </ion-item>
     <div [hidden]="password.valid || password.pristine" class="validation">
-      <p class="animated tada" [hidden]="!password.hasError('required')">Password is required</p>
-      <p class="animated tada" [hidden]="!password.hasError('pattern')">Password must be 4 characters or longer</p>
+      <p class="animated bounceIn" [hidden]="!password.hasError('required')">Password is required</p>
+      <p class="animated bounceIn" [hidden]="!password.hasError('pattern')">Password must be 4 characters or longer</p>
     </div>
-    <button ion-button block color="light" class="dark border" [disabled]="!dob.valid || !gender.valid || !race.valid || !nickname.valid || !email.valid || !password.valid " (click)="signupWithEmailAndPassword()">Signup</button>
+    <button ion-button block outline color="light" [disabled]="!dob.valid || !gender.valid || !race.valid || !nickname.valid || !email.valid || !password.valid " (click)="signupWithEmailAndPassword()">Signup</button>
+    <p class="termsAndConditions">Terms & Conditions apply</p>
   </ion-list>
  </ion-content>
 
 <ion-footer>
   <div class="row controls">
-    <div class="col col-6 left">
-      <button ion-button clear small class="clear" (click)="goToSignin()">Login</button>
-    </div>
-    <div class="col col-6 right">
-      <button ion-button clear small class="clear" (click)="goToForgotPassword()">Forgot password</button>
-    </div>
+    <button ion-button clear block (click)="goToLogin()">Login</button>
   </div>
 </ion-footer>

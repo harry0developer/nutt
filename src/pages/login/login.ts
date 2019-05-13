@@ -11,6 +11,7 @@ import { UserData } from '../../models/userData';
 import { SignupPage } from '../signup/signup';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import firebase from 'firebase/app';
+import { UsersPage } from '../users/users';
 
 declare var window;
 
@@ -86,21 +87,21 @@ export class LoginPage {
     this.navCtrl.setRoot(SignupPage);
   }
 
-  // signinWithEmailAndPassword() {
-  //   this.feedbackProvider.presentLoading();
-  //   this.authProvider.signInWithEmailAndPassword(this.data.email, this.data.password).then(res => {
-  //     this.dataProvider.getItemById(COLLECTION.users, res.user.uid).subscribe(u => {
-  //       this.feedbackProvider.dismissLoading();
-  //       this.navigate(u);
-  //     });
-  //   }).catch(err => {
-  //     this.feedbackProvider.dismissLoading();
-  //     if (err.code === USER_NOT_FOUND || err.code == INVALID_PASSWORD) {
-  //       this.feedbackProvider.presentErrorAlert('Login failed', 'Username an password do not match');
-  //     }
-  //     console.log(err);
-  //   });
-  // }
+  signinWithEmailAndPassword() {
+    this.feedbackProvider.presentLoading();
+    this.authProvider.signInWithEmailAndPassword(this.data.email, this.data.password).then(res => {
+      this.dataProvider.getItemById(COLLECTION.users, res.user.uid).subscribe(() => {
+        this.feedbackProvider.dismissLoading();
+        this.navCtrl.setRoot(UsersPage);
+      });
+    }).catch(err => {
+      this.feedbackProvider.dismissLoading();
+      if (err.code === USER_NOT_FOUND || err.code == INVALID_PASSWORD) {
+        this.feedbackProvider.presentErrorAlert('Login failed', 'Username and password do not match');
+      }
+      console.log(err);
+    });
+  }
 
   // signInWithFacebook() {
   //   this.feedbackProvider.presentLoading();

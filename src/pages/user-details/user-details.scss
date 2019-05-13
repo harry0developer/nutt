@@ -4,7 +4,7 @@ page-user-details {
   }
 
   // .back-button {
-  //   background: white;
+  //   background: $light-grey;
   //   color: $primary;
   // }
   .toolbar-background {
@@ -23,7 +23,7 @@ page-user-details {
   }
 
   .swiper-pagination-bullet-active {
-      background: white;
+      background: $light-grey;
   }
 
   .nickname {
@@ -77,13 +77,13 @@ page-user-details {
         padding: 0;
     }
     img {
-        border: 2px solid white;
+        border: 2px solid $light-grey;
         border-radius: 4px;
     }
   }
 
   ion-content {
-    background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
+    background: linear-gradient(0deg, #eeeef1 0%, $light-grey 80%, $light-grey 100%);
   }
 
   // Cover image
@@ -112,7 +112,7 @@ page-user-details {
     height: 120px;
     margin: 0 auto;
     margin-top: 30px;
-    border: 2px solid white;
+    border: 2px solid $light-grey;
     box-shadow: 0px 11px 20px -3px rgba(142, 136, 146, 0.75);
   }
   #profile-info {
@@ -156,7 +156,7 @@ page-user-details {
 
     .popup-menu ion-icon {
       text-align: center;
-      color: white;
+      color: $light-grey;
       font-size: 1.4em;
     }
     .popup-menu-overlay {
@@ -201,7 +201,7 @@ page-user-details {
       line-height: 40px;
       text-align: center;
       font-size: 28px;
-      color: white;
+      color: $light-grey;
       opacity: 1;
       -webkit-transition: all 0.25s ease-in-out;
       transition: all 0.25s ease-in-out;
@@ -291,7 +291,7 @@ page-user-details {
     .popup-menu-panel .popup-menu-item span {
       padding: 0px;
       margin: 0px 0px auto 0px;
-      color: white;
+      color: $light-grey;
       text-align: center;
       font-size: 11px;
       text-transform: uppercase;
