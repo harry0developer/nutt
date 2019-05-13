@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
+import { ChatPage } from '../chat/chat';
 
 @IonicPage()
 @Component({
@@ -46,8 +47,8 @@ export class UserDetailsPage {
     console.log(user);
   }
   chatWithUser(user) {
-    console.log(user);
+    this.openMenu = false;
+    this.navCtrl.push(ChatPage, { user });
   }
-
 
 }

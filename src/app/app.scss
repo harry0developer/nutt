@@ -9,6 +9,8 @@
 	.button-inner i {
 		margin: 10px;
 	}
+
+
 	ion-item {
 		border-top: 0 !important;
 		border-bottom: 0 !important;
@@ -48,5 +50,13 @@
 		.item-inner{
 			border-bottom: none !important;
 		}
+	}
+
+}
+
+
+ion-footer {
+	.button-clear-ios {
+		color: white !important;
 	}
 }
