@@ -1,18 +1,30 @@
-<!--
-  Generated template for the ChatPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
-
-  <ion-navbar>
-    <ion-title>chat</ion-title>
+  <ion-navbar color="dark">
+    <ion-title>Chat</ion-title>
   </ion-navbar>
-
 </ion-header>
 
+<ion-content>
+  <ion-list>
+    <ion-item text-wrap no-lines *ngIf="user1">
+      <!-- <ion-avatar item-end>
+        <img id="profile-image" src="assets/imgs/users/user{{user1.id}}.jpg">
+      </ion-avatar> -->
+      <div class="bubble bubble-primary">
+        Quidem fugit esse nisi laborum nostrum iste obcaecati nemo eos recusandae.
+      </div>
+      <span class="primary bubble-time">a minute ago</span>
+    </ion-item>
 
-<ion-content padding>
+    <ion-item *ngIf="user2">
+      <ion-avatar item-start>
+        <img id="profile-image" src="assets/imgs/users/user{{user2.id}}.jpg">
+      </ion-avatar>
+      <div class="bubble bubble-secondary">
+        I'm speech bubble
+      </div>
+      <span class="secondary bubble-time">3 minutes ago</span>
+    </ion-item>
+  </ion-list>
 
 </ion-content>

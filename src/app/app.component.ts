@@ -9,6 +9,7 @@ import * as firebase from 'firebase';
 import { UsersPage } from '../pages/users/users';
 import { RequestsPage } from '../pages/requests/requests';
 import { ProfilePage } from '../pages/profile/profile';
+import { ChatPage } from '../pages/chat/chat';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,7 +17,7 @@ import { ProfilePage } from '../pages/profile/profile';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = UsersPage;
+  rootPage: any = ChatPage;
 
   pages: any;
   user;
