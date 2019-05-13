@@ -5,6 +5,7 @@ import { DataProvider } from '../../providers/data/data';
 import { AuthProvider } from '../../providers/auth/auth';
 import { UsersPage } from '../users/users';
 import * as moment from 'moment'
+import { LoginPage } from '../login/login';
 
 @IonicPage()
 @Component({
@@ -21,6 +22,7 @@ export class SignupPage {
     dob: "",
     gender: "",
     race: "",
+    bodyType: "",
     dateCreated: ""
   };
   minYear: string;
@@ -32,7 +34,11 @@ export class SignupPage {
   ionViewDidLoad() {
     const date = this.dataProvider.getNowDate();
     const year = +date.split('/')[0] - 17;
-    this.minYear = year.toString()
+    this.minYear = year.toString();
+    const location = {
+      address: "",
+      geo: { lat: "", lng: "" }
+    }
   }
 
   signupWithEmailAndPassword() {
@@ -45,6 +51,10 @@ export class SignupPage {
         console.log(err);
       })
     });
+  }
+
+  goToLogin() {
+    this.navCtrl.setRoot(LoginPage);
   }
 
 }

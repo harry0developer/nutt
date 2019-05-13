@@ -1,6 +1,6 @@
 page-signup {
     .brand   {
-        width: 160px;
+        width: 120px;
         margin: 8% auto;
     }
     .content {
@@ -24,8 +24,21 @@ page-signup {
         margin-bottom: 4px;
         margin-top: -4px;
     }
+
+    ion-datetime {
+        padding: 0 0 8px 0 !important;
+    }
+    ion-item.item-datetime.item-ios{
+        height: 3.9em !important;
+        border-radius: 4px !important;
+    }
+    ion-item.item-datetime.item-md{
+        height: 4.2em !important;
+        border-radius: 4px !important;
+    }
     ion-item.item-input {
         margin: 10px 0;
+        height: 4em !important;
     }
     ion-label.label {
         width: 120px;

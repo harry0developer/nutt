@@ -77,19 +77,36 @@
           </ion-select>
         </ion-item>
         <div [hidden]="race.valid || race.pristine" class="validation">
-          <p class="animated tada" [hidden]="!race.hasError('required')">race is required</p>
+          <p class="animated tada" [hidden]="!race.hasError('required')">Race is required</p>
         </div>
       </ion-col>
     </ion-row>
 
-    <ion-item class="animated pulse">
-      <ion-label>Date of birth</ion-label>
-      <ion-datetime displayFormat="YYYY MM DD" max="{{minYear}}"  [(ngModel)]="data.dob" required dob="dob" #dob="ngModel"></ion-datetime>
-    </ion-item>
-    <div [hidden]="dob.valid || dob.pristine" class="validation">
-      <p class="animated tada" [hidden]="!dob.hasError('required')">Date of birth is required</p>
-    </div>
-
+    <ion-row>
+      <ion-col col-6>
+        <ion-item class="animated pulse">
+          <ion-label floating>Date of birth</ion-label>
+          <ion-datetime displayFormat="YYYY MM DD" max="{{minYear}}"  [(ngModel)]="data.dob" required dob="dob" #dob="ngModel"></ion-datetime>
+        </ion-item>
+        <div [hidden]="dob.valid || dob.pristine" class="validation">
+          <p class="animated tada" [hidden]="!dob.hasError('required')">Date of birth is required</p>
+        </div>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item class="animated pulse" no-lines>
+          <ion-label floating>Body type</ion-label>
+          <ion-select [(ngModel)]="data.bodyType" multiple="false" required bodyType="bodyType" #bodyType="ngModel">
+            <ion-option value="slim">Slim</ion-option>
+            <ion-option value="slim-thick">Slim thick</ion-option>
+            <ion-option value="thick">Thick</ion-option>
+            <ion-option value="bbw">BBW</ion-option>
+          </ion-select>
+        </ion-item>
+        <div [hidden]="bodyType.valid || bodyType.pristine" class="validation">
+          <p class="animated tada" [hidden]="!bodyType.hasError('required')">Body type is required</p>
+        </div>
+      </ion-col>
+    </ion-row>
     <ion-item class="animated pulse">
       <ion-label>Password</ion-label>
       <ion-input [(ngModel)]="data.password" clearOnEdit=false required password="password" #password="ngModel" pattern=".{4,}" type="{{type}}"></ion-input>
@@ -106,28 +123,12 @@
     </div>
     <button ion-button block color="light" class="dark border" [disabled]="!dob.valid || !gender.valid || !race.valid || !nickname.valid || !email.valid || !password.valid " (click)="signupWithEmailAndPassword()">Signup</button>
   </ion-list>
-
-  <ion-list class="login-type">
-    <hr>
-    <p>LOGIN WITH</p>
-    <div class="row controls">
-      <div class="col col-6 left"> 
-        <button ion-button block small color="light" class="dark border" (click)="loginWithFacebook()">Facebook</button>
-      </div>
-      <div class="col col-6 left" *ngIf="loginType === 'EmailAndPassword'"> 
-        <button ion-button block small color="light" class="dark border" (click)="switchTologinWithPhoneNumber()">Phone Number</button>
-      </div>
-      <div class="col col-6 left" *ngIf="loginType === 'PhoneNumber' || loginType === 'otp'"> 
-        <button ion-button block small color="light" class="dark border" (click)="switchTologinWithEmailAndPassword()">Email Address</button>
-      </div>
-    </div>
-  </ion-list>
  </ion-content>
 
 <ion-footer>
   <div class="row controls">
     <div class="col col-6 left">
-      <button ion-button clear small class="clear" (click)="goToSignup()">Sign up</button>
+      <button ion-button clear small class="clear" (click)="goToSignin()">Login</button>
     </div>
     <div class="col col-6 right">
       <button ion-button clear small class="clear" (click)="goToForgotPassword()">Forgot password</button>
