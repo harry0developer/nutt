@@ -82,6 +82,10 @@ export class LoginPage {
     });
   }
 
+  goToSignup() {
+    this.navCtrl.setRoot(SignupPage);
+  }
+
   // signinWithEmailAndPassword() {
   //   this.feedbackProvider.presentLoading();
   //   this.authProvider.signInWithEmailAndPassword(this.data.email, this.data.password).then(res => {

@@ -17,7 +17,7 @@ import { ChatPage } from '../pages/chat/chat';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = UsersPage;
+  rootPage: any = LoginPage;
 
   pages: any;
   user;

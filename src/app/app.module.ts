@@ -26,6 +26,8 @@ import { RatingModule } from "ngx-rating";
 import { RequestsPage } from '../pages/requests/requests';
 import { ProfilePage } from '../pages/profile/profile';
 import { ChatPage } from '../pages/chat/chat';
+import { FirebaseDataProvider } from '../providers/firebase-data/firebase-data';
+import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { ChatPage } from '../pages/chat/chat';
     AngularFireAuth,
     AuthProvider,
     FeedbackProvider,
-    DataProvider
+    DataProvider,
+    FirebaseDataProvider,
+    FirebaseAuthProvider
   ]
 })
 export class AppModule { }

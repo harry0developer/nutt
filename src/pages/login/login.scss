@@ -1,5 +1,4 @@
 page-login {
-
     .brand   {
         width: 160px;
         margin: 8% auto;
@@ -10,23 +9,15 @@ page-login {
             background-color: $secondary;
         }
     }
-
     .validation {
         color: $light-grey;
     }
-
-
-
     ion-item.item-input {
         margin: 10px 0;
     }
-
     ion-label.label {
         width: 120px;
     }
-
-
-
     .login-type {
         margin-top: 40px;
         p {
@@ -34,8 +25,10 @@ page-login {
             color: $white;
         }
     }
-
     .controls .col {
         text-align: center;
+        .button {
+            color: white;
+        }
     } 
 }

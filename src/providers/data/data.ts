@@ -206,6 +206,10 @@ export class DataProvider {
     return moment(date, "YYYY/MM/DD").month(0).from(moment().month(0)).split(" ")[0];
   }
 
+  getNowDate(): string {
+    return moment().format("YYYY/MM/DD");
+  }
+
   getLocationFromGeo(geo) {
     const myLocation = {
       lat: -25.850187,

@@ -1,13 +1,11 @@
 import { Injectable } from '@angular/core';
-import { User } from '../../models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { USER_TYPE } from '../../utils/consts';
 import { auth } from 'firebase';
+import { User } from '../../models/user';
 
 @Injectable()
-export class AuthProvider {
-
+export class FirebaseAuthProvider {
   profile: User;
 
   constructor(
@@ -15,9 +13,17 @@ export class AuthProvider {
     public afAuth: AngularFireAuth,
     public afStore: AngularFirestore,
   ) {
-
+    // this.afAuth.authState.subscribe(user => {
+    //   if (user) {
+    //     this.userData = user;
+    //     localStorage.setItem('user', JSON.stringify(this.userData));
+    //     JSON.parse(localStorage.getItem('user'));
+    //   } else {
+    //     localStorage.setItem('user', null);
+    //     JSON.parse(localStorage.getItem('user'));
+    //   }
+    // });
   }
-
 
   sendVerificationMail() {
     return this.afAuth.auth.currentUser.sendEmailVerification();
@@ -51,8 +57,10 @@ export class AuthProvider {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  signUpWithEmailAndPassword(user) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password);
+  signUpWithEmailAndPassword(user: User) {
+    return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password).then(res => {
+      this.updateUser(user);
+    });
   }
 
   signUpWithPhonenumber(phoneNumber, appVerifier) {
@@ -62,12 +70,13 @@ export class AuthProvider {
       console.log(err);
     });
   }
-  updateUser(data) {
-    data.uid = this.afAuth.auth.currentUser.uid;
-    return this.afs.collection('users').doc(data.uid).set(data);
+  updateUser(data: User) {
+    const user = this.getStoredUser();
+    const userData = {};
+    return this.afs.collection('users').doc(user.uid).set(userData);
   }
 
-  getFirebaseUserData(uid): any {
+  getUser(uid): any {
     return this.afs.collection('users').doc(uid).get();
   }
 
@@ -88,11 +97,5 @@ export class AuthProvider {
     return this.afAuth.auth.signOut();
   }
 
-  isBuyer(user): boolean {
-    return user && user.type === USER_TYPE.buyer;
-  }
 
-  isSeller(user): boolean {
-    return user && user.type === USER_TYPE.seller;
-  }
 }

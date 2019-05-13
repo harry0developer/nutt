@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the SignupPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { User } from '../../models/user';
+import { DataProvider } from '../../providers/data/data';
+import { AuthProvider } from '../../providers/auth/auth';
+import { UsersPage } from '../users/users';
+import * as moment from 'moment'
 
 @IonicPage()
 @Component({
@@ -14,12 +12,39 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  signupType = 'EmailAndPassword';
+  data = {
+    email: "",
+    password: "",
+    nickname: "",
+    avatar: "",
+    dob: "",
+    gender: "",
+    race: "",
+    dateCreated: ""
+  };
+  minYear: string;
+  constructor(public navCtrl: NavController,
+    public dataProvider: DataProvider,
+    public authProvider: AuthProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SignupPage');
+    const date = this.dataProvider.getNowDate();
+    const year = +date.split('/')[0] - 17;
+    this.minYear = year.toString()
+  }
+
+  signupWithEmailAndPassword() {
+    this.data.avatar = `assets/imgs/users/${this.data.gender}.svg`;
+    this.data.dateCreated = this.dataProvider.getNowDate();
+    this.authProvider.signUpWithEmailAndPassword(this.data).then(() => {
+      this.authProvider.updateUser(this.data).then(() => {
+        this.navCtrl.setRoot(UsersPage);
+      }).catch(err => {
+        console.log(err);
+      })
+    });
   }
 
 }
