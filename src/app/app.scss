@@ -5,6 +5,10 @@
 	color: $white !important;
 	border-top: 0 !important;
 	border-bottom: 0 !important;
+
+	.button-inner i {
+		margin: 10px;
+	}
 	ion-item {
 		border-top: 0 !important;
 		border-bottom: 0 !important;
@@ -33,8 +37,9 @@
 			color: $white;
 			margin: 5px 0;
 		}
-    }
-    .menu {
+	}
+
+  .menu {
 		ion-item {
 			background-color: $primary !important;
 			color: $white !important;

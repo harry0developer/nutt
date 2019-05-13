@@ -1,13 +1,14 @@
-<ion-content class="transparent-header">
-  <ion-header>
-    <ion-navbar> </ion-navbar>
+<ion-header>
+    <ion-navbar >
+      <ion-title>Profile</ion-title>
+    </ion-navbar>
   </ion-header>
-
-  <div *ngIf="user" id="profile-bg" [ngStyle]="{'background-image': 'url(' + img +')'}"></div>
-
-  <div *ngIf="user" id="content">
-    <div id="profile-info" padding>
-      <img id="profile-image" [src]="img">
+  
+  <ion-content>
+    <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + img +')'}"></div>
+    <div id="content" *ngIf="user">
+    <div id="profile-info">
+      <img id="profile-image" src="assets/imgs/users/user{{user.id}}.jpg">
       <h2 class="nickname">{{user.nickname}} 
         <ion-badge class="age" item-end>{{getAge(user.dob)}}</ion-badge>
       </h2>
@@ -18,13 +19,18 @@
         <ion-badge primary>{{user.race}}</ion-badge>
         <ion-badge primary>{{user.bodyType}}</ion-badge>
       </div>
-    </div>
+    </div>   
+  
     <ion-row class="info">
-      <ion-col col-6>
-        <p>Views</p>
+      <ion-col col-4>
+        <p>Followers</p>
         <h2>120</h2>
       </ion-col>
-      <ion-col col-6>
+      <ion-col col-4>
+        <p>Likes</p>
+        <h2>120</h2>
+      </ion-col>
+      <ion-col col-4>
         <p>Requests</p>
         <h2>120</h2>
       </ion-col>
@@ -46,7 +52,33 @@
       <ion-col col-4>
           <img src="assets/imgs/users/user{{user.id}}.jpg">
       </ion-col>
-    </ion-row>
+    </ion-row>    
   </div>
-
 </ion-content>
+
+<ion-footer>
+  
+  <div class="popup-menu" *ngIf="user">
+    <div class="popup-menu-overlay" [ngClass]="{'in': openMenu}" (click)="togglePopupMenu()"></div>
+    <div class="popup-menu-toggle" (click)="togglePopupMenu()" [ngClass]="{'out': openMenu}"></div>
+    <div class="popup-menu-panel" [ngClass]="{'in': openMenu}">
+      <div class="popup-menu-item" (click)="followUser(user)">
+        <!-- <ion-icon name="home"></ion-icon> -->
+        <!-- <ion-badge>25</ion-badge> -->
+        <i class="fa fa-user-plus"></i>
+        <span>Follow</span>
+      </div>
+      <div class="popup-menu-item" (click)="likeUser(user)">
+        <!-- <ion-icon name="trophy"></ion-icon> -->
+        <i class="fa fa-thumbs-up"></i>
+        <span>Like</span>
+      </div>
+      <div class="popup-menu-item" (click)="chatWithUser(user)">
+        <!-- <ion-icon name="podium"></ion-icon> -->
+        <!-- <ion-badge>10</ion-badge> -->
+        <i class="fa fa-comment"></i>
+        <span>Chat</span>
+      </div> 
+    </div>
+  </div>
+</ion-footer>

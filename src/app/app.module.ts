@@ -25,6 +25,7 @@ import { UserDetailsPage } from '../pages/user-details/user-details';
 import { RatingModule } from "ngx-rating";
 import { RequestsPage } from '../pages/requests/requests';
 import { ProfilePage } from '../pages/profile/profile';
+import { ChatPage } from '../pages/chat/chat';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ProfilePage } from '../pages/profile/profile';
     SignupPage,
     ForgotPasswordPage,
     RequestsPage,
-    ProfilePage
+    ProfilePage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -53,7 +55,8 @@ import { ProfilePage } from '../pages/profile/profile';
     SignupPage,
     ForgotPasswordPage,
     RequestsPage,
-    ProfilePage
+    ProfilePage,
+    ChatPage
   ],
   providers: [
     StatusBar,
