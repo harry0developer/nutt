@@ -1,6 +1,6 @@
 page-login { 
     .logo-brand {
-        width: 60px;
+        width: 70px;
         margin: 40px auto 20px auto ; //TRBL
     } 
     .top {
@@ -18,8 +18,7 @@ page-login {
         }
 
         ion-card {
-            background: rgba(255,255,255,0.8);
-            border: 2px solid $secondary;
+            border: 2px solid $primary;
         }
         ion-icon.email {
             font-size: 1.2em;

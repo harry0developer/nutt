@@ -3,9 +3,10 @@ page-chat {
     ion-avatar{
         margin: 0 !important; 
     }
+   
 
     .bubble-time {
-        font-size: 0.7em;
+        font-size: 0.8em;
         color: $dark-grey;
     }
 
@@ -22,9 +23,9 @@ page-chat {
         // width: 250px;
         margin: 2px 16px;
         border-radius: 15px;
-        color: #fff;
+        color: white;
         padding: 14px;
-        font-size: 0.8em;
+        font-size: 1em;
         font-weight: normal;
         position: relative;
         text-align: left;
@@ -32,16 +33,17 @@ page-chat {
       
     /* speech bubble primary */  
     .bubble-primary {
-        background-color: $dark-grey;
+        background-color: $light-grey;
+        color: white;
     }
     .bubble-primary:before {
         content: "";
         width: 0px;
         height: 0px;
         position: absolute;
-        border-left: 15px solid $dark-grey;
+        border-left: 15px solid $light-grey;
         border-right: 15px solid transparent;
-        border-top: 15px solid $dark-grey;
+        border-top: 15px solid $light-grey;
         border-bottom: 15px solid transparent;
         right: -16px;
         // top: 0px;
