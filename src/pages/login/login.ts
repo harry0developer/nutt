@@ -59,13 +59,24 @@ export class LoginPage {
     this.loginType = 'EmailAndPassword';
   }
 
-  signinWithFacebook() {
+  signInWithFacebook() {
+    this.authProvider.signInWithFacebook().then((r) => {
+      console.log(r);
+    }).catch(err => {
+      console.log(err);
 
+    })
   }
 
-  signinWithTwitter() {
+  signInWithGoogle() {
+    this.authProvider.signInWithGoogle().then((r) => {
+      console.log(r);
+    }).catch(err => {
+      console.log(err);
 
+    })
   }
+
 
   goToSignup() {
     this.navCtrl.setRoot(SignupPage);
@@ -89,7 +100,6 @@ export class LoginPage {
 
   goToForgotPassword() {
     console.log('forgot password');
-
   }
 
   // signInWithFacebook() {
@@ -146,13 +156,13 @@ export class LoginPage {
   //   this.navCtrl.setRoot(ForgotPasswordPage);
   // }
 
-  // showPassword() {
-  //   this.showPass = !this.showPass;
-  //   if (this.showPass) {
-  //     this.type = 'text';
-  //   } else {
-  //     this.type = 'password';
-  //   }
-  // }
+  showPassword() {
+    this.showPass = !this.showPass;
+    if (this.showPass) {
+      this.type = 'text';
+    } else {
+      this.type = 'password';
+    }
+  }
 
 }

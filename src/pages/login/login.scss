@@ -1,8 +1,9 @@
 page-login { 
     .logo-brand {
+        height: 50%;
         width: 80px;
         margin: 40px auto 20px auto ; //TRBL
-    }
+    } 
     .top {
         background-color: white;
     }
@@ -71,9 +72,9 @@ page-login {
         }
         .button-inner {
             span {
-                font-size: .8em;
+                font-size: .9em;
                 position: absolute;
-                left: 35px;
+                left: 60px;
             }
         }
         .mail ion-icon{
@@ -100,12 +101,28 @@ page-login {
         }
     }
    
-
     .bottom {
-        position: relative;
-        top: 18%;
-        height: 50%;
-        z-index: -99;
+        position: absolute;
+        height: 60%;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        padding: 50px 0;
+        width: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+
+    .bottom:after {
+        width: 100%;
+        content: "";
+        display: block;
+        height: 100%;
+        position: absolute;
+        transform: skewY(-14deg);
+        background-color: $primary;
+        z-index: 2;
     }
 
     ion-footer {

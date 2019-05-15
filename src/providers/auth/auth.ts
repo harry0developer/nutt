@@ -43,6 +43,10 @@ export class AuthProvider {
     return this.authLogin(new auth.FacebookAuthProvider());
   }
 
+  signInWithGoogle() {
+    return this.authLogin(new auth.GoogleAuthProvider());
+  }
+
   authLogin(provider) {
     return this.afAuth.auth.signInWithPopup(provider);
   }
