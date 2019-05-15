@@ -1,13 +1,10 @@
 page-login { 
-
+    .logo-brand {
+        width: 80px;
+        margin: 40px auto 20px auto ; //TRBL
+    }
     .top {
         background-color: white;
-        .brand {
-            img {
-                width: 200px;
-                top: 0;
-            }
-        }
     }
 
     .login-form {
@@ -34,6 +31,32 @@ page-login {
         .item-input {
             border: 1px solid $light-grey;
         }
+        .termsAndConditions {
+            color: $light-grey;
+            text-align: center;
+            font-size: 10px;
+            padding: 10px;
+        }
+            
+        [icon-start] ion-icon {
+            position: absolute;
+            left: 0;
+            padding: 12px;
+            background-color: white;
+        }
+    
+        ion-item.item-input {
+            margin: 10px 0;
+        }
+        
+        ion-label.label {
+            width: 120px;
+        }
+
+        .validation {
+            color: $light-grey;
+        }
+    
     }
     
     .social-media-login {
@@ -68,29 +91,15 @@ page-login {
         }
     }
     
-    .validation {
-        color: $light-grey;
-    }
-    
-    [icon-start] ion-icon {
-        position: absolute;
-        left: 0;
-        padding: 12px;
-        background-color: white;
+  
+    .social-media-login {
+        background-color: $primary;
+        height: 80px;
+        .button {
+            background-color: white;
+        }
     }
    
-    ion-item.item-input {
-        margin: 10px 0;
-    }
-    ion-label.label {
-        width: 120px;
-    }
-    .termsAndConditions {
-        color: $light-grey;
-        text-align: center;
-        font-size: 10px;
-        padding: 10px;
-    }
 
     .bottom {
         position: relative;
@@ -99,19 +108,8 @@ page-login {
         z-index: -99;
     }
 
-    .social-media-login {
-        background-color: $primary;
-        height: 100px;
-        .button {
-            background-color: white;
-        }
-    }
     ion-footer {
         background-color: $primary;
         text-align: center;
-        // .footer-buttons {
-        //     text-align: center;
-        //     color: white;
-        // }
     }
 }
