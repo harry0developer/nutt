@@ -1,0 +1,101 @@
+.brand   {
+    width: 160px;
+    margin: 8% auto;
+    height: 20%;
+}
+.content {
+    background-color: #fff;;
+    .logo {
+        // height: 40%;
+        position: relative;
+        top: 0;
+        background-color: #ee4a6b;
+    }
+    .top {
+        background-color: #ee4a6b;
+        img {
+            position: absolute;
+            top: -10%;
+        }
+    }
+
+
+}
+
+.login-form {
+    position: absolute;
+    width: 100%;
+    top: 30%
+    // height: 200px;
+}
+
+.social-media-login {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    
+}
+
+
+// .login-type {
+//     height: 50%;
+//     margin-top: 0 !important;
+//     .buttons {
+//         position: relative;
+//         bottom: 0;
+//     }
+// }
+.validation {
+    color: $light-grey;
+}
+
+[icon-start] ion-icon {
+    position: absolute;
+    left: 0;
+    padding: 12px;
+    background-color: white;
+}
+
+.button-inner {
+    span {
+        position: absolute;
+        left: 50px;
+    }
+}
+.mail ion-icon{
+    color: $mail;
+}
+.facebook ion-icon{
+    color: $facebook;
+    font-size: 1.6em;
+}
+.twitter ion-icon{
+    color: $twitter;
+}
+.google ion-icon{
+    color: $google;
+}
+ion-item.item-input {
+    margin: 10px 0;
+}
+ion-label.label {
+    width: 120px;
+}
+.termsAndConditions {
+    color: $light-grey;
+    text-align: center;
+    font-size: 10px;
+}
+.login-type {
+    margin-top: 40px;
+    p {
+        text-align: center;
+        color: $white;
+    }
+}
+.controls .col {
+    text-align: center;
+    .button {
+        color: white;
+    }
+} 

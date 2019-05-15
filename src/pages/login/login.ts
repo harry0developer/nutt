@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Events } from 'ionic-angular';
+import { NavController, NavParams, Events, Platform } from 'ionic-angular';
 import { take } from 'rxjs/operators';
 import { AuthProvider } from '../../providers/auth/auth';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
@@ -41,7 +41,8 @@ export class LoginPage {
     private ionEvents: Events,
     private dataProvider: DataProvider,
     private feedbackProvider: FeedbackProvider,
-    private authProvider: AuthProvider) {
+    private authProvider: AuthProvider,
+    private platform: Platform) {
   }
 
   ionViewDidLoad() {
@@ -58,29 +59,12 @@ export class LoginPage {
     this.loginType = 'EmailAndPassword';
   }
 
-  loginWithEmailAndPassword() {
-    console.log('EmailAndPassword login ...');
+  signinWithFacebook() {
+
   }
 
-  loginWithPhoneNumber() {
-    this.loginType = 'otp';
-    const phoneNumber = '+27' + this.data.phone;
-    (<any>window).FirebasePlugin.verifyPhoneNumber(phoneNumber, 60, function (credential) {
-      this.verificationId = credential.verificationId;
-      console.log('success otp:', this.verificationId);
-    }, (error) => {
-      console.error('XXXXXXX ' + error);
-    });
-  }
+  signinWithTwitter() {
 
-  verify() {
-    let signInCredential = firebase.auth.PhoneAuthProvider.credential(this.verificationId, this.data.otp);
-    firebase.auth().signInWithCredential(signInCredential).then((info) => { console.log(info); }, (error) => {
-      console.log(error);
-      this.feedbackProvider.presentAlert('Succees', 'You have successfully logged in with Phone number :)');
-    }).catch(err => {
-      console.log('xxxxxx', err);
-    });
   }
 
   goToSignup() {
@@ -101,6 +85,11 @@ export class LoginPage {
       }
       console.log(err);
     });
+  }
+
+  goToForgotPassword() {
+    console.log('forgot password');
+
   }
 
   // signInWithFacebook() {
