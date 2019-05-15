@@ -16,6 +16,10 @@ page-signup {
                 margin-left: 0;
             }
         }
+        ion-card {
+            background: rgba(255,255,255,0.8);
+            border: 2px solid $secondary;
+        }
         ion-icon.email {
             font-size: 1.2em;
             padding-top: 3px;
@@ -28,8 +32,33 @@ page-signup {
             color: $primary;
         }
 
-        .item-input {
+        .col {
+            padding: 2px;
+        }
+
+        .item-input, .item-select, .item-datetime {
             border: 1px solid $light-grey;
+            color: $light-grey;
+            .label {
+                color: $dark-grey;
+            }
+        } 
+
+
+
+        .item-select, .item-datetime {
+            height: 70px;
+        }
+        .datetime-ios {
+            padding: 0 !important;
+        }
+
+        .item-datetime {
+            border-radius: 4px; 
+            .datetime-md {
+                padding: 5px 0;
+                height: 30px;
+            }
         }
         .termsAndConditions {
             color: $light-grey;
@@ -100,20 +129,28 @@ page-signup {
         }
     }
    
-
-
     .bottom {
         position: absolute;
-        z-index: -99999;
-        top: 60%;
-        bottom: 0;
+        height: 60%;
         right: 0;
         left: 0;
+        bottom: 0;
+        padding: 50px 0;
         width: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+
+
+    .bottom:after {
+        width: 100%;
+        content: "";
+        display: block;
         height: 100%;
-        background: linear-gradient($primary) fixed;
+        position: absolute;
         transform: skewY(-14deg);
-        transform-origin: top left; 
+        background-color: $primary;
+        z-index: 2;
     }
 
     ion-footer {

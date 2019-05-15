@@ -1,7 +1,6 @@
 page-login { 
     .logo-brand {
-        height: 50%;
-        width: 80px;
+        width: 60px;
         margin: 40px auto 20px auto ; //TRBL
     } 
     .top {
@@ -16,6 +15,11 @@ page-login {
             .item-inner {
                 margin-left: 0;
             }
+        }
+
+        ion-card {
+            background: rgba(255,255,255,0.8);
+            border: 2px solid $secondary;
         }
         ion-icon.email {
             font-size: 1.2em;
@@ -55,7 +59,7 @@ page-login {
         }
 
         .validation {
-            color: $light-grey;
+            color: $primary;
         }
     
     }

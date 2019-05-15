@@ -98,7 +98,7 @@
             <p class="animated bounceIn" [hidden]="!password.hasError('required')">Password is required</p>
             <p class="animated bounceIn" [hidden]="!password.hasError('pattern')">Password must be 4 characters or longer</p>
           </div>
-          <button ion-button block outline color="light" [disabled]="!dob.valid || !gender.valid || !race.valid || !nickname.valid || !email.valid || !password.valid " (click)="signupWithEmailAndPassword()">Signup</button>
+          <button ion-button block primary [disabled]="!dob.valid || !gender.valid || !race.valid || !nickname.valid || !email.valid || !password.valid " (click)="signupWithEmailAndPassword()">Signup</button>
           <p class="termsAndConditions">Terms & Conditions apply</p>
         </ion-card-content>
       </ion-card>
@@ -111,12 +111,5 @@
   </ion-content>
   
   <ion-footer>
-    <div class="row footer-buttons">
-      <div class="col col-6 left">
-        <button ion-button clear color="light" (click)="goToSignup()">Sign up</button>
-      </div>
-      <div class="col col-6 right">
-        <button ion-button clear color="light" (click)="goToForgotPassword()">Forgot password</button>
-      </div>
-    </div>
+    <button ion-button clear block color="light" (click)="goToLogin()">Login</button>
   </ion-footer>
