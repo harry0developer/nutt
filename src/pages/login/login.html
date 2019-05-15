@@ -114,33 +114,25 @@
     <div class="social-media-login">
       <ion-grid>
         <ion-row>
-          <ion-col col-6>
-            <button ion-button block outline color="light" class="mail" icon-start (click)="loginWithFacebook()">
-              <ion-icon name="mail"></ion-icon>
-              <span>Email</span>
-            </button> 
-          </ion-col>
-          <ion-col col-6>
-            <button ion-button block outline color="light" class="google" icon-start (click)="switchTologinWithPhoneNumber()">
-              <ion-icon name="logo-google"></ion-icon>
-              <span>Google</span>
-            </button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col col-6>
+          <ion-col col-4>
             <button ion-button block outline color="light" class="facebook" icon-start (click)="loginWithFacebook()">
               <ion-icon name="logo-facebook"></ion-icon>
               <span>Facebook</span>
             </button> 
           </ion-col>
-          <ion-col col-6>
-            <button ion-button block outline color="light" class="twitter" icon-start (click)="switchTologinWithPhoneNumber()">
+          <ion-col col-4>
+            <button ion-button block outline color="light" class="twitter" icon-start (click)="loginWithTwitter()">
               <ion-icon name="logo-twitter"></ion-icon>
               <span>Twitter</span>
             </button> 
           </ion-col>
-        </ion-row>
+          <ion-col col-4>
+            <button ion-button block outline color="light" class="google" icon-start (click)="loginWithGoogle()">
+              <ion-icon name="logo-google"></ion-icon>
+              <span>Google</span>
+            </button>
+          </ion-col>
+        </ion-row> 
       </ion-grid>  
     </div>
     <div class="bottom">
@@ -152,10 +144,10 @@
   <ion-footer>
     <div class="row footer-buttons">
       <div class="col col-6 left">
-        <button ion-button clear primary (click)="goToSignup()">Sign up</button>
+        <button ion-button clear color="light" (click)="goToSignup()">Sign up</button>
       </div>
       <div class="col col-6 right">
-        <button ion-button clear (click)="goToForgotPassword()">Forgot password</button>
+        <button ion-button clear color="light" (click)="goToForgotPassword()">Forgot password</button>
       </div>
     </div>
   </ion-footer>

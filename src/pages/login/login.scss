@@ -48,8 +48,9 @@ page-login {
         }
         .button-inner {
             span {
+                font-size: .8em;
                 position: absolute;
-                left: 50px;
+                left: 35px;
             }
         }
         .mail ion-icon{
@@ -57,7 +58,7 @@ page-login {
         }
         .facebook ion-icon{
             color: $facebook;
-            font-size: 1.6em;
+            font-size: 1.4em;
         }
         .twitter ion-icon{
             color: $twitter;
@@ -88,6 +89,7 @@ page-login {
         color: $light-grey;
         text-align: center;
         font-size: 10px;
+        padding: 10px;
     }
 
     .bottom {
@@ -99,15 +101,17 @@ page-login {
 
     .social-media-login {
         background-color: $primary;
-        height: 120px;
+        height: 100px;
         .button {
             background-color: white;
         }
     }
     ion-footer {
         background-color: $primary;
-        .footer-buttons {
-            text-align: center;
-        }
+        text-align: center;
+        // .footer-buttons {
+        //     text-align: center;
+        //     color: white;
+        // }
     }
 }
