@@ -49,9 +49,12 @@ export class MyApp {
   }
 
   setProfile() {
-    this.dataProvider.getUserById(this.authProvider.getStoredUser()).subscribe(user => {
-      this.profile = user;
-    });
+    if (this.authProvider.isLoggedIn()) {
+
+      this.dataProvider.getUserById(this.authProvider.getStoredUser()).subscribe(user => {
+        this.profile = user;
+      });
+    }
   }
 
   openPage(page) {

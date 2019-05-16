@@ -26,6 +26,7 @@ export class UsersPage {
       this.feedbackProvider.presentLoading();
       this.dataProvider.getUserById(this.authProvider.getStoredUser()).subscribe(user => {
         this.profile = user;
+
         this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
           this.feedbackProvider.dismissLoading();
           if (this.profile.userType === USER_TYPE.buyer) {

@@ -7,6 +7,7 @@ import { UserData } from '../../models/userData';
 import { AuthProvider } from '../auth/auth';
 import { COLLECTION } from '../../utils/consts';
 import * as moment from 'moment'
+import { Rating } from '../../models/rating';
 
 
 @Injectable()
@@ -163,6 +164,15 @@ export class DataProvider {
     );
   }
 
+  calculateRating(ratings: Rating[]): string {
+    let totalRate = 0;
+    ratings.forEach(r => {
+      totalRate += +r.rating;
+    });
+    const rate = (totalRate / ratings.length).toFixed(2);
+    return rate.toString();
+  }
+
   getItemById(collectionName: string, id: string) {
     return this.afStore.collection(collectionName).doc<any>(id).valueChanges();
   }
@@ -181,15 +191,6 @@ export class DataProvider {
 
   findItemById(id: string) {
     return this.getItemById(COLLECTION.users, id);
-  }
-
-
-  getProfilePicture(profile): string {
-    return `assets/imgs/users/${profile.gender}.svg`;
-  }
-
-  getSettings() {
-    return {};
   }
 
   applyHaversine(jobs, lat, lng) {

@@ -84,18 +84,19 @@ page-login {
                 left: 40px !important;
             }
         }
-        .mail ion-icon{
-            color: $mail;
-        }
+        
         .facebook ion-icon{
             color: $facebook;
             font-size: 1.4em;
-        }
-        .twitter ion-icon{
-            color: $twitter;
-        }
+        } 
         .google ion-icon{
             color: $google;
+        }
+
+        ion-icon {
+            position: absolute;
+            left: 0;
+            padding-left: 14px;
         }
     }
     

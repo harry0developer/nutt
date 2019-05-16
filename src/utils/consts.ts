@@ -1,7 +1,9 @@
 export const COLLECTION = {
     users: 'users',
     ratings: 'ratings',
-    views: 'views'
+    views: 'views',
+    followers: 'followers',
+    following: 'following',
 }
 
 export const USER_TYPE = {

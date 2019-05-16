@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { ChatPage } from '../chat/chat';
+import { COLLECTION } from '../../utils/consts';
+import { User } from '../../models/user';
+import { Follower } from '../../models/followers';
 
 @IonicPage()
 @Component({
@@ -9,8 +12,9 @@ import { ChatPage } from '../chat/chat';
   templateUrl: 'user-details.html',
 })
 export class UserDetailsPage {
-  user: any;
-  img: string = "";
+  profile: User;
+  rating: string;
+  followers: Follower[] = [];
   category: string = 'info';
   openMenu: boolean = false;
   constructor(
@@ -20,9 +24,19 @@ export class UserDetailsPage {
   }
 
   ionViewDidLoad() {
-    this.user = this.navParams.get('user');
-    this.img = `assets/imgs/users/user${this.user.id}.jpg`;
+    this.profile = this.navParams.get('user');
+
+    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, 'uid', this.profile.uid).subscribe(ratingData => {
+      this.rating = this.dataProvider.calculateRating(ratingData);
+    });
+
+    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.followers, 'uid', this.profile.uid).subscribe(followers => {
+      this.followers = followers;
+      console.log(followers);
+    });
   }
+
+
 
   getAge(date: string): string {
     return this.dataProvider.getAgeFromDate(date);
