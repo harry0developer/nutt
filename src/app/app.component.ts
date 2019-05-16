@@ -5,7 +5,6 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LoginPage } from '../pages/login/login';
 
-import * as firebase from 'firebase';
 import { UsersPage } from '../pages/users/users';
 import { RequestsPage } from '../pages/requests/requests';
 import { ProfilePage } from '../pages/profile/profile';
@@ -17,7 +16,7 @@ import { ChatPage } from '../pages/chat/chat';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = UsersPage;
+  rootPage: any = LoginPage;
 
   pages: any;
   user;

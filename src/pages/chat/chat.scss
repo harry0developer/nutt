@@ -87,10 +87,12 @@ page-chat {
         }
         ion-input {
             padding-left: 6px !important;
-            font-size: 14px
+            font-size: 14px;
+            color: $dark-grey !important;
         }
-        button {
+        .button {
             font-weight: bold;
+            color: $primary !important;
         }
     }
 

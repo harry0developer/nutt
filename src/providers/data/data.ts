@@ -18,6 +18,88 @@ export class DataProvider {
   profile: User;
   KM: number = 1.60934;
 
+  dummyUsers: any = [
+    {
+      nickname: "Mia Mommy Tee Low",
+      id: 1,
+      rating: "3.5",
+      dob: "1991-02-22",
+      gender: "female",
+      race: "black",
+      bodyType: "slim-thick",
+      location: {
+        address: "123 Arcadia, Pretoria",
+        geo: {
+          lat: -25.950187,
+          lng: 28.998042
+        }
+      }
+    },
+    {
+      nickname: "Kitty Mami",
+      id: 2,
+      rating: "4.5",
+      dob: "1993-07-19",
+      gender: "female",
+      race: "black",
+      bodyType: "thick",
+      location: {
+        address: "9090 Heart street, Menlyn, Pretoria",
+        geo: {
+          lat: -25.910187,
+          lng: 28.998042
+        }
+      }
+    },
+    {
+      nickname: "Queen Slay",
+      id: 3,
+      rating: "4",
+      dob: "1993-07-18",
+      gender: "female",
+      race: "coloured",
+      bodyType: "bbw",
+      location: {
+        address: "900 Sunnyside, Pretoria,",
+        geo: {
+          lat: -25.910187,
+          lng: 28.898042
+        }
+      }
+    },
+    {
+      nickname: "Mia Low",
+      id: 4,
+      rating: "4.8",
+      dob: "1996-03-20",
+      gender: "female",
+      race: "indian",
+      bodyType: "thick",
+      location: {
+        address: "891 Centurion, Pretoria",
+        geo: {
+          lat: -25.910187,
+          lng: 28.698042
+        }
+      }
+    },
+    {
+      nickname: "Sally Sea",
+      id: 5,
+      rating: "3.5",
+      dob: "1990-12-24",
+      gender: "female",
+      race: "black",
+      bodyType: "thick",
+      location: {
+        address: "123 Arcadia, Pretoria",
+        geo: {
+          lat: -25.610187,
+          lng: 28.998042
+        }
+      }
+    }
+  ];
   private userDataSubject = new BehaviorSubject<UserData>(null);
   userData$ = this.userDataSubject.asObservable();
   userData: UserData = new UserData();
@@ -27,46 +109,6 @@ export class DataProvider {
     public afAuth: AngularFirestore,
     private authProvider: AuthProvider) {
     this.profile = this.authProvider.getStoredUser();
-
-    if (this.profile) {
-
-      let type = '';
-
-      this.getUsers().subscribe(users => {
-        this.userData.setUsers(users);
-        this.updateUserData(this.userData);
-      });
-    }
-  }
-
-  updateUserData(userData: UserData) {
-    this.userData = new UserData(userData);
-    this.userDataSubject.next(userData);
-  }
-
-
-  getMappedCandidates(users, toBeMappedUsers): User[] {
-    const candidates: User[] = [];
-    users.map(user => {
-      toBeMappedUsers.map(mUser => {
-        if (user.uid === mUser.uid) {
-          candidates.push(user);
-        }
-      });
-    });
-    return candidates;
-  }
-
-  getMappedRecruiters(users, toBeMappedUsers): User[] {
-    const recruiters: User[] = [];
-    users.map(user => {
-      toBeMappedUsers.map(mUser => {
-        if (user.uid === mUser.rid) {
-          recruiters.push(user);
-        }
-      });
-    });
-    return recruiters;
   }
 
 
@@ -79,6 +121,7 @@ export class DataProvider {
   getUsers(): Observable<User[]> {
     return this.getAllFromCollection(COLLECTION.users);
   }
+
   getUserById(id): Observable<User> {
     return this.getItemById(COLLECTION.users, id);
   }

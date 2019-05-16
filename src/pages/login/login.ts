@@ -46,18 +46,25 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    // if (this.authProvider.isLoggedIn()) {
-    //   this.navigate(this.authProvider.getStoredUser());
-    // }
+    if (this.authProvider.isLoggedIn()) {
+      this.navCtrl.setRoot(UsersPage);
+    }
   }
 
-  switchTologinWithPhoneNumber() {
-    this.loginType = 'PhoneNumber';
+
+  signInWithEmailAndPassword() {
+    this.feedbackProvider.presentLoading();
+    this.authProvider.signInWithEmailAndPassword(this.data.email, this.data.password).then(res => {
+      this.feedbackProvider.dismissLoading();
+      this.authProvider.storeUser(this.authProvider.afAuth.auth.currentUser.uid);
+      this.navCtrl.setRoot(UsersPage);
+    }).catch(err => {
+      this.feedbackProvider.dismissLoading();
+      this.feedbackProvider.presentAlert('Login failed', 'The email and password entered do not match');
+      console.log(err);
+    })
   }
 
-  switchTologinWithEmailAndPassword() {
-    this.loginType = 'EmailAndPassword';
-  }
 
   signInWithFacebook() {
     this.authProvider.signInWithFacebook().then((r) => {
@@ -101,6 +108,15 @@ export class LoginPage {
   goToForgotPassword() {
     console.log('forgot password');
   }
+
+  // sendEmail() {
+  //   const name = 'Harry';
+  //   const email = 'set.harry@gmail.com';
+  //   const message = 'Lets see how it goes';
+  //   const date = this.dataProvider.getNowDate();
+  //   let formRequest = { name, email, message, date };
+  //   this.authProvider.afs.collection('/otp').add(formRequest);
+  // }
 
   // signInWithFacebook() {
   //   this.feedbackProvider.presentLoading();

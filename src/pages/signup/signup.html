@@ -7,6 +7,7 @@
 
     <div class="login-form" padding>
       <ion-card>
+          <h2>Signup</h2>
         <ion-card-content>
           <ion-item class="animated pulse">
             <ion-label>Email Address</ion-label>
@@ -102,6 +103,8 @@
           <p class="termsAndConditions">Terms & Conditions apply</p>
         </ion-card-content>
       </ion-card>
+
+      <button ion-button block (click)="dummyReg()">Fake signup</button>
     </div> 
 
     <div class="bottom">
@@ -110,6 +113,6 @@
 
   </ion-content>
   
-  <ion-footer>
-    <button ion-button clear block color="light" (click)="goToLogin()">Login</button>
-  </ion-footer>
+<ion-footer>
+  <button ion-button clear block color="light" (click)="goToLogin()">Login</button>
+</ion-footer>

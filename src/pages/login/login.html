@@ -7,6 +7,8 @@
 
     <div class="login-form" padding>
       <ion-card>
+        <h2>Login</h2>
+        
         <ion-card-content>
           <ion-item class="animated pulse">
             <ion-icon class="email" name="mail" item-start></ion-icon>
@@ -33,7 +35,7 @@
             <p class="animated bounceIn" [hidden]="!password.hasError('pattern')">Password must be 4 characters or longer</p>
           </div>
 
-          <button ion-button block primary [disabled]="!email.valid || !password.valid " (click)="loginWithPhoneNumber()">Login</button>
+          <button ion-button block primary [disabled]="!email.valid || !password.valid " (click)="signInWithEmailAndPassword()">Login</button>
           <p class="termsAndConditions">Terms & Conditions apply</p>
         </ion-card-content>
       </ion-card>

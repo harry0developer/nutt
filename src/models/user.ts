@@ -3,21 +3,30 @@ export interface User {
     avatar: string;
     email?: string;
     phone?: string;
+    cell: string;
     password?: string;
     uid?: string;
     dateCreated: string;
     dob: string;
     gender: string;
     race: string;
-    bodyType: string;
+    body: Body;
     userType: string;
+    status: string;
     location: Location;
 };
+
+export interface Body {
+    height: number;
+    measure: string; // cm, m
+    skinColor: string; // light, dark,
+    type: string; // slim, slim-thick, bbw, thick
+}
 
 export interface Location {
     address: string;
     geo: {
-        lat: string,
-        lng: string;
-    }
+        lat: number,
+        lng: number;
+    };
 }

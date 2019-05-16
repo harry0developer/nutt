@@ -1,6 +1,6 @@
 page-login { 
     .logo-brand {
-        width: 70px;
+        width: 140px;
         margin: 40px auto 20px auto ; //TRBL
     } 
     .top {
@@ -15,11 +15,7 @@ page-login {
             .item-inner {
                 margin-left: 0;
             }
-        }
-
-        ion-card {
-            border: 2px solid $primary;
-        }
+        } 
         ion-icon.email {
             font-size: 1.2em;
             padding-top: 3px;
@@ -30,6 +26,14 @@ page-login {
         }
         ion-icon {
             color: $primary;
+        }
+
+        ion-card {
+            h2 {
+                font-weight: bold;
+                text-align: center;
+                padding-top: 20px;
+            }
         }
 
         .item-input {
@@ -77,7 +81,7 @@ page-login {
             span {
                 font-size: .9em;
                 position: absolute;
-                left: 60px;
+                left: 40px !important;
             }
         }
         .mail ion-icon{
