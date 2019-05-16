@@ -1,12 +1,11 @@
 <ion-menu [content]="content"  persistent="true" >
   <ion-content class="user-profile">
-    <div *ngIf="user" class="profile">
-      <img src="assets/imgs/users/user{{user.id}}.jpg"  alt="profile" class="profile-picture">
-      <h2>{{user.nickname}}</h2>
-      <p>{{user.race}}</p>
-      <p>{{user.gender}}</p>
+    <div *ngIf="profile" class="profile">
+      <img src="{{profile.avatar}}"  alt="profile" class="profile-picture">
+      <h2>{{profile.nickname}}</h2>
+      <p>{{profile.race}} | {{profile.gender}}</p>
     </div>
-    <ion-list *ngIf="user" class="menu">
+    <ion-list *ngIf="profile" class="menu">
       <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages.usersPage)">
         <!-- <ion-icon class="light" name="home" item-start></ion-icon> -->
         <i class="fa fa-heart" item-start></i>

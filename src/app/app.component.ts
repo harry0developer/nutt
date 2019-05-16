@@ -9,6 +9,9 @@ import { UsersPage } from '../pages/users/users';
 import { RequestsPage } from '../pages/requests/requests';
 import { ProfilePage } from '../pages/profile/profile';
 import { ChatPage } from '../pages/chat/chat';
+import { User } from '../models/user';
+import { AuthProvider } from '../providers/auth/auth';
+import { DataProvider } from '../providers/data/data';
 
 @Component({
   templateUrl: 'app.html'
@@ -19,20 +22,15 @@ export class MyApp {
   rootPage: any = LoginPage;
 
   pages: any;
-  user;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  profile: User;
+  constructor(
+    private platform: Platform,
+    private statusBar: StatusBar,
+    private splashScreen: SplashScreen,
+    private dataProvider: DataProvider,
+    private authProvider: AuthProvider,
+  ) {
     this.initializeApp();
-
-    this.user = {
-      nickname: "Jon Snow",
-      id: 113,
-      dob: "1992-01-02",
-      gender: "male",
-      race: "white"
-
-    }
-
-
     this.pages = {
       usersPage: UsersPage,
       requestsPage: RequestsPage,
@@ -46,6 +44,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.setProfile();
+    });
+  }
+
+  setProfile() {
+    this.dataProvider.getUserById(this.authProvider.getStoredUser()).subscribe(user => {
+      this.profile = user;
     });
   }
 
