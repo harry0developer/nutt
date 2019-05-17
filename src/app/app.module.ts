@@ -23,11 +23,12 @@ import { UsersPage } from '../pages/users/users';
 import { UserDetailsPage } from '../pages/user-details/user-details';
 
 import { RatingModule } from "ngx-rating";
-import { RequestsPage } from '../pages/requests/requests';
 import { ProfilePage } from '../pages/profile/profile';
 import { ChatPage } from '../pages/chat/chat';
 import { FirebaseDataProvider } from '../providers/firebase-data/firebase-data';
 import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
+import { ChatsPage } from '../pages/chats/chats';
+import { RatersPage } from '../pages/raters/raters';
 
 @NgModule({
   declarations: [
@@ -37,8 +38,9 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
     UserDetailsPage,
     SignupPage,
     ForgotPasswordPage,
-    RequestsPage,
     ProfilePage,
+    ChatsPage,
+    RatersPage,
     ChatPage
   ],
   imports: [
@@ -56,8 +58,9 @@ import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
     UserDetailsPage,
     SignupPage,
     ForgotPasswordPage,
-    RequestsPage,
     ProfilePage,
+    ChatsPage,
+    RatersPage,
     ChatPage
   ],
   providers: [

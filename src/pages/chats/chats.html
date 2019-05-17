@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar color="dark">
+      <ion-title>Chats</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list class="users">
+      <div *ngFor="let requester of requesters">
+        <ion-item *ngIf="requester" detail-push (tap)="viewChats(requester)">
+          <ion-avatar item-start>
+            <img src="{{requester.avatar}}">
+          </ion-avatar>
+          <h2>{{requester?.nickname}}</h2> 
+          <p>
+            <i class="fa fa-calendar"></i>
+            {{requester.request?.date}}
+          </p> <!-- date of request-->
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+  

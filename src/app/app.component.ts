@@ -6,12 +6,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { LoginPage } from '../pages/login/login';
 
 import { UsersPage } from '../pages/users/users';
-import { RequestsPage } from '../pages/requests/requests';
 import { ProfilePage } from '../pages/profile/profile';
-import { ChatPage } from '../pages/chat/chat';
 import { User } from '../models/user';
 import { AuthProvider } from '../providers/auth/auth';
 import { DataProvider } from '../providers/data/data';
+import { ChatsPage } from '../pages/chats/chats';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,7 +32,7 @@ export class MyApp {
     this.initializeApp();
     this.pages = {
       usersPage: UsersPage,
-      requestsPage: RequestsPage,
+      chatsPage: ChatsPage,
       profilePage: ProfilePage
     }
 
@@ -51,7 +50,7 @@ export class MyApp {
   setProfile() {
     if (this.authProvider.isLoggedIn()) {
 
-      this.dataProvider.getUserById(this.authProvider.getStoredUser()).subscribe(user => {
+      this.dataProvider.getUserById(this.authProvider.getStoredUserId()).subscribe(user => {
         this.profile = user;
       });
     }

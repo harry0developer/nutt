@@ -1,0 +1,23 @@
+<ion-header>
+    <ion-navbar color="dark"> 
+      <ion-title>Raters</ion-title>
+    </ion-navbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-list class="users">
+      <div *ngFor="let rater of raters">
+        <ion-item detail-push *ngIf="rater">
+          <ion-avatar item-start>
+            <img src="{{rater.avatar}}">
+          </ion-avatar>
+          <h2>{{rater.nickname}}</h2>
+          <p>
+            <i class="fa fa-calendar"></i>
+            {{rater.rater?.date}}
+          </p> <!-- date rated-->
+        </ion-item>
+      </div>
+    </ion-list>
+  </ion-content>
+  

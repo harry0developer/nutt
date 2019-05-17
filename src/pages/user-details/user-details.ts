@@ -4,7 +4,10 @@ import { DataProvider } from '../../providers/data/data';
 import { ChatPage } from '../chat/chat';
 import { COLLECTION } from '../../utils/consts';
 import { User } from '../../models/user';
-import { Follower } from '../../models/followers';
+import { Rating } from '../../models/rating';
+import { Requester } from '../../models/requester';
+import { ChatsPage } from '../chats/chats';
+import { RatersPage } from '../raters/raters';
 
 @IonicPage()
 @Component({
@@ -14,9 +17,11 @@ import { Follower } from '../../models/followers';
 export class UserDetailsPage {
   profile: User;
   rating: string;
-  followers: Follower[] = [];
-  category: string = 'info';
-  openMenu: boolean = false;
+  chats: User[] = [];
+  raters: Rating[] = [];
+  requesters: Requester[] = [];
+  users: User[] = [];
+  // openMenu: boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -26,16 +31,31 @@ export class UserDetailsPage {
   ionViewDidLoad() {
     this.profile = this.navParams.get('user');
 
-    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, 'uid', this.profile.uid).subscribe(ratingData => {
-      this.rating = this.dataProvider.calculateRating(ratingData);
+    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, 'uid', this.profile.uid).subscribe(raters => {
+      this.rating = this.dataProvider.calculateRating(raters);
+      this.raters = raters;
+      console.log(raters);
     });
 
-    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.followers, 'uid', this.profile.uid).subscribe(followers => {
-      this.followers = followers;
-      console.log(followers);
+    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, 'uid', this.profile.uid).subscribe(requesters => {
+      this.requesters = requesters;
+      console.log(requesters);
+    });
+
+    this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
+      this.users = users;
+      console.log(users);
     });
   }
 
+
+  viewChats() {
+    this.navCtrl.push(ChatsPage, { requesters: this.requesters, users: this.users });
+  }
+
+  viewRaters() {
+    this.navCtrl.push(RatersPage, { raters: this.raters, users: this.users });
+  }
 
 
   getAge(date: string): string {
@@ -50,19 +70,19 @@ export class UserDetailsPage {
     console.log(user);
   }
 
-  togglePopupMenu() {
-    return this.openMenu = !this.openMenu;
-  }
+  // togglePopupMenu() {
+  //   return this.openMenu = !this.openMenu;
+  // }
 
-  followUser(user) {
-    console.log(user);
-  }
-  likeUser(user) {
-    console.log(user);
-  }
-  chatWithUser(user) {
-    this.openMenu = false;
-    this.navCtrl.push(ChatPage, { user });
-  }
+  // followUser(user) {
+  //   console.log(user);
+  // }
+  // likeUser(user) {
+  //   console.log(user);
+  // }
+  // chatWithUser(user) {
+  //   this.openMenu = false;
+  //   this.navCtrl.push(ChatPage, { user });
+  // }
 
 }

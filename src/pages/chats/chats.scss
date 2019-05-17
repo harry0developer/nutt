@@ -1,10 +1,9 @@
-page-requests {
-
+page-chats {
     ion-content {
         background: linear-gradient(0deg, #eeeef1 0%, white 80%, white 100%);
     }
     ion-avatar {
-        border: 2px solid #6b0036;
+        border: 2px solid $primary;
         border-radius: 100%;
     }
     .users {
@@ -20,11 +19,11 @@ page-requests {
         }
         p {
             font-size: 0.8em;
+            padding: 4px 0;
         }
         i{
             color: $primary;
             padding-right: 4px;
         }
-
     }
 }

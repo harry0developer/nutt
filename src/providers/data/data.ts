@@ -109,7 +109,6 @@ export class DataProvider {
     public afStore: AngularFirestore,
     public afAuth: AngularFirestore,
     private authProvider: AuthProvider) {
-    this.profile = this.authProvider.getStoredUser();
   }
 
 

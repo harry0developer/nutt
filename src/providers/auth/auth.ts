@@ -79,12 +79,12 @@ export class AuthProvider {
     localStorage.setItem('user', JSON.stringify(user));
   }
 
-  getStoredUser(): User {
+  getStoredUserId(): string {
     return JSON.parse(localStorage.getItem('user'));
   }
 
   isLoggedIn(): boolean {
-    return !!this.getStoredUser();
+    return !!this.getStoredUserId();
   }
 
   signOut() {

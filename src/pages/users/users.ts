@@ -24,7 +24,7 @@ export class UsersPage {
   ionViewDidLoad() {
     if (this.authProvider.isLoggedIn()) {
       this.feedbackProvider.presentLoading();
-      this.dataProvider.getUserById(this.authProvider.getStoredUser()).subscribe(user => {
+      this.dataProvider.getUserById(this.authProvider.getStoredUserId()).subscribe(user => {
         this.profile = user;
 
         this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
