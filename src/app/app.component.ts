@@ -67,4 +67,11 @@ export class MyApp {
   getProfilePic(user) {
     return `assets/imgs/users/${user.gender}.svg`;
   }
+
+  logout() {
+    this.authProvider.afAuth.auth.signOut().then(() => {
+      this.authProvider.clearStoredUser();
+      this.nav.setRoot(LoginPage);
+    })
+  }
 }

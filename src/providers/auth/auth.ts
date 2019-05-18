@@ -27,10 +27,6 @@ export class AuthProvider {
     return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
   }
 
-  logout() {
-    return this.afAuth.auth.signOut();
-  }
-
   googleAuth() {
     return this.authLogin(new auth.GoogleAuthProvider());
   }
@@ -87,9 +83,8 @@ export class AuthProvider {
     return !!this.getStoredUserId();
   }
 
-  signOut() {
+  clearStoredUser() {
     localStorage.removeItem('user');
-    return this.afAuth.auth.signOut();
   }
 
   isBuyer(user): boolean {

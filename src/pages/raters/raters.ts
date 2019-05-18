@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, App } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Rating } from '../../models/rating';
 import { DataProvider } from '../../providers/data/data';
 import { COLLECTION, USER_TYPE } from '../../utils/consts';
 import { User } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
+import { FeedbackProvider } from '../../providers/feedback/feedback';
+import { UserDetailsPage } from '../user-details/user-details';
 
 @IonicPage()
 @Component({
@@ -21,14 +23,14 @@ export class RatersPage {
     public navParams: NavParams,
     private dataProvider: DataProvider,
     private authProvider: AuthProvider,
-    public appCtrl: App
-
+    private feedbackProvider: FeedbackProvider,
   ) {
   }
 
   ionViewDidLoad() {
     this.page = this.navParams.get('page');
 
+    this.feedbackProvider.presentLoading();
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.profile = profile;
       const id = this.profile.userType === USER_TYPE.seller ? 'uid' : 'rid';
@@ -37,8 +39,15 @@ export class RatersPage {
         this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
           this.users = users;
           this.mappedRaters = this.mapRaters(this.raters, this.users, id);
+          this.feedbackProvider.dismissLoading();
+        }, err => {
+          this.feedbackProvider.dismissLoading();
         });
+      }, err => {
+        this.feedbackProvider.dismissLoading();
       });
+    }, err => {
+      this.feedbackProvider.dismissLoading();
     });
   }
 
@@ -60,5 +69,8 @@ export class RatersPage {
     return userz;
   }
 
+  viewSeller(user) {
+    this.navCtrl.push(UserDetailsPage, { user });
+  }
 
 }
