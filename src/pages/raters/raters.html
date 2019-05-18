@@ -1,12 +1,15 @@
 <ion-header>
     <ion-navbar color="dark"> 
+      <button ion-button menuToggle *ngIf="!page">
+        <ion-icon name="menu"></ion-icon>
+      </button>
       <ion-title>Raters</ion-title>
     </ion-navbar>
   </ion-header>
   
   <ion-content>
     <ion-list class="users">
-      <div *ngFor="let rater of raters">
+      <div *ngFor="let rater of mappedRaters">
         <ion-item detail-push *ngIf="rater">
           <ion-avatar item-start>
             <img src="{{rater.avatar}}">

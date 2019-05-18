@@ -11,6 +11,10 @@ import { User } from '../models/user';
 import { AuthProvider } from '../providers/auth/auth';
 import { DataProvider } from '../providers/data/data';
 import { ChatsPage } from '../pages/chats/chats';
+import { COLLECTION } from '../utils/consts';
+import { Requester } from '../models/requester';
+import { Rating } from '../models/rating';
+import { RatersPage } from '../pages/raters/raters';
 
 @Component({
   templateUrl: 'app.html'
@@ -22,6 +26,8 @@ export class MyApp {
 
   pages: any;
   profile: User;
+  requesters: Requester[] = [];
+  raters: Rating[] = [];
   constructor(
     private platform: Platform,
     private statusBar: StatusBar,
@@ -33,14 +39,13 @@ export class MyApp {
     this.pages = {
       usersPage: UsersPage,
       chatsPage: ChatsPage,
+      ratersPage: RatersPage,
       profilePage: ProfilePage
     }
 
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
       this.setProfile();
@@ -49,7 +54,6 @@ export class MyApp {
 
   setProfile() {
     if (this.authProvider.isLoggedIn()) {
-
       this.dataProvider.getUserById(this.authProvider.getStoredUserId()).subscribe(user => {
         this.profile = user;
       });
@@ -57,9 +61,7 @@ export class MyApp {
   }
 
   openPage(page) {
-    // Reset the content nav to have just this page
-    // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component, { page: 'root' });
   }
 
   getProfilePic(user) {

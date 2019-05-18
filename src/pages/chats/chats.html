@@ -1,12 +1,15 @@
 <ion-header>
     <ion-navbar color="dark">
+      <button ion-button menuToggle *ngIf="!page">
+        <ion-icon name="menu"></ion-icon>
+      </button>
       <ion-title>Chats</ion-title>
     </ion-navbar>
   </ion-header>
   
   <ion-content>
     <ion-list class="users">
-      <div *ngFor="let requester of requesters">
+      <div *ngFor="let requester of mappedRequesters">
         <ion-item *ngIf="requester" detail-push (tap)="viewChats(requester)">
           <ion-avatar item-start>
             <img src="{{requester.avatar}}">

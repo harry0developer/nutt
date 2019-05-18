@@ -34,27 +34,24 @@ export class UserDetailsPage {
     this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, 'uid', this.profile.uid).subscribe(raters => {
       this.rating = this.dataProvider.calculateRating(raters);
       this.raters = raters;
-      console.log(raters);
     });
 
     this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, 'uid', this.profile.uid).subscribe(requesters => {
       this.requesters = requesters;
-      console.log(requesters);
     });
 
     this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
       this.users = users;
-      console.log(users);
     });
   }
 
 
   viewChats() {
-    this.navCtrl.push(ChatsPage, { requesters: this.requesters, users: this.users });
+    this.navCtrl.push(ChatsPage, { page: 'chats' });
   }
 
   viewRaters() {
-    this.navCtrl.push(RatersPage, { raters: this.raters, users: this.users });
+    this.navCtrl.push(RatersPage, { page: 'raters' });
   }
 
 
