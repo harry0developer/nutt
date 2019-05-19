@@ -22,6 +22,18 @@
         <ion-badge primary>{{profile.bodyType}}</ion-badge>
       </div>
     </div>   
+  
+
+  <ion-row class="info" *ngIf="isSeller()">
+    <ion-col col-6 (tap)="viewChats()">
+      <h2>{{requesters?.length}}</h2>
+      <p>Chats </p>
+    </ion-col> 
+    <ion-col col-6 (tap)="viewRaters()">
+      <h2>{{raters?.length}}</h2>
+      <p>Raters</p>
+    </ion-col>
+  </ion-row>
   </div>
 
   <ion-list *ngIf="profile">

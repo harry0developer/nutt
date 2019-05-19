@@ -29,44 +29,34 @@ export class RatersPage {
 
   ionViewDidLoad() {
     this.page = this.navParams.get('page');
+    this.raters = this.navParams.get('raters');
 
     this.feedbackProvider.presentLoading();
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.profile = profile;
       const id = this.profile.userType === USER_TYPE.seller ? 'uid' : 'rid';
-      this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, id, this.profile.uid).subscribe(raters => {
-        this.raters = raters;
-        this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
-          this.users = users;
-          this.mappedRaters = this.mapRaters(this.raters, this.users, id);
-          this.feedbackProvider.dismissLoading();
-        }, err => {
-          this.feedbackProvider.dismissLoading();
-        });
+      this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
+        this.users = users;
+        this.mappedRaters = this.dataProvider.mapUsers(this.raters, this.users, id);
+        this.feedbackProvider.dismissLoading();
       }, err => {
         this.feedbackProvider.dismissLoading();
       });
+      // this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, id, this.profile.uid).subscribe(raters => {
+      //   this.raters = raters;
+      //   this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
+      //     this.users = users;
+      //     this.mappedRaters = this.mapRaters(this.raters, this.users, id);
+      //     this.feedbackProvider.dismissLoading();
+      //   }, err => {
+      //     this.feedbackProvider.dismissLoading();
+      //   });
+      // }, err => {
+      //   this.feedbackProvider.dismissLoading();
+      // });
     }, err => {
       this.feedbackProvider.dismissLoading();
     });
-  }
-
-  mapRaters(raters, users, type): User[] {
-    let userz = [];
-    raters.map(r => {
-      users.map(u => {
-        if (type === 'uid') {
-          if (r.rid === u.uid) {
-            userz.push(Object.assign(u, { rater: r }));
-          }
-        } else {
-          if (r.uid === u.uid) {
-            userz.push(Object.assign(u, { rater: r }));
-          }
-        }
-      })
-    });
-    return userz;
   }
 
   viewSeller(user) {

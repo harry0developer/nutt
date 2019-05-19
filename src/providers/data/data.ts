@@ -5,7 +5,7 @@ import { User } from '../../models/user';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { UserData } from '../../models/userData';
 import { AuthProvider } from '../auth/auth';
-import { COLLECTION } from '../../utils/consts';
+import { COLLECTION, USER_TYPE } from '../../utils/consts';
 import * as moment from 'moment'
 import { Rating } from '../../models/rating';
 
@@ -192,6 +192,28 @@ export class DataProvider {
     return this.getItemById(COLLECTION.users, id);
   }
 
+  mapUsers(toBeMapped, users, type) {
+    let userz = [];
+    toBeMapped.map(r => {
+      users.map(u => {
+        if (type === 'uid') {
+          if (r.uid === u.uid) {
+            userz.push(Object.assign(u, { data: r }));
+          }
+        } else {
+          if (r.rid === u.uid) {
+            userz.push(Object.assign(u, { data: r }));
+          }
+        }
+      })
+    });
+    return userz;
+  }
+
+  isSeller(user: User): boolean {
+    return user.userType === USER_TYPE.seller;
+  }
+
   applyHaversine(jobs, lat, lng) {
     if (jobs && lat && lng) {
       let usersLocation = {
@@ -252,6 +274,7 @@ export class DataProvider {
   getNowDate(): string {
     return moment().format("YYYY/MM/DD");
   }
+
 
   getLocationFromGeo(geo) {
     const myLocation = {

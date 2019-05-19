@@ -16,6 +16,7 @@ import { RatersPage } from '../raters/raters';
 })
 export class UserDetailsPage {
   profile: User;
+  user: User;
   rating: string;
   chats: User[] = [];
   raters: Rating[] = [];
@@ -29,14 +30,14 @@ export class UserDetailsPage {
   }
 
   ionViewDidLoad() {
-    this.profile = this.navParams.get('user');
+    this.user = this.navParams.get('user');
 
-    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, 'uid', this.profile.uid).subscribe(raters => {
+    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, 'uid', this.user.uid).subscribe(raters => {
       this.rating = this.dataProvider.calculateRating(raters);
       this.raters = raters;
     });
 
-    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, 'uid', this.profile.uid).subscribe(requesters => {
+    this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, 'uid', this.user.uid).subscribe(requesters => {
       this.requesters = requesters;
     });
 
@@ -44,16 +45,6 @@ export class UserDetailsPage {
       this.users = users;
     });
   }
-
-
-  viewChats() {
-    this.navCtrl.push(ChatsPage, { page: 'chats' });
-  }
-
-  viewRaters() {
-    this.navCtrl.push(RatersPage, { page: 'raters' });
-  }
-
 
   getAge(date: string): string {
     return this.dataProvider.getAgeFromDate(date);

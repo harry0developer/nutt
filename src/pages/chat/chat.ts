@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { User } from '../../models/user';
 
 
 
@@ -9,40 +10,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'chat.html',
 })
 export class ChatPage {
-  user1: any = {
-    nickname: "Mia Mommy Tee Low",
-    id: 1,
-    rating: "3.5",
-    dob: "1991-02-22",
-    gender: "female",
-    race: "black",
-    bodyType: "slim-thick",
-    location: {
-      address: "123 Arcadia, Pretoria",
-      geo: {
-        lat: -25.950187,
-        lng: 28.998042
-      }
-    }
-  };
-
-  user2 = {
-    nickname: "Queen Slay",
-    id: 3,
-    rating: "4",
-    dob: "1993-07-18",
-    gender: "female",
-    race: "coloured",
-    bodyType: "bbw",
-    location: {
-      address: "900 Sunnyside, Pretoria,",
-      geo: {
-        lat: -25.910187,
-        lng: 28.898042
-      }
-    }
-  };
-
+  user: User
   data = {
     message: {},
     user: {}
@@ -50,11 +18,12 @@ export class ChatPage {
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
+    this.user = this.navParams.get('user');
     this.data.message = {
       text: "text me",
       date: '2019/04/15'
     }
-    this.data.user = this.navParams.get('user');
+    this.data.user = this.user;
   }
   // this.data.message = "text me";
 

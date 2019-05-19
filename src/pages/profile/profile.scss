@@ -24,21 +24,25 @@ page-profile {
     .tags {
         display: block;
         margin: 10px 0
-    }
+    } 
+
+
     .info {
-        border-top: 1px solid #ddd;
-        border-bottom: 1px solid #ddd;
-        h2, p {
-            margin: 0;
-            padding: 0
-        }
-        h2 {
-            font-size: 1em;
-            font-weight: bold;
-        }
-        p {
-            font-size: 0.9em;
-        }
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+      text-align: center;
+      h2, p {
+          margin: 0;
+          padding: 0
+      }
+      h2 {
+          font-size: 1.4em;
+          font-weight: bold;
+      }
+      p {
+          font-size: 0.8em;
+          color: $light-grey;
+      }
     }
 
     #profile-bg {

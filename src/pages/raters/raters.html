@@ -10,27 +10,14 @@
   <ion-content>
     <ion-list class="users">
       <div *ngFor="let rater of mappedRaters">
-        <!-- view rated sellers -->
-        <ion-item detail-push *ngIf="rater && profile.userType === 'buyer'" (click)="viewSeller(rater)">
+        <ion-item>
           <ion-avatar item-start>
             <img src="{{rater.avatar}}">
           </ion-avatar>
           <h2>{{rater.nickname}}</h2>
           <p>
             <i class="fa fa-calendar"></i>
-            {{rater.rater?.date}}
-          </p> 
-        </ion-item>
-
-         <!-- DO NOT view buyers rated me -->
-        <ion-item *ngIf="rater && profile.userType === 'seller'">
-          <ion-avatar item-start>
-            <img src="{{rater.avatar}}">
-          </ion-avatar>
-          <h2>{{rater.nickname}}</h2>
-          <p>
-            <i class="fa fa-calendar"></i>
-            {{rater.rater?.date}}
+            {{rater.data?.date}}
           </p> 
         </ion-item>
       </div>

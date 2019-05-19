@@ -30,19 +30,16 @@ export class ChatsPage {
 
   ionViewDidLoad() {
     this.page = this.navParams.get('page');
+    this.requesters = this.navParams.get('requesters');
+
     this.feedbackProvider.presentLoading();
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.profile = profile;
       const id = this.profile.userType === USER_TYPE.seller ? 'uid' : 'rid';
-      this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, id, this.profile.uid).subscribe(requesters => {
-        this.requesters = requesters;
-        this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
-          this.users = users;
-          this.mappedRequesters = this.mapRequesters(this.requesters, this.users, id);
-          this.feedbackProvider.dismissLoading();
-        }, err => {
-          this.feedbackProvider.dismissLoading();
-        });
+      this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
+        this.users = users;
+        this.mappedRequesters = this.dataProvider.mapUsers(this.requesters, this.users, id);
+        this.feedbackProvider.dismissLoading();
       }, err => {
         this.feedbackProvider.dismissLoading();
       });
@@ -59,22 +56,6 @@ export class ChatsPage {
     return this.dataProvider.getLocationFromGeo(geo);
   }
 
-  mapRequesters(requesters, users, type) {
-    let userz = [];
-    requesters.map(r => {
-      users.map(u => {
-        if (type === 'uid') {
-          if (r.rid === u.uid) {
-            userz.push(Object.assign(u, { request: r }));
-          }
-        } else {
-          if (r.uid === u.uid) {
-            userz.push(Object.assign(u, { request: r }));
-          }
-        }
-      })
-    });
-    return userz;
-  }
+
 
 }

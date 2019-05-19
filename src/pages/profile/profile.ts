@@ -6,6 +6,9 @@ import { COLLECTION, USER_TYPE } from '../../utils/consts';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Rating } from 'ngx-rating';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
+import { ChatsPage } from '../chats/chats';
+import { RatersPage } from '../raters/raters';
+import { Requester } from '../../models/requester';
 
 @IonicPage()
 @Component({
@@ -17,6 +20,7 @@ export class ProfilePage {
   profile: User;
   rating: string;
   raters: Rating[] = [];
+  requesters: Requester[] = [];
   constructor(public navCtrl: NavController,
     public dataProvider: DataProvider,
     public authProvider: AuthProvider,
@@ -28,11 +32,16 @@ export class ProfilePage {
     this.feedbackProvider.presentLoading();
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, this.getProfileKeyType(profile), profile.uid).subscribe(raters => {
-        this.rating = this.dataProvider.calculateRating(raters);
-        this.raters = raters;
-        this.profile = profile;
-        this.img = this.profile.avatar;
-        this.feedbackProvider.dismissLoading();
+        this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, this.getProfileKeyType(profile), profile.uid).subscribe(requesters => {
+          this.rating = this.dataProvider.calculateRating(raters);
+          this.profile = profile;
+          this.img = this.profile.avatar;
+          this.feedbackProvider.dismissLoading();
+          this.raters = raters;
+          this.requesters = requesters;
+        }, err => {
+          this.feedbackProvider.dismissLoading();
+        });
       }, err => {
         this.feedbackProvider.dismissLoading();
       });
@@ -53,5 +62,15 @@ export class ProfilePage {
     return this.dataProvider.getLocationFromGeo(geo);
   }
 
+  viewChats() {
+    this.navCtrl.push(ChatsPage, { page: 'chats', requesters: this.requesters });
+  }
 
+  viewRaters() {
+    this.navCtrl.push(RatersPage, { page: 'raters', raters: this.raters });
+  }
+
+  isSeller(): boolean {
+    return this.dataProvider.isSeller(this.profile);
+  }
 }
