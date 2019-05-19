@@ -29,6 +29,8 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
+    console.log(this.dataProvider.getDateInMilliseconds());
+
     this.feedbackProvider.presentLoading();
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, this.getProfileKeyType(profile), profile.uid).subscribe(raters => {
@@ -68,6 +70,11 @@ export class ProfilePage {
 
   viewRaters() {
     this.navCtrl.push(RatersPage, { page: 'raters', raters: this.raters });
+  }
+
+  openSettings() {
+    console.log('open settings');
+
   }
 
   isSeller(): boolean {

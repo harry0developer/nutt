@@ -39,6 +39,9 @@ export class ChatsPage {
       this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
         this.users = users;
         this.mappedRequesters = this.dataProvider.mapUsers(this.requesters, this.users, id);
+        console.log(this.requesters);
+        console.log(this.mappedRequesters);
+
         this.feedbackProvider.dismissLoading();
       }, err => {
         this.feedbackProvider.dismissLoading();
@@ -55,6 +58,24 @@ export class ChatsPage {
   getDistance(geo) {
     return this.dataProvider.getLocationFromGeo(geo);
   }
+
+  // mapUsers(toBeMapped, users, type) {
+  //   let userz = [];
+  //   toBeMapped.map(r => {
+  //     users.map(u => {
+  //       if (type === 'uid') {
+  //         if (r.rid === u.uid) {
+  //           userz.push(Object.assign(u, { data: r }));
+  //         }
+  //       } else {
+  //         if (r.uid === u.uid) {
+  //           userz.push(Object.assign(u, { data: r }));
+  //         }
+  //       }
+  //     })
+  //   });
+  //   return userz;
+  // }
 
 
 

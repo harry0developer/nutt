@@ -10,7 +10,7 @@
   <ion-content>
     <ion-list class="users">
       <div *ngFor="let requester of mappedRequesters">
-        <ion-item *ngIf="requester">
+        <ion-item *ngIf="requester" detail-push (click)="viewChats(requester)">
           <ion-avatar item-start>
             <img src="{{requester.avatar}}">
           </ion-avatar>

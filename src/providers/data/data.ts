@@ -197,11 +197,11 @@ export class DataProvider {
     toBeMapped.map(r => {
       users.map(u => {
         if (type === 'uid') {
-          if (r.uid === u.uid) {
+          if (r.rid === u.uid) {
             userz.push(Object.assign(u, { data: r }));
           }
         } else {
-          if (r.rid === u.uid) {
+          if (r.uid === u.uid) {
             userz.push(Object.assign(u, { data: r }));
           }
         }
@@ -212,6 +212,11 @@ export class DataProvider {
 
   isSeller(user: User): boolean {
     return user.userType === USER_TYPE.seller;
+  }
+
+  getDateInMilliseconds(): number {
+    const today = new Date();
+    return today.getTime();
   }
 
   applyHaversine(jobs, lat, lng) {

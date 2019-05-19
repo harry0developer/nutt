@@ -25,7 +25,6 @@ export class ChatPage {
     }
     this.data.user = this.user;
   }
-  // this.data.message = "text me";
 
   sendMessage() {
     console.log('Send messages');
