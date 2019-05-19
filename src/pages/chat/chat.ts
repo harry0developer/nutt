@@ -43,10 +43,13 @@ export class ChatPage {
     }
   };
 
+  data = {
+    message: ''
+  }
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ChatPage');
+    this.data.message = "text me";
   }
 
   sendMessage() {

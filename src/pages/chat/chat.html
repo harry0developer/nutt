@@ -6,17 +6,16 @@
 
 <ion-content>
   <ion-list>
-    <ion-item text-wrap no-lines *ngIf="user1">
-      <!-- <ion-avatar item-end>
-        <img id="profile-image" src="assets/imgs/users/user{{user1.id}}.jpg">
-      </ion-avatar> -->
+    <!-- <ion-item text-wrap no-lines *ngIf="user1"> 
       <div class="bubble bubble-primary">
         Quidem fugit esse nisi laborum nostrum iste obcaecati nemo eos recusandae.
       </div>
       <span class="primary bubble-time">a minute ago</span>
-    </ion-item>
+    </ion-item> -->
 
-    <ion-item *ngIf="user2">
+    <bubble-primary></bubble-primary>
+    <bubble-secondary [chatData]="data"></bubble-secondary>
+    <!-- <ion-item *ngIf="user2">
       <ion-avatar item-start>
         <img id="profile-image" src="assets/imgs/users/user{{user2.id}}.jpg">
       </ion-avatar>
@@ -24,7 +23,7 @@
         I'm speech bubble
       </div>
       <span class="secondary bubble-time">3 minutes ago</span>
-    </ion-item>
+    </ion-item> -->
   </ion-list>
 </ion-content>
 

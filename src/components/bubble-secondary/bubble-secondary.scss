@@ -1,0 +1,33 @@
+bubble-secondary {
+
+    .bubble {
+        // width: 250px;
+        margin: 2px 16px;
+        border-radius: 15px;
+        color: white;
+        padding: 14px;
+        font-size: 1em;
+        font-weight: normal;
+        position: relative;
+        text-align: left;
+    }
+      
+    /* speech bubble secondary */
+    .bubble-secondary {
+        background-color: $secondary;
+    }
+    
+    .bubble-secondary:before {
+        content: "";
+        width: 0px;
+        height: 0px;
+        position: absolute;
+        border-left: 15px solid transparent;
+        border-right: 15px solid $secondary;
+        border-top: 15px solid $secondary;
+        border-bottom: 15px solid transparent;
+        left: -16px;
+        // top: 0px;
+    }
+
+}

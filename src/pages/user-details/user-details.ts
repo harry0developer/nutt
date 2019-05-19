@@ -67,6 +67,10 @@ export class UserDetailsPage {
     console.log(user);
   }
 
+  chatWithUser(user) {
+    console.log(user);
+    this.navCtrl.push(ChatPage, { user });
+  }
   // togglePopupMenu() {
   //   return this.openMenu = !this.openMenu;
   // }
@@ -77,9 +81,6 @@ export class UserDetailsPage {
   // likeUser(user) {
   //   console.log(user);
   // }
-  // chatWithUser(user) {
-  //   this.openMenu = false;
-  //   this.navCtrl.push(ChatPage, { user });
-  // }
+
 
 }

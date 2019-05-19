@@ -29,6 +29,8 @@ import { FirebaseDataProvider } from '../providers/firebase-data/firebase-data';
 import { FirebaseAuthProvider } from '../providers/firebase-auth/firebase-auth';
 import { ChatsPage } from '../pages/chats/chats';
 import { RatersPage } from '../pages/raters/raters';
+import { BubblePrimaryComponent } from '../components/bubble-primary/bubble-primary';
+import { BubbleSecondaryComponent } from '../components/bubble-secondary/bubble-secondary';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,9 @@ import { RatersPage } from '../pages/raters/raters';
     ProfilePage,
     ChatsPage,
     RatersPage,
-    ChatPage
+    ChatPage,
+    BubblePrimaryComponent,
+    BubbleSecondaryComponent
   ],
   imports: [
     BrowserModule,
@@ -61,7 +65,9 @@ import { RatersPage } from '../pages/raters/raters';
     ProfilePage,
     ChatsPage,
     RatersPage,
-    ChatPage
+    ChatPage,
+    BubblePrimaryComponent,
+    BubbleSecondaryComponent
   ],
   providers: [
     StatusBar,
