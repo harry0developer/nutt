@@ -44,13 +44,19 @@ export class ChatPage {
   };
 
   data = {
-    message: ''
+    message: {},
+    user: {}
   }
   constructor(public navCtrl: NavController, public navParams: NavParams) { }
 
   ionViewDidLoad() {
-    this.data.message = "text me";
+    this.data.message = {
+      text: "text me",
+      date: '2019/04/15'
+    }
+    this.data.user = this.navParams.get('user');
   }
+  // this.data.message = "text me";
 
   sendMessage() {
     console.log('Send messages');

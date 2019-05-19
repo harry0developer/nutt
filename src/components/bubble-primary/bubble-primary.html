@@ -1,6 +1,6 @@
 <ion-item text-wrap no-lines> 
   <div class="bubble bubble-primary">
-    Quidem fugit esse nisi laborum nostrum iste obcaecati nemo eos recusandae.
+    {{chatData.message?.text}}
   </div>
-  <span class="primary bubble-time">a minute ago</span>
+  <span class="primary bubble-time">{{chatData.message?.date}}</span>
 </ion-item>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'bubble-primary',
@@ -6,11 +6,8 @@ import { Component } from '@angular/core';
 })
 export class BubblePrimaryComponent {
 
-  text: string;
+  @Input() chatData: any;
 
-  constructor() {
-    console.log('Hello BubblePrimaryComponent Component');
-    this.text = 'Hello World';
-  }
+  constructor() { }
 
 }
