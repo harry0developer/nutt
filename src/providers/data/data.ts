@@ -111,7 +111,6 @@ export class DataProvider {
     private authProvider: AuthProvider) {
   }
 
-
   removeDuplicates(array, key: string) {
     return array.filter((obj, pos, arr) => {
       return arr.map(mapObj => mapObj[key]).indexOf(obj[key]) === pos;
@@ -170,6 +169,12 @@ export class DataProvider {
     });
     const rate = (totalRate / ratings.length).toFixed(2);
     return rate.toString();
+  }
+
+  // collection('messages').doc('ArESmCSW0qQHu6lxOgea0bMPEbA3').collection('nSqad6egH1OPvkXfnf2KoCDfrpk1')
+
+  getChats(rootCollection: string, receiverUid: string, senderUid: string) {
+    return this.afStore.collection(rootCollection).doc(receiverUid).collection(senderUid, ref => ref.orderBy('date')).valueChanges();
   }
 
   getItemById(collectionName: string, id: string) {
