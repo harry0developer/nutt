@@ -55,12 +55,7 @@ export class UserDetailsPage {
     return this.dataProvider.getLocationFromGeo(geo);
   }
 
-  requestUser(user) {
-    console.log(user);
-  }
-
   chatWithUser(user) {
-    console.log(user);
     this.navCtrl.push(ChatPage, { user, profile: this.profile });
   }
 

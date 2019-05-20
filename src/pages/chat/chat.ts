@@ -5,6 +5,7 @@ import { DataProvider } from '../../providers/data/data';
 import { AuthProvider } from '../../providers/auth/auth';
 import { COLLECTION, USER_TYPE } from '../../utils/consts';
 import { Message } from '../../models/message';
+import { Requester } from '../../models/requester';
 
 
 
@@ -20,6 +21,13 @@ export class ChatPage {
   chatData: any[] = [];
   message: string;
 
+  isNewUser: boolean = false;
+  requesterData: Requester = {
+    uid: '',
+    rid: '',
+    date: ''
+  }
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -34,7 +42,11 @@ export class ChatPage {
     const receiverId = this.profile.userType === USER_TYPE.buyer ? this.user.uid : this.profile.uid;
     this.dataProvider.getChats(COLLECTION.messages, receiverId, senderId).subscribe(messages => {
       console.log(messages);
-      this.chatData = this.buildChats(messages);
+      if (messages.length > 0) {
+        this.chatData = this.buildChats(messages);
+      } else {
+        this.isNewUser = true;
+      }
     });
 
   }
@@ -64,7 +76,19 @@ export class ChatPage {
 
     this.message = '';
     this.dataProvider.addNewMessage(COLLECTION.messages, messageData.uid, messageData.sid, messageData).then(() => {
-      console.log('Message sent');
+      if (this.isNewUser) {
+        this.requesterData = {
+          uid: this.user.uid,
+          rid: this.profile.uid,
+          date: this.dataProvider.getDateTime()
+        }
+        this.dataProvider.addNewItem(COLLECTION.requesters, this.requesterData).then(() => {
+          console.log('New requester added');
+          this.isNewUser = false;
+        }).catch(err => {
+          console.log('Error adding requester');
+        });
+      }
     }).catch(err => {
       console.log('Error sending message', err);
     })
