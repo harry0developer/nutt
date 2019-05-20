@@ -31,8 +31,8 @@ export class ProfilePage {
   ionViewDidLoad() {
     this.feedbackProvider.presentLoading();
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
-      this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, this.getProfileKeyType(profile), profile.uid).subscribe(raters => {
-        this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, this.getProfileKeyType(profile), profile.uid).subscribe(requesters => {
+      this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, this.dataProvider.getProfileKeyType(profile), profile.uid).subscribe(raters => {
+        this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, this.dataProvider.getProfileKeyType(profile), profile.uid).subscribe(requesters => {
           this.rating = this.dataProvider.calculateRating(raters);
           this.profile = profile;
           this.img = this.profile.avatar;
@@ -48,10 +48,6 @@ export class ProfilePage {
     }, err => {
       this.feedbackProvider.dismissLoading();
     });
-  }
-
-  getProfileKeyType(profile): string {
-    return profile.userType === USER_TYPE.buyer ? 'rid' : 'uid';
   }
 
   getAge(date: string): string {

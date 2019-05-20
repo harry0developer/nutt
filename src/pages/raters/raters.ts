@@ -29,31 +29,24 @@ export class RatersPage {
 
   ionViewDidLoad() {
     this.page = this.navParams.get('page');
-    this.raters = this.navParams.get('raters');
+    // this.raters = this.navParams.get('raters');
 
     this.feedbackProvider.presentLoading();
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.profile = profile;
       const id = this.profile.userType === USER_TYPE.seller ? 'uid' : 'rid';
       this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
-        this.users = users;
-        this.mappedRaters = this.dataProvider.mapUsers(this.raters, this.users, id);
-        this.feedbackProvider.dismissLoading();
+        this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, this.dataProvider.getProfileKeyType(profile), profile.uid).subscribe(raters => {
+          this.users = users;
+          this.raters = raters;
+          this.mappedRaters = this.dataProvider.mapUsers(this.raters, this.users, id);
+          this.feedbackProvider.dismissLoading();
+        }, err => {
+          this.feedbackProvider.dismissLoading();
+        });
       }, err => {
         this.feedbackProvider.dismissLoading();
       });
-      // this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, id, this.profile.uid).subscribe(raters => {
-      //   this.raters = raters;
-      //   this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
-      //     this.users = users;
-      //     this.mappedRaters = this.mapRaters(this.raters, this.users, id);
-      //     this.feedbackProvider.dismissLoading();
-      //   }, err => {
-      //     this.feedbackProvider.dismissLoading();
-      //   });
-      // }, err => {
-      //   this.feedbackProvider.dismissLoading();
-      // });
     }, err => {
       this.feedbackProvider.dismissLoading();
     });

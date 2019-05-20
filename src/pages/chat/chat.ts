@@ -41,7 +41,6 @@ export class ChatPage {
     const senderId = this.profile.userType === USER_TYPE.buyer ? this.profile.uid : this.user.uid;
     const receiverId = this.profile.userType === USER_TYPE.buyer ? this.user.uid : this.profile.uid;
     this.dataProvider.getChats(COLLECTION.messages, receiverId, senderId).subscribe(messages => {
-      console.log(messages);
       if (messages.length > 0) {
         this.chatData = this.buildChats(messages);
       } else {

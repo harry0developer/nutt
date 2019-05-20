@@ -32,16 +32,21 @@ export class ChatsPage {
 
   ionViewDidLoad() {
     this.page = this.navParams.get('page');
-    this.requesters = this.navParams.get('requesters');
+    // this.requesters = this.navParams.get('requesters');
     this.user = this.navParams.get('user');
     this.feedbackProvider.presentLoading();
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.profile = profile;
       const id = this.profile.userType === USER_TYPE.seller ? 'uid' : 'rid';
       this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
-        this.users = users;
-        this.mappedRequesters = this.dataProvider.mapUsers(this.requesters, this.users, id);
-        this.feedbackProvider.dismissLoading();
+        this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, this.dataProvider.getProfileKeyType(profile), profile.uid).subscribe(requesters => {
+          this.users = users;
+          this.requesters = requesters;
+          this.mappedRequesters = this.dataProvider.mapUsers(this.requesters, this.users, id);
+          this.feedbackProvider.dismissLoading();
+        }, err => {
+          this.feedbackProvider.dismissLoading();
+        });
       }, err => {
         this.feedbackProvider.dismissLoading();
       });

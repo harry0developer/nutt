@@ -232,6 +232,9 @@ export class DataProvider {
     return user.userType === USER_TYPE.seller;
   }
 
+  getProfileKeyType(profile): string {
+    return profile.userType === USER_TYPE.buyer ? 'rid' : 'uid';
+  }
   // getDateInMilliseconds(): number {
   //   const today = new Date();
   //   return today.getTime();
