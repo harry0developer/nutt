@@ -8,6 +8,7 @@ import { AuthProvider } from '../auth/auth';
 import { COLLECTION, USER_TYPE } from '../../utils/consts';
 import * as moment from 'moment'
 import { Rating } from '../../models/rating';
+import { Message } from '../../models/message';
 
 
 @Injectable()
@@ -177,6 +178,18 @@ export class DataProvider {
     return this.afStore.collection(rootCollection).doc(receiverUid).collection(senderUid, ref => ref.orderBy('date')).valueChanges();
   }
 
+  addNewMessage(rootCollection: string, receiverUid: string, senderUid: string, message: Message) {
+    return this.afStore.collection(rootCollection).doc(receiverUid).collection(senderUid).add(message);
+  }
+
+  getDateTime(): string {
+    return moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+  }
+
+  getDateTimeMoment(dateTime): string {
+    return moment(dateTime).fromNow();
+  }
+
   getItemById(collectionName: string, id: string) {
     return this.afStore.collection(collectionName).doc<any>(id).valueChanges();
   }
@@ -185,7 +198,7 @@ export class DataProvider {
     return this.afStore.collection(collectionName).doc<any>(id).set(data, { merge: true });
   }
 
-  addNewItem(collectionName: string, data: User) {
+  addNewItem(collectionName: string, data: any) {
     return this.afStore.collection(collectionName).add(data);
   }
 
@@ -219,10 +232,10 @@ export class DataProvider {
     return user.userType === USER_TYPE.seller;
   }
 
-  getDateInMilliseconds(): number {
-    const today = new Date();
-    return today.getTime();
-  }
+  // getDateInMilliseconds(): number {
+  //   const today = new Date();
+  //   return today.getTime();
+  // }
 
   applyHaversine(jobs, lat, lng) {
     if (jobs && lat && lng) {

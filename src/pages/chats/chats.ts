@@ -38,12 +38,8 @@ export class ChatsPage {
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.profile = profile;
       const id = this.profile.userType === USER_TYPE.seller ? 'uid' : 'rid';
-
-
       this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
         this.users = users;
-        // this.dataProvider.getChats(COLLECTION.messages, receiverId, senderId).subscribe(messages => {
-        // console.log(messages);
         this.mappedRequesters = this.dataProvider.mapUsers(this.requesters, this.users, id);
         this.feedbackProvider.dismissLoading();
       }, err => {
@@ -55,31 +51,11 @@ export class ChatsPage {
   }
 
   viewChats(user) {
-    this.navCtrl.push(ChatPage, { user });
+    this.navCtrl.push(ChatPage, { user: user, profile: this.profile });
   }
 
   getDistance(geo) {
     return this.dataProvider.getLocationFromGeo(geo);
   }
-
-  // mapUsers(toBeMapped, users, type) {
-  //   let userz = [];
-  //   toBeMapped.map(r => {
-  //     users.map(u => {
-  //       if (type === 'uid') {
-  //         if (r.rid === u.uid) {
-  //           userz.push(Object.assign(u, { data: r }));
-  //         }
-  //       } else {
-  //         if (r.uid === u.uid) {
-  //           userz.push(Object.assign(u, { data: r }));
-  //         }
-  //       }
-  //     })
-  //   });
-  //   return userz;
-  // }
-
-
 
 }

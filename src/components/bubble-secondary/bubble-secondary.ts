@@ -1,4 +1,6 @@
 import { Component, Input } from '@angular/core';
+import { DataProvider } from '../../providers/data/data';
+import { MessageData } from '../../models/message';
 
 @Component({
   selector: 'bubble-secondary',
@@ -6,8 +8,11 @@ import { Component, Input } from '@angular/core';
 })
 export class BubbleSecondaryComponent {
 
-  @Input() chatData: any;
+  @Input() chatData: MessageData;
 
-  constructor() { }
+  constructor(private dataProvider: DataProvider) { }
 
+  getDate(date): string {
+    return this.dataProvider.getDateTimeMoment(date);
+  }
 }

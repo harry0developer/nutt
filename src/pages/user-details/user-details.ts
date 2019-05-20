@@ -31,6 +31,7 @@ export class UserDetailsPage {
 
   ionViewDidLoad() {
     this.user = this.navParams.get('user');
+    this.profile = this.navParams.get('profile');
 
     this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, 'uid', this.user.uid).subscribe(raters => {
       this.rating = this.dataProvider.calculateRating(raters);
@@ -60,8 +61,9 @@ export class UserDetailsPage {
 
   chatWithUser(user) {
     console.log(user);
-    this.navCtrl.push(ChatPage, { user });
+    this.navCtrl.push(ChatPage, { user, profile: this.profile });
   }
+
   // togglePopupMenu() {
   //   return this.openMenu = !this.openMenu;
   // }

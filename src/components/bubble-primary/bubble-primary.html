@@ -1,6 +1,6 @@
-<ion-item text-wrap no-lines> 
+<ion-item> 
   <div class="bubble bubble-primary">
-    {{chatData.message?.messge}}
+    {{chatData.message?.message}}
   </div>
-  <span class="primary bubble-time">{{chatData.message?.date}}</span>
+  <span class="primary bubble-time">{{getDate(chatData.message?.date)}}</span>
 </ion-item>

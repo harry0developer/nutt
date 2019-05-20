@@ -1,9 +1,9 @@
-<ion-item text-wrap no-lines>
+<ion-item>
   <ion-avatar item-start>
     <img id="profile-image" src="{{chatData.user.avatar}}">
   </ion-avatar>
   <div class="bubble bubble-secondary">
-    {{chatData?.message?.message}}
+    {{chatData.message?.message}}
   </div>
-  <span class="secondary bubble-time">{{chatData.message?.date}}</span>
+  <span class="secondary bubble-time">{{getDate(chatData.message?.date)}}</span>
 </ion-item>

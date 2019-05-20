@@ -44,7 +44,7 @@ export class UsersPage {
   }
 
   viewUserProfile(user) {
-    this.navCtrl.push(UserDetailsPage, { user });
+    this.navCtrl.push(UserDetailsPage, { user, profile: this.profile });
   }
 
   getAge(date: string): string {
