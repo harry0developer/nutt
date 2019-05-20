@@ -59,8 +59,8 @@ export class RatersPage {
     });
   }
 
-  viewSeller(user) {
-    this.navCtrl.push(UserDetailsPage, { user });
+  viewRater(user) {
+    this.navCtrl.push(UserDetailsPage, { user, profile: this.profile });
   }
 
 }

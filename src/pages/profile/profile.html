@@ -24,7 +24,8 @@
       <div class="tags">
         <ion-badge primary>{{profile.gender}}</ion-badge>
         <ion-badge primary>{{profile.race}}</ion-badge>
-        <ion-badge primary>{{profile.bodyType}}</ion-badge>
+        <ion-badge primary>{{profile.body?.type}}</ion-badge>
+        <ion-badge primary>{{profile.body?.height}} {{profile.body?.measure}}</ion-badge>
       </div>
     </div>   
   
@@ -40,12 +41,19 @@
       </ion-col>
     </ion-row>
 
-    <ion-row class="info" *ngIf="!isSeller()">
+    <!-- <ion-row class="info" *ngIf="!isSeller()">
       <button ion-button block (click)="viewChats()">Chats</button>
-      <!-- <ion-col col-12 (tap)="viewChats()">
+    </ion-row> -->
+
+    <ion-row class="info">
+      <ion-col col-6 (tap)="viewChats()">
         <h2>{{requesters?.length}}</h2>
-        <p>Chats</p>
-      </ion-col>  -->
+        <p>Chats </p>
+      </ion-col> 
+      <ion-col col-6 (tap)="viewRaters()">
+        <h2>{{raters?.length}}</h2>
+        <p>Raters</p>
+      </ion-col>
     </ion-row>
   </div>
 

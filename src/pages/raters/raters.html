@@ -10,7 +10,7 @@
   <ion-content>
     <ion-list class="users">
       <div *ngFor="let rater of mappedRaters">
-        <ion-item>
+        <ion-item detail-push (click)="viewRater(rater)">
           <ion-avatar item-start>
             <img src="{{rater.avatar}}">
           </ion-avatar>
