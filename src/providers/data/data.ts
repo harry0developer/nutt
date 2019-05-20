@@ -182,8 +182,12 @@ export class DataProvider {
     return this.afStore.collection(rootCollection).doc(receiverUid).collection(senderUid).add(message);
   }
 
+  getUserIMessaged(rootCollection: string, receiverUid: string, senderUid: string) {
+    //return this.afStore.collection(rootCollection).doc(receiverUid).collection(senderUid).add(message);
+  }
+
   getDateTime(): string {
-    return moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
+    return moment(new Date()).format('YYYY/MM/DD HH:mm:ss');
   }
 
   getDateTimeMoment(dateTime): string {

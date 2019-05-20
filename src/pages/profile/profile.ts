@@ -33,15 +33,20 @@ export class ProfilePage {
     this.dataProvider.getItemById(COLLECTION.users, this.authProvider.getStoredUserId()).subscribe(profile => {
       this.dataProvider.getCollectionByKeyValuePair(COLLECTION.ratings, this.getProfileKeyType(profile), profile.uid).subscribe(raters => {
         this.dataProvider.getCollectionByKeyValuePair(COLLECTION.requesters, this.getProfileKeyType(profile), profile.uid).subscribe(requesters => {
-          this.rating = this.dataProvider.calculateRating(raters);
-          this.profile = profile;
-          this.img = this.profile.avatar;
-          this.feedbackProvider.dismissLoading();
-          this.raters = raters;
-          this.requesters = requesters;
-        }, err => {
-          this.feedbackProvider.dismissLoading();
-        });
+          this.dataProvider.getAllFromCollection(COLLECTION.messages).subscribe(messages => {
+
+            console.log(messages);
+
+            this.rating = this.dataProvider.calculateRating(raters);
+            this.profile = profile;
+            this.img = this.profile.avatar;
+            this.feedbackProvider.dismissLoading();
+            this.raters = raters;
+            this.requesters = requesters;
+          }, err => {
+            this.feedbackProvider.dismissLoading();
+          });
+        })
       }, err => {
         this.feedbackProvider.dismissLoading();
       });
@@ -72,7 +77,6 @@ export class ProfilePage {
 
   openSettings() {
     console.log('open settings');
-
   }
 
   isSeller(): boolean {

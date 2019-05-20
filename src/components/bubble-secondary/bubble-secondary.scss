@@ -1,32 +1,21 @@
 bubble-secondary {
     .bubble {
-        // width: 250px;
-        margin: 2px 16px;
-        border-radius: 15px;
-        color: white;
-        padding: 14px;
-        font-size: 14px;
-        font-weight: normal;
-        position: relative;
-        text-align: left;
-    }
-      
-    /* speech bubble secondary */
-    .bubble-secondary {
-        background-color: $secondary;
-    }
-    
-    .bubble-secondary:before {
-        content: "";
-        width: 0px;
-        height: 0px;
-        position: absolute;
-        border-left: 15px solid transparent;
-        border-right: 15px solid $secondary;
-        border-top: 15px solid $secondary;
-        border-bottom: 15px solid transparent;
-        left: -16px;
-        // top: 0px;
+        ion-avatar {
+            min-height: 70px;
+            position: relative;
+            top: 0px;
+            padding-right: 10px;
+        }
+        ion-label {
+            font-size: 12px;
+        }
+        .message {
+            font-size: 14px;
+            background-color: $light-grey;
+            color: white;
+            padding: 8px;
+            border-radius: 14px 14px 14px 0;
+        }
     }
 
 }
