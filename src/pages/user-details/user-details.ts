@@ -7,6 +7,8 @@ import { User } from '../../models/user';
 import { Rating } from '../../models/rating';
 import { Requester } from '../../models/requester';
 import { RateUserPage } from '../rate-user/rate-user';
+import { FeedbackProvider } from '../../providers/feedback/feedback';
+import { Subject } from 'rxjs';
 
 @IonicPage()
 @Component({
@@ -21,12 +23,16 @@ export class UserDetailsPage {
   raters: Rating[] = [];
   requesters: Requester[] = [];
   users: User[] = [];
+
+  unsubscribe$ = new Subject<void>();
   // openMenu: boolean = false;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public dataProvider: DataProvider,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    public feedbackCtrl: FeedbackProvider,
+  ) {
   }
 
   ionViewDidLoad() {
@@ -59,9 +65,63 @@ export class UserDetailsPage {
     this.navCtrl.push(ChatPage, { user, profile: this.profile });
   }
 
+  canRateUser(user): boolean {
+    for (let i = 0; i < this.requesters.length; i++) {
+      if (this.requesters[i].rid === this.profile.uid && this.requesters[i].uid === user.uid) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
   rateUser(user) {
     const modal = this.modalCtrl.create(RateUserPage, { user });
+    this.dataProvider.openModal = true;
+
+    modal.onDidDismiss(data => {
+      this.updateUserRating(data);
+    })
+
     modal.present();
+  }
+
+
+  updateUserRating(data) {
+    const rating: Rating = {
+      uid: data.user.uid,
+      rid: this.profile.uid,
+      rating: data.rating,
+      date: this.dataProvider.getDateTime()
+    }
+    // this.feedbackCtrl.presentLoading();
+    this.dataProvider.findCollectionByUidAndRid(COLLECTION.ratings, data.user.uid, this.profile.uid).takeUntil(this.unsubscribe$).subscribe(res => {
+      // this.feedbackCtrl.dismissLoading();
+      if (res.length > 0) {
+        this.updateRating(rating, res[0].id);
+        this.unsubscribe$.complete();
+      } else {
+        this.addNewRating(rating);
+        this.unsubscribe$.complete();
+      }
+    }, err => {
+      this.feedbackCtrl.dismissLoading();
+    });
+  }
+
+  addNewRating(ratingData) {
+    this.dataProvider.addNewItem(COLLECTION.ratings, ratingData).then(() => {
+      this.feedbackCtrl.presentToast('User rated successfully');
+    }).catch(err => {
+      this.feedbackCtrl.presentAlert('User not rated', 'An error occured while rating the user');
+    });
+  }
+  updateRating(ratingData, id) {
+    this.dataProvider.updateItem(COLLECTION.ratings, ratingData, id).then(() => {
+      this.feedbackCtrl.presentToast('User rated successfully');
+    }).catch(err => {
+      this.feedbackCtrl.presentAlert('User not rated', 'An error occured while rating the user');
+    });
   }
 
   // togglePopupMenu() {

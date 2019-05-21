@@ -4,6 +4,7 @@
   </ion-navbar>
 </ion-header>
   
+  <div [ngClass]="{'overlay': dataProvider.openModal}"></div>
   <ion-content>
     <div id="profile-bg"></div>
     <div id="content" *ngIf="user">
@@ -13,7 +14,8 @@
         <ion-badge class="age" item-end>{{getAge(user.dob)}}</ion-badge>
       </h2>
       <p class="address"> <i class="fa fa-map-marker"></i>{{getDistance(user.location?.geo)}} km away</p>
-      <rating [float]="true" [(ngModel)]="rating" [readonly]="true" (click)="rateUser(user)"></rating>
+      <rating [float]="true" [(ngModel)]="rating" [readonly]="true" *ngIf="!canRateUser(user)"></rating>
+      <rating [float]="true" [(ngModel)]="rating" [readonly]="true"  *ngIf="canRateUser(user)" (click)="rateUser(user)"></rating>
       <div class="tags">
         <ion-badge primary>{{user.gender}}</ion-badge>
         <ion-badge primary>{{user.race}}</ion-badge>

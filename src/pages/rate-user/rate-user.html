@@ -3,7 +3,8 @@
 
 <ion-content padding>
   <h2>Rate {{user?.nickname}}</h2>
-  <rating [float]="true" [(ngModel)]="rating" [readonly]="true"></rating>
+  <span class="rating-value">{{rating || 0}}</span>
+  <rating [float]="true" [(ngModel)]="rating" [readonly]="false"></rating>
 
   <button ion-button block (click)="rateUser(user)">Rate</button>
 </ion-content>

@@ -106,10 +106,10 @@ export class DataProvider {
   userData$ = this.userDataSubject.asObservable();
   userData: UserData = new UserData();
 
+  openModal: boolean = false;
   constructor(
     public afStore: AngularFirestore,
-    public afAuth: AngularFirestore,
-    private authProvider: AuthProvider) {
+    public afAuth: AngularFirestore) {
   }
 
   removeDuplicates(array, key: string) {
@@ -194,8 +194,20 @@ export class DataProvider {
     return this.afStore.collection(collectionName).doc<any>(id).valueChanges();
   }
 
-  updateItem(collectionName: string, data: User, id: string) {
+  updateItem(collectionName: string, data, id: string) {
     return this.afStore.collection(collectionName).doc<any>(id).set(data, { merge: true });
+  }
+
+  findCollectionByUidAndRid(collection, uid, rid) {
+    return this.afStore.collection<any>(collection, ref => ref.where('uid', '==', uid).where('rid', '==', rid)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
   }
 
   addNewItem(collectionName: string, data: any) {
