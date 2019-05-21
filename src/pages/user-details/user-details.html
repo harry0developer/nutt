@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-navbar >
+  <ion-navbar>
     <ion-title>{{user?.nickname}}</ion-title>
   </ion-navbar>
 </ion-header>
@@ -13,7 +13,7 @@
         <ion-badge class="age" item-end>{{getAge(user.dob)}}</ion-badge>
       </h2>
       <p class="address"> <i class="fa fa-map-marker"></i>{{getDistance(user.location?.geo)}} km away</p>
-      <rating [float]="true" [(ngModel)]="rating" [readonly]="true"></rating>
+      <rating [float]="true" [(ngModel)]="rating" [readonly]="true" (click)="rateUser(user)"></rating>
       <div class="tags">
         <ion-badge primary>{{user.gender}}</ion-badge>
         <ion-badge primary>{{user.race}}</ion-badge>

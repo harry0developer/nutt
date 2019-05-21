@@ -31,6 +31,7 @@ import { ChatsPage } from '../pages/chats/chats';
 import { RatersPage } from '../pages/raters/raters';
 import { BubblePrimaryComponent } from '../components/bubble-primary/bubble-primary';
 import { BubbleSecondaryComponent } from '../components/bubble-secondary/bubble-secondary';
+import { RateUserPage } from '../pages/rate-user/rate-user';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { BubbleSecondaryComponent } from '../components/bubble-secondary/bubble-
     ProfilePage,
     ChatsPage,
     RatersPage,
+    RateUserPage,
     ChatPage,
     BubblePrimaryComponent,
     BubbleSecondaryComponent
@@ -65,6 +67,7 @@ import { BubbleSecondaryComponent } from '../components/bubble-secondary/bubble-
     ProfilePage,
     ChatsPage,
     RatersPage,
+    RateUserPage,
     ChatPage,
     BubblePrimaryComponent,
     BubbleSecondaryComponent

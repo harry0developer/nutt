@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { ChatPage } from '../chat/chat';
 import { COLLECTION } from '../../utils/consts';
 import { User } from '../../models/user';
 import { Rating } from '../../models/rating';
 import { Requester } from '../../models/requester';
-import { ChatsPage } from '../chats/chats';
-import { RatersPage } from '../raters/raters';
+import { RateUserPage } from '../rate-user/rate-user';
 
 @IonicPage()
 @Component({
@@ -26,7 +25,8 @@ export class UserDetailsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private dataProvider: DataProvider) {
+    public dataProvider: DataProvider,
+    public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
@@ -57,6 +57,11 @@ export class UserDetailsPage {
 
   chatWithUser(user) {
     this.navCtrl.push(ChatPage, { user, profile: this.profile });
+  }
+
+  rateUser(user) {
+    const modal = this.modalCtrl.create(RateUserPage, { user });
+    modal.present();
   }
 
   // togglePopupMenu() {
