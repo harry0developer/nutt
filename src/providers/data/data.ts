@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, publishReplay, take, share } from 'rxjs/operators';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 import { User } from '../../models/user';
 import { Observable, BehaviorSubject } from 'rxjs';
@@ -198,8 +198,34 @@ export class DataProvider {
     return this.afStore.collection(collectionName).doc<any>(id).set(data, { merge: true });
   }
 
+
+  getCollectionId(collection, uid, rid) {
+    return this.afStore.collection<any>(collection, ref => ref.where('uid', '==', uid).where('rid', '==', rid)).snapshotChanges()
+      .pipe(
+        map(actions => {
+          return actions.map(a => {
+            const data = a.payload.doc.data();
+            const id = a.payload.doc.id;
+            return { id, ...data };
+          });
+        }),
+      ).toPromise();
+  }
+
   findCollectionByUidAndRid(collection, uid, rid) {
     return this.afStore.collection<any>(collection, ref => ref.where('uid', '==', uid).where('rid', '==', rid)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+
+  getAllUsers(collection) {
+    return this.afStore.collection<any>(collection).snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
           const data = a.payload.doc.data();

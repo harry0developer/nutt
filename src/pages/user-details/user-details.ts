@@ -9,6 +9,7 @@ import { Requester } from '../../models/requester';
 import { RateUserPage } from '../rate-user/rate-user';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
 import { Subject } from 'rxjs';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @IonicPage()
 @Component({
@@ -32,6 +33,7 @@ export class UserDetailsPage {
     public dataProvider: DataProvider,
     public modalCtrl: ModalController,
     public feedbackCtrl: FeedbackProvider,
+    public authProvider: AuthProvider,
   ) {
   }
 
@@ -86,7 +88,6 @@ export class UserDetailsPage {
     modal.present();
   }
 
-
   updateUserRating(data) {
     const rating: Rating = {
       uid: data.user.uid,
@@ -94,32 +95,34 @@ export class UserDetailsPage {
       rating: data.rating,
       date: this.dataProvider.getDateTime()
     }
-    // this.feedbackCtrl.presentLoading();
-    this.dataProvider.findCollectionByUidAndRid(COLLECTION.ratings, data.user.uid, this.profile.uid).takeUntil(this.unsubscribe$).subscribe(res => {
-      // this.feedbackCtrl.dismissLoading();
-      if (res.length > 0) {
-        this.updateRating(rating, res[0].id);
-        this.unsubscribe$.complete();
-      } else {
-        this.addNewRating(rating);
-        this.unsubscribe$.complete();
+
+    this.raters.map(r => {
+      if (r.uid === rating.uid && r.rid === rating.rid) {
+        this.updateRating(rating, r.id);
       }
-    }, err => {
-      this.feedbackCtrl.dismissLoading();
+      else {
+        this.addNewRating(rating);
+      }
     });
   }
 
   addNewRating(ratingData) {
+    this.feedbackCtrl.presentLoading();
     this.dataProvider.addNewItem(COLLECTION.ratings, ratingData).then(() => {
+      this.feedbackCtrl.dismissLoading();
       this.feedbackCtrl.presentToast('User rated successfully');
     }).catch(err => {
+      this.feedbackCtrl.dismissLoading();
       this.feedbackCtrl.presentAlert('User not rated', 'An error occured while rating the user');
     });
   }
   updateRating(ratingData, id) {
+    this.feedbackCtrl.presentLoading();
     this.dataProvider.updateItem(COLLECTION.ratings, ratingData, id).then(() => {
+      this.feedbackCtrl.dismissLoading();
       this.feedbackCtrl.presentToast('User rated successfully');
     }).catch(err => {
+      this.feedbackCtrl.dismissLoading();
       this.feedbackCtrl.presentAlert('User not rated', 'An error occured while rating the user');
     });
   }
