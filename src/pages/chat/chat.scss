@@ -29,7 +29,7 @@ page-chat {
     }
 
     .message-control {
-        border-top: 2px solid $dark-grey;
+        // border-top: 2px solid $dark-grey;
     }
 
     ion-footer {
@@ -39,8 +39,8 @@ page-chat {
         }
         .item-inner {
             border: 1px solid $dark-grey !important;
-            border-radius: 10px;
-            margin: 0 5px;
+            // border-radius: 10px;
+            margin: 0 2px;
         }
         ion-input {
             padding-left: 6px !important;

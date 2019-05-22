@@ -11,7 +11,7 @@ import { Rating } from '../../models/rating';
 })
 export class RateUserPage {
   user: User;
-  rating: string;
+  rating: string = '';
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public viewCntrl: ViewController,
@@ -21,7 +21,6 @@ export class RateUserPage {
 
   ionViewDidLoad() {
     this.user = this.navParams.get('user');
-    console.log(this.user);
 
   }
 
@@ -32,6 +31,11 @@ export class RateUserPage {
       rating: this.rating,
     }
     this.viewCntrl.dismiss(ratingData);
+  }
+
+  dismiss() {
+    this.dataProvider.openModal = false;
+    this.viewCntrl.dismiss();
   }
 
 }

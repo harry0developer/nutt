@@ -77,14 +77,20 @@ export class UserDetailsPage {
     }
   }
 
+  rateError(user) {
+    this.feedbackCtrl.presentAlert('User cannot be rated', 'You can only rate a user if you have started a conversation with');
+  }
+
   rateUser(user) {
     const modal = this.modalCtrl.create(RateUserPage, { user });
     this.dataProvider.openModal = true;
 
     modal.onDidDismiss(data => {
-      this.updateUserRating(data);
-    })
-
+      if (data) {
+        console.log(data);
+        this.updateUserRating(data);
+      }
+    });
     modal.present();
   }
 

@@ -12,8 +12,8 @@ page-user-details {
     height: 100%;
     width: 100%;
     z-index: 10;
-    opacity: .4;
-    background-color: rgba(0,0,0,0.8) !important;
+    opacity: .5;
+    background-color: #000 !important;
   }
 
   .toolbar-background {
@@ -39,7 +39,7 @@ page-user-details {
       margin-bottom: 2px;
   }
   .address {
-      margin: 2px;
+      margin: 2px 0 10px 0;
       i {
         padding-right: 4px;
         color: $primary;
@@ -57,7 +57,7 @@ page-user-details {
 
   .tags {
       display: block;
-      margin: 10px 0
+      margin: 20px 0
   }
 
   .tags .badge, .age {

@@ -3,8 +3,10 @@
 
 <ion-content padding>
   <h2>Rate {{user?.nickname}}</h2>
+  <p>Click on the stars to rate the user</p>
   <span class="rating-value">{{rating || 0}}</span>
   <rating [float]="true" [(ngModel)]="rating" [readonly]="false"></rating>
 
-  <button ion-button block (click)="rateUser(user)">Rate</button>
+  <button ion-button block [disabled]="!rating" (click)="rateUser(user)">Rate</button>
+  <button ion-button block outline clear (click)="dismiss()">Cancel</button>
 </ion-content>
