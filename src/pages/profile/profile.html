@@ -59,6 +59,18 @@
 
   <ion-list *ngIf="profile">
     <ion-list-header>
+      Contact Details
+    </ion-list-header>
+    <ion-item>
+      <i class="fa fa-envelope" item-start></i>
+      <p>Email:</p> <span item-end>{{profile.email}}</span>
+    </ion-item>
+    <ion-item *ngIf="profile.cell">
+      <i class="fa fa-phone" item-start></i>
+      <p>Phone:</p> <span item-end>{{profile.cell}}</span>
+    </ion-item>
+    
+    <ion-list-header>
       Personal Info
     </ion-list-header>
     <ion-item>
@@ -73,7 +85,7 @@
       <i class="fa fa-calendar" item-start></i>
       <p>Date of birth:</p> <span item-end>{{profile.dob}}</span>
     </ion-item>
-    <ion-item >
+    <ion-item>
       <i class="fa fa-map-marker" item-start></i>
       <span>{{profile.location?.address}}</span>
     </ion-item>

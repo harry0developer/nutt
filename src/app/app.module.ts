@@ -32,6 +32,7 @@ import { RatersPage } from '../pages/raters/raters';
 import { BubblePrimaryComponent } from '../components/bubble-primary/bubble-primary';
 import { BubbleSecondaryComponent } from '../components/bubble-secondary/bubble-secondary';
 import { RateUserPage } from '../pages/rate-user/rate-user';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { RateUserPage } from '../pages/rate-user/rate-user';
     RatersPage,
     RateUserPage,
     ChatPage,
+    DashboardPage,
     BubblePrimaryComponent,
     BubbleSecondaryComponent
   ],
@@ -69,6 +71,7 @@ import { RateUserPage } from '../pages/rate-user/rate-user';
     RatersPage,
     RateUserPage,
     ChatPage,
+    DashboardPage,
     BubblePrimaryComponent,
     BubbleSecondaryComponent
   ],

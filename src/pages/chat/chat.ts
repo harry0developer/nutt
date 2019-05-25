@@ -6,6 +6,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { COLLECTION, USER_TYPE } from '../../utils/consts';
 import { Message } from '../../models/message';
 import { Requester } from '../../models/requester';
+import { FeedbackProvider } from '../../providers/feedback/feedback';
 
 
 
@@ -33,19 +34,24 @@ export class ChatPage {
     public navParams: NavParams,
     public dataProvider: DataProvider,
     public authProvider: AuthProvider,
+    public feedbackProvider: FeedbackProvider,
   ) { }
 
   ionViewDidLoad() {
     this.user = this.navParams.get('user');
     this.profile = this.navParams.get('profile');
+    this.feedbackProvider.presentLoading();
     const senderId = this.profile.userType === USER_TYPE.buyer ? this.profile.uid : this.user.uid;
     const receiverId = this.profile.userType === USER_TYPE.buyer ? this.user.uid : this.profile.uid;
     this.dataProvider.getChats(COLLECTION.messages, receiverId, senderId).subscribe(messages => {
+      this.feedbackProvider.dismissLoading();
       if (messages.length > 0) {
         this.chatData = this.buildChats(messages);
       } else {
         this.isNewUser = true;
       }
+    }, err => {
+      this.feedbackProvider.dismissLoading();
     });
 
   }

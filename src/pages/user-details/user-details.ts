@@ -87,7 +87,6 @@ export class UserDetailsPage {
 
     modal.onDidDismiss(data => {
       if (data) {
-        console.log(data);
         this.updateUserRating(data);
       }
     });
@@ -95,6 +94,9 @@ export class UserDetailsPage {
   }
 
   updateUserRating(data) {
+    console.log(data);
+    console.log(this.raters);
+
     const rating: Rating = {
       uid: data.user.uid,
       rid: this.profile.uid,
@@ -102,14 +104,16 @@ export class UserDetailsPage {
       date: this.dataProvider.getDateTime()
     }
 
-    this.raters.map(r => {
-      if (r.uid === rating.uid && r.rid === rating.rid) {
-        this.updateRating(rating, r.id);
-      }
-      else {
-        this.addNewRating(rating);
-      }
-    });
+    if (this.raters.length > 0) {
+      this.raters.map(r => {
+        if (r.uid === rating.uid && r.rid === rating.rid) {
+          this.updateRating(rating, r.id);
+        }
+
+      });
+    } else {
+      this.addNewRating(rating);
+    }
   }
 
   addNewRating(ratingData) {

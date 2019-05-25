@@ -3,7 +3,7 @@ import { NavController, NavParams, Events, Platform } from 'ionic-angular';
 import { take } from 'rxjs/operators';
 import { AuthProvider } from '../../providers/auth/auth';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
-import { COLLECTION, EVENTS } from '../../utils/consts';
+import { COLLECTION, EVENTS, USER_TYPE } from '../../utils/consts';
 import { DataProvider } from '../../providers/data/data';
 import { USER_NOT_FOUND, INVALID_PASSWORD } from '../../config';
 import { forkJoin } from 'rxjs/observable/forkJoin';
@@ -12,6 +12,8 @@ import { SignupPage } from '../signup/signup';
 import { ForgotPasswordPage } from '../forgot-password/forgot-password';
 import firebase from 'firebase/app';
 import { UsersPage } from '../users/users';
+import { Observable } from 'rxjs';
+import { DashboardPage } from '../dashboard/dashboard';
 
 declare var window;
 
@@ -46,8 +48,8 @@ export class LoginPage {
   }
 
   ionViewDidLoad() {
-    if (this.authProvider.isLoggedIn()) {
-      this.navCtrl.setRoot(UsersPage);
+    if (this.authProvider.isLoggedIn() && this.authProvider.getStoredUserId()) {
+      this.navigate(this.authProvider.getStoredUserId());
     }
   }
 
@@ -57,7 +59,7 @@ export class LoginPage {
     this.authProvider.signInWithEmailAndPassword(this.data.email, this.data.password).then(res => {
       this.feedbackProvider.dismissLoading();
       this.authProvider.storeUser(this.authProvider.afAuth.auth.currentUser.uid);
-      this.navCtrl.setRoot(UsersPage);
+      this.navigate(this.authProvider.afAuth.auth.currentUser.uid);
     }).catch(err => {
       this.feedbackProvider.dismissLoading();
       this.feedbackProvider.presentAlert('Login failed', 'The email and password entered do not match');
@@ -65,7 +67,17 @@ export class LoginPage {
     })
   }
 
-
+  navigate(id: string) {
+    const userSubscription = this.dataProvider.getUserById(id).subscribe(res => {
+      console.log(res);
+      if (res.userType === USER_TYPE.seller) {
+        this.navCtrl.setRoot(DashboardPage);
+      } else {
+        this.navCtrl.setRoot(UsersPage);
+      }
+    });
+    setTimeout(() => userSubscription.unsubscribe(), 3000);
+  }
   signInWithFacebook() {
     this.authProvider.signInWithFacebook().then((r) => {
       console.log(r);

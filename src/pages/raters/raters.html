@@ -3,7 +3,8 @@
       <button ion-button menuToggle *ngIf="!page">
         <ion-icon name="menu"></ion-icon>
       </button>
-      <ion-title>Raters</ion-title>
+      <ion-title *ngIf="profile && profile.userType === 'buyer'">Rated</ion-title>
+      <ion-title *ngIf="profile && profile.userType === 'seller'">Raters</ion-title>
     </ion-navbar>
   </ion-header>
   

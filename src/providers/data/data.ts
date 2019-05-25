@@ -126,6 +126,10 @@ export class DataProvider {
     return this.getItemById(COLLECTION.users, id);
   }
 
+  getUserByIdPromise(id) {
+    return this.getItemById(COLLECTION.users, id).toPromise();
+  }
+
 
   getAllFromCollection(collectionName: string): Observable<any> {
     return this.afStore.collection<User>(collectionName).snapshotChanges().pipe(

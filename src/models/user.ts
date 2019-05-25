@@ -2,8 +2,7 @@ export interface User {
     nickname: string;
     avatar: string;
     email?: string;
-    phone?: string;
-    cell: string;
+    cell?: string;
     password?: string;
     uid?: string;
     dateCreated: string;
