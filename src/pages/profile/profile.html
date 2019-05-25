@@ -40,21 +40,7 @@
         <p>Raters</p>
       </ion-col>
     </ion-row>
-
-    <!-- <ion-row class="info" *ngIf="!isSeller()">
-      <button ion-button block (click)="viewChats()">Chats</button>
-    </ion-row> -->
-
-    <ion-row class="info">
-      <ion-col col-6 (tap)="viewChats()">
-        <h2>{{requesters?.length}}</h2>
-        <p>Chats </p>
-      </ion-col> 
-      <ion-col col-6 (tap)="viewRaters()">
-        <h2>{{raters?.length}}</h2>
-        <p>Raters</p>
-      </ion-col>
-    </ion-row>
+ 
   </div>
 
   <ion-list *ngIf="profile">

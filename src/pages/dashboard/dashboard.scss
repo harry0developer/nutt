@@ -46,13 +46,21 @@ page-dashboard {
 
     .card {
         text-align: center;
+        height: 90px;
         i {
             color: $primary;
-            font-size: 2em;
+            font-size: 24px;
+            padding: 20px;
+            float: left;
         }
         h2 {
             font-weight: bold;
-            font-size: 1.4em;
+            font-size: 18px;
+            padding-top: 10px;
+        }
+
+        p {
+          font-size: 12px;
         }
 
 
