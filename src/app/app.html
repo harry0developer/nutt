@@ -6,9 +6,13 @@
       <p>{{profile.race}} | {{profile.gender}}</p>
     </div>
     <ion-list *ngIf="profile" class="menu">
-      <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages.usersPage)">
+      <ion-item menuClose ion-item icon-left *ngIf="profile.userType === 'buyer'" (click)="nav.setRoot(pages.usersPage)">
         <i class="fa fa-heart" item-start></i>
         Honeys
+      </ion-item>
+      <ion-item menuClose ion-item icon-left *ngIf="profile.userType === 'seller'" (click)="nav.setRoot(pages.dashboardPage)">
+        <i class="fa fa-heart" item-start></i>
+        Dashboard
       </ion-item>
       <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages.chatsPage)">
         <i class="fa fa-comment" item-start></i>

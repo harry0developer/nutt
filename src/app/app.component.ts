@@ -15,6 +15,7 @@ import { COLLECTION } from '../utils/consts';
 import { Requester } from '../models/requester';
 import { Rating } from '../models/rating';
 import { RatersPage } from '../pages/raters/raters';
+import { DashboardPage } from '../pages/dashboard/dashboard';
 
 @Component({
   templateUrl: 'app.html'
@@ -38,6 +39,7 @@ export class MyApp {
     this.initializeApp();
     this.pages = {
       usersPage: UsersPage,
+      dashboardPage: DashboardPage,
       chatsPage: ChatsPage,
       ratersPage: RatersPage,
       profilePage: ProfilePage
