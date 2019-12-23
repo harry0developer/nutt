@@ -20,9 +20,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { FeedbackProvider } from '../providers/feedback/feedback';
 import { DataProvider } from '../providers/data/data';
 import { SignupPage } from '../pages/signup/signup';
-import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password';
-import { UsersPage } from '../pages/users/users';
-import { UserDetailsPage } from '../pages/user-details/user-details';
+import { ForgotPasswordPage } from '../pages/forgot-password/forgot-password'; 
 
 import { RatingModule } from "ngx-rating";
 import { RequestsPage } from '../pages/requests/requests';
@@ -34,13 +32,14 @@ import { Camera } from '@ionic-native/camera';
 import { WindowProvider } from '../providers/window/window';
 import { NationalityPage } from '../pages/nationality/nationality';
 import { MultiLoginPage } from '../pages/multi-login/multi-login';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { SellersPage } from '../pages/sellers/sellers';
+import { SellerDetailsPage } from '../pages/seller-details/seller-details';
 
 @NgModule({
   declarations: [
     MyApp,
     LoginPage,
-    UsersPage,
-    UserDetailsPage,
     SignupPage,
     ForgotPasswordPage,
     RequestsPage,
@@ -48,7 +47,10 @@ import { MultiLoginPage } from '../pages/multi-login/multi-login';
     ChatPage,
     ImagePage,
     MultiLoginPage,
-    NationalityPage
+    NationalityPage,
+    DashboardPage,
+    SellersPage,
+    SellerDetailsPage
   ],
   imports: [
     BrowserModule,
@@ -63,8 +65,6 @@ import { MultiLoginPage } from '../pages/multi-login/multi-login';
   entryComponents: [
     MyApp,
     LoginPage,
-    UsersPage,
-    UserDetailsPage,
     SignupPage,
     ForgotPasswordPage,
     RequestsPage,
@@ -72,7 +72,10 @@ import { MultiLoginPage } from '../pages/multi-login/multi-login';
     ChatPage,
     ImagePage,
     MultiLoginPage,
-    NationalityPage
+    NationalityPage,
+    DashboardPage,
+    SellersPage,
+    SellerDetailsPage
   ],
   providers: [
     StatusBar,

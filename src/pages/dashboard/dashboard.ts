@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 /**
- * Generated class for the OtpPage page.
+ * Generated class for the DashboardPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -10,16 +10,16 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
-  selector: 'page-otp',
-  templateUrl: 'otp.html',
+  selector: 'page-dashboard',
+  templateUrl: 'dashboard.html',
 })
-export class OtpPage {
+export class DashboardPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad OtpPage');
+    console.log('ionViewDidLoad DashboardPage');
   }
 
 }

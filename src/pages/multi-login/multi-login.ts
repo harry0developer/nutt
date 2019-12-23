@@ -8,9 +8,11 @@ import * as firebase from 'firebase';
 import { take } from 'rxjs/operators';
 import { User } from '../../models/user';
 import { WindowProvider } from '../../providers/window/window';
-import { COLLECTION, USER_NOT_FOUND, INVALID_PASSWORD, EVENTS } from '../../utils/consts'
+import { COLLECTION, USER_NOT_FOUND, INVALID_PASSWORD, EVENTS, USER_TYPE } from '../../utils/consts'
 import { Country } from '../../models/country';
 import { NationalityPage } from '../nationality/nationality';
+import { DashboardPage } from '../dashboard/dashboard';
+import { SellersPage } from '../sellers/sellers';
 
 @Component({
   selector: 'page-multi-login',
@@ -203,7 +205,7 @@ export class MultiLoginPage {
   navigate(user) {
     this.ionEvents.publish(EVENTS.loggedIn, user);
     this.authProvider.storeUser(user);
-    // this.navCtrl.setRoot(DashboardPage);
+    USER_TYPE.buyer ? this.navCtrl.setRoot(SellersPage) : this.navCtrl.setRoot(DashboardPage);
   }
 
   cancelOtpVerification() {

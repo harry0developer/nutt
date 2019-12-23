@@ -8,6 +8,7 @@ import { AuthProvider } from '../auth/auth';
 import { COLLECTION } from '../../utils/consts';
 import * as moment from 'moment'
 import { HttpClient } from '@angular/common/http';
+import { Ratings } from '../../models/ratings';
 
 
 @Injectable()
@@ -215,8 +216,55 @@ export class DataProvider {
     );
   }
 
+  addUserActionToCollection(collection: string, services, newService: any, userId: string) {
+    const key = new Date().getTime().toString();
+    // this.getDocumentFromCollectionById(collection, newService.id).toPromise().then(services => {
+    if (!!services) { //Job is root document eg /viewed-services/jobid 
+      if (!this.isUserInJobDocumentArray(services, newService)) { // add job to existing database services
+        const newServices = { ...services, [key]: newService };
+        this.updateCollection(collection, newServices, newService.id);
+      } else { //check if user has rated, then update rating 
+        const updatedServices = this.updateRating(services, newService);
+        if (updatedServices.updated) {
+          const allUpdatedRatings = { ...updatedServices.ratings };
+          this.updateCollection(collection, allUpdatedRatings, newService.id);
+        }
+      }
+    } else { //Job is NOT root document eg /viewed-services/otherjobIdNotThisOne
+      const newServices = { [key]: newService }; // team = {[var]: '', id: 1}
+      this.updateCollection(collection, newServices, newService.id);
+    }
+  }
+
+  isUserInJobDocumentArray(services: any[], service): any[] {
+    return services.find(res => {
+      return res.id === service.id && res.rid === service.rid;
+    });
+  }
+
+  updateRating(ratings: any[], newRating): any {
+    let updated = false;
+    ratings.forEach(r => {
+      if (r.id === newRating.id && newRating.rid === r.rid) {
+        updated = true;
+        r.rating = newRating.rating;
+        return { ratings, updated };
+      }
+    });
+    return { ratings, updated };
+  }
+
   getUserByIdPromise(id) {
     return this.getItemById(COLLECTION.users, id).toPromise();
+  }
+
+  calculateRating(ratings: Ratings[]): number {
+    let totalRate = 0;
+    ratings.forEach(r => {
+      totalRate += +r.rating;
+    });
+    const rate = (totalRate / ratings.length).toFixed(2);
+    return parseFloat(rate) || 0.0;
   }
 
   applyHaversine(jobs, lat, lng) {
@@ -240,6 +288,15 @@ export class DataProvider {
     } else {
       return jobs;
     }
+  }
+
+
+  getDateTime(): string {
+    return moment(new Date()).format('YYYY/MM/DD HH:mm:ss');
+  }
+
+  getDateTimeMoment(dateTime): string {
+    return moment(dateTime).fromNow();
   }
 
   getDistanceBetweenPoints(start, end, units) {
