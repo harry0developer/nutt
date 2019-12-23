@@ -11,6 +11,7 @@ export interface User {
     bodytype: string;
     type: string;
     location: Location;
+    userType: string; //buyer or seller
 };
 
 export interface Location {

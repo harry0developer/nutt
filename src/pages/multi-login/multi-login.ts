@@ -202,10 +202,10 @@ export class MultiLoginPage {
     });
   }
 
-  navigate(user) {
+  navigate(user: User) {
     this.ionEvents.publish(EVENTS.loggedIn, user);
     this.authProvider.storeUser(user);
-    USER_TYPE.buyer ? this.navCtrl.setRoot(SellersPage) : this.navCtrl.setRoot(DashboardPage);
+    user.userType === USER_TYPE.buyer ? this.navCtrl.setRoot(SellersPage) : this.navCtrl.setRoot(DashboardPage);
   }
 
   cancelOtpVerification() {

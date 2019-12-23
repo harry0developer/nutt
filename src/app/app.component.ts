@@ -11,7 +11,9 @@ import { ProfilePage } from '../pages/profile/profile';
 import { ChatPage } from '../pages/chat/chat';
 import { ImagePage } from '../pages/image/image';
 import { MultiLoginPage } from '../pages/multi-login/multi-login';
-
+import { AuthProvider } from '../providers/auth/auth';
+import { FeedbackProvider } from '../providers/feedback/feedback';
+import { MESSAGES } from '../utils/consts';
 @Component({
   templateUrl: 'app.html'
 })
@@ -22,7 +24,12 @@ export class MyApp {
 
   pages: any;
   user;
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public authProvider: AuthProvider,
+    public feebackProvider: FeedbackProvider,
+    public splashScreen: SplashScreen) {
     this.initializeApp();
 
     this.user = {
@@ -59,5 +66,13 @@ export class MyApp {
 
   getProfilePic(user) {
     return `assets/imgs/users/${user.gender}.svg`;
+  }
+
+  logout() {
+    this.authProvider.logout().then(() => {
+      this.nav.setRoot(MultiLoginPage);
+    }).catch(err => {
+      this.feebackProvider.presentAlert(MESSAGES.logoutFailed, MESSAGES.oops);
+    })
   }
 }

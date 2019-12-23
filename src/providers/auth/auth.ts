@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { USER_TYPE } from '../../utils/consts';
+import { USER_TYPE, STORAGE_KEY } from '../../utils/consts';
 import { auth } from 'firebase';
 
 @Injectable()
@@ -28,6 +28,7 @@ export class AuthProvider {
   }
 
   logout() {
+    localStorage.removeItem(STORAGE_KEY.user);
     return this.afAuth.auth.signOut();
   }
 

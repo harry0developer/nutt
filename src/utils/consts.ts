@@ -16,7 +16,12 @@ export const EVENTS = {
 }
 
 export const MESSAGES = {
-    oops: 'Oops, something went wrong. Please try again'
+    oops: 'Oops, something went wrong. Please try again',
+    logoutFailed: 'Logout failed'
+}
+
+export const STORAGE_KEY = {
+    user: 'user'
 }
 
 export const EMAIL_EXISTS = 'auth/email-already-in-use';
