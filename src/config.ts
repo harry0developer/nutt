@@ -1,12 +1,10 @@
 export const firebaseConfig = {
-    apiKey: 'AIzaSyCGgCkytExwDVvo_YD7wD5C0XvTcjpdHhE',
-    authDomain: 'espani-e7701.firebaseapp.com',
-    databaseURL: 'https://espani-e7701.firebaseio.com',
-    projectId: 'espani-e7701',
-    storageBucket: 'espani-e7701.appspot.com',
-    messagingSenderId: '522807193929'
+    apiKey: "AIzaSyCU7wPXPZ_qLwOWUXIj9KnGuzLns3_4A7s",
+    authDomain: "nutt-b9d1a.firebaseapp.com",
+    databaseURL: "https://nutt-b9d1a.firebaseio.com",
+    projectId: "nutt-b9d1a",
+    storageBucket: "nutt-b9d1a.appspot.com",
+    messagingSenderId: "780702072390",
+    appId: "1:780702072390:web:eb0a2a6c366c2cf9"
 }
 
-export const EMAIL_EXISTS = 'auth/email-already-in-use';
-export const USER_NOT_FOUND = 'auth/user-not-found';
-export const INVALID_PASSWORD = 'auth/wrong-password';

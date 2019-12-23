@@ -13,6 +13,8 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { firebaseConfig } from '../config';
+import { BrMaskerModule } from 'brmasker-ionic-3';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AuthProvider } from '../providers/auth/auth';
 import { FeedbackProvider } from '../providers/feedback/feedback';
@@ -26,6 +28,12 @@ import { RatingModule } from "ngx-rating";
 import { RequestsPage } from '../pages/requests/requests';
 import { ProfilePage } from '../pages/profile/profile';
 import { ChatPage } from '../pages/chat/chat';
+import { ImagePage } from '../pages/image/image';
+import { ImageProvider } from '../providers/image/image';
+import { Camera } from '@ionic-native/camera';
+import { WindowProvider } from '../providers/window/window';
+import { NationalityPage } from '../pages/nationality/nationality';
+import { MultiLoginPage } from '../pages/multi-login/multi-login';
 
 @NgModule({
   declarations: [
@@ -37,14 +45,19 @@ import { ChatPage } from '../pages/chat/chat';
     ForgotPasswordPage,
     RequestsPage,
     ProfilePage,
-    ChatPage
+    ChatPage,
+    ImagePage,
+    MultiLoginPage,
+    NationalityPage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
-    RatingModule
+    RatingModule,
+    BrMaskerModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -56,7 +69,10 @@ import { ChatPage } from '../pages/chat/chat';
     ForgotPasswordPage,
     RequestsPage,
     ProfilePage,
-    ChatPage
+    ChatPage,
+    ImagePage,
+    MultiLoginPage,
+    NationalityPage
   ],
   providers: [
     StatusBar,
@@ -66,7 +82,10 @@ import { ChatPage } from '../pages/chat/chat';
     AngularFireAuth,
     AuthProvider,
     FeedbackProvider,
-    DataProvider
+    DataProvider,
+    ImageProvider,
+    Camera,
+    WindowProvider
   ]
 })
 export class AppModule { }

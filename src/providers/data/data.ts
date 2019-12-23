@@ -7,6 +7,7 @@ import { UserData } from '../../models/userData';
 import { AuthProvider } from '../auth/auth';
 import { COLLECTION } from '../../utils/consts';
 import * as moment from 'moment'
+import { HttpClient } from '@angular/common/http';
 
 
 @Injectable()
@@ -25,6 +26,7 @@ export class DataProvider {
   constructor(
     public afStore: AngularFirestore,
     public afAuth: AngularFirestore,
+    public http: HttpClient,
     private authProvider: AuthProvider) {
     this.profile = this.authProvider.getStoredUser();
 
@@ -83,19 +85,6 @@ export class DataProvider {
     return this.getItemById(COLLECTION.users, id);
   }
 
-
-  getAllFromCollection(collectionName: string): Observable<any> {
-    return this.afStore.collection<User>(collectionName).snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ...data };
-        });
-      })
-    );
-  }
-
   getMyCollection(collectionName: string, uid: string): Observable<any> {
     return this.afStore.collection<any>(collectionName, !!uid ? ref => ref.where('uid', '==', uid) : null).snapshotChanges().pipe(
       map(actions => {
@@ -106,19 +95,7 @@ export class DataProvider {
         });
       })
     );
-  }
-
-  getCollectionByKeyValuePair(collectionName: string, key: string, value: string): Observable<any> {
-    return this.afStore.collection<any>(collectionName, ref => ref.where(key, '==', value)).snapshotChanges().pipe(
-      map(actions => {
-        return actions.map(a => {
-          const data = a.payload.doc.data();
-          const id = a.payload.doc.id;
-          return { id, ...data };
-        });
-      })
-    );
-  }
+  } 
 
   getItemById(collectionName: string, id: string) {
     return this.afStore.collection(collectionName).doc<any>(id).valueChanges();
@@ -147,6 +124,99 @@ export class DataProvider {
 
   getSettings() {
     return {};
+  }
+
+  addItemToUserDB(collection: string, user: any, newItem: any) {
+    const key = new Date().getTime().toString();
+    this.getDocumentFromCollectionById(collection, user.uid).subscribe(items => {
+      if (!!items) { //item is root document eg /viewed-items/itemID
+        console.log('items exist, adding to the array...');
+        const data: Object = items;
+        const itemsArray = this.getArrayFromObjectList(items);
+        if (!this.isUserIdInCollection(itemsArray, newItem)) { // add item to existing collection
+          const newItems = { ...data, [key]: newItem };
+          this.updateCollection(collection, newItems, user.uid);
+        } else { //check if user has 
+          console.log('do nothing..');
+        }
+      } else { //Job is NOT root document eg /viewed-jobs/otherjobIdNotThisOne
+        const newItems = { [key]: newItem };
+        console.log('trying to add new item...', newItems);
+        this.updateCollection(collection, newItems, user.uid);
+      }
+    });
+  }
+
+  updateCollection(collection, newItems, id) {
+    this.addNewItemWithId(collection, newItems, id).then(() => {
+      console.log('item added');
+    }).catch(err => {
+      console.log(err);
+    })
+  }
+
+
+  addNewItemWithId(collectionName: string, data: any, id: string) {
+    return this.afStore.collection(collectionName).doc<any>(id).set(data);
+  }
+
+  getArrayFromObjectList(obj): any[] {
+    return obj ? Object.keys(obj).map((k) => obj[k]) : [];
+  }
+
+  isUserIdInCollection(jobs: any[], job): any[] {
+    return jobs.find(res => {
+      return res.uid === job.uid && res.jid === job.jid;
+    });
+  }
+
+
+  getAllFromCollection(collectionName: string): Observable<any> {
+    return this.afStore.collection<any>(collectionName).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+
+  getDocumentFromCollection(collectionName: string, docId: string): Observable<any> {
+    return this.afStore.collection<any>(collectionName).doc(docId).get();
+  }
+
+  getCollectionById(collectionName: string, uid: string): Observable<any> {
+    return this.afStore.collection<any>(collectionName, !!uid ? ref => ref.where('uid', '==', uid) : null).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+
+  getDocumentFromCollectionById(collectionName, id) {
+    return this.afStore.collection<any>(collectionName).doc(id).valueChanges();
+  }
+
+  getCollectionByKeyValuePair(collectionName: string, key: string, value: string): Observable<any> {
+    return this.afStore.collection<any>(collectionName, ref => ref.where(key, '==', value)).snapshotChanges().pipe(
+      map(actions => {
+        return actions.map(a => {
+          const data = a.payload.doc.data();
+          const id = a.payload.doc.id;
+          return { id, ...data };
+        });
+      })
+    );
+  }
+
+  getUserByIdPromise(id) {
+    return this.getItemById(COLLECTION.users, id).toPromise();
   }
 
   applyHaversine(jobs, lat, lng) {
@@ -214,4 +284,7 @@ export class DataProvider {
     return this.getDistanceBetweenPoints(myLocation, geo, 'miles').toFixed(0);;
   }
 
+  getCountries() {
+    return this.http.get('assets/countries.json').toPromise();
+  }
 }

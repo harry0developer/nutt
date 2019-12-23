@@ -16,7 +16,7 @@ export interface User {
 export interface Location {
     address: string;
     geo: {
-        lat: string,
-        lng: string;
+        lat: number,
+        lng: number;
     }
 }

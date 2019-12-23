@@ -5,7 +5,6 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { FeedbackProvider } from '../../providers/feedback/feedback';
 import { COLLECTION, EVENTS } from '../../utils/consts';
 import { DataProvider } from '../../providers/data/data';
-import { USER_NOT_FOUND, INVALID_PASSWORD } from '../../config';
 import { forkJoin } from 'rxjs/observable/forkJoin';
 import { UserData } from '../../models/userData';
 import { SignupPage } from '../signup/signup';
