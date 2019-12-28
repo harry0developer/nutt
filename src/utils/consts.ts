@@ -12,7 +12,7 @@ export const USER_TYPE = {
 }
 
 export const EVENTS = {
-    loggedIn: "logged-In"
+    loggedIn: "logged-In",
 }
 
 export const MESSAGES = {
@@ -21,7 +21,8 @@ export const MESSAGES = {
 }
 
 export const STORAGE_KEY = {
-    user: 'user'
+    user: 'user',
+    intro: 'intro'
 }
 
 export const EMAIL_EXISTS = 'auth/email-already-in-use';

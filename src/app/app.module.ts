@@ -35,6 +35,10 @@ import { MultiLoginPage } from '../pages/multi-login/multi-login';
 import { DashboardPage } from '../pages/dashboard/dashboard';
 import { SellersPage } from '../pages/sellers/sellers';
 import { SellerDetailsPage } from '../pages/seller-details/seller-details';
+import { ViewedPage } from '../pages/viewed/viewed';
+import { RatedPage } from '../pages/rated/rated';
+import { ChatsPage } from '../pages/chats/chats';
+import { IntroPage } from '../pages/intro/intro';
 
 @NgModule({
   declarations: [
@@ -50,7 +54,11 @@ import { SellerDetailsPage } from '../pages/seller-details/seller-details';
     NationalityPage,
     DashboardPage,
     SellersPage,
-    SellerDetailsPage
+    SellerDetailsPage,
+    ViewedPage,
+    RatedPage,
+    ChatsPage,
+    IntroPage
   ],
   imports: [
     BrowserModule,
@@ -75,7 +83,11 @@ import { SellerDetailsPage } from '../pages/seller-details/seller-details';
     NationalityPage,
     DashboardPage,
     SellersPage,
-    SellerDetailsPage
+    SellerDetailsPage,
+    ViewedPage,
+    RatedPage,
+    ChatsPage,
+    IntroPage
   ],
   providers: [
     StatusBar,

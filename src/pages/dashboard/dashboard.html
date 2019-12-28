@@ -17,7 +17,6 @@
       <rating [float]="true" [(ngModel)]="myRating" [readonly]="true" ></rating>
     </div>
     <h2 class="animated slideInLeft">{{profile.nickname}}</h2>
-    <p class="animated slideInRight">{{profile.title || profile.type}}</p>
     <button ion-button small class="primary animated zoomIn" (click)="viewProfile()" color="primary">View Profile</button>
   </div>
 

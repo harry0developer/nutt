@@ -127,6 +127,19 @@ export class DataProvider {
     return {};
   }
 
+  getItemFromLocalStorage(key: string): any {
+    const data = localStorage.getItem(key);
+    if (!data || data === 'undefined' || data === null || data === undefined) {
+      return {};
+    } else {
+      return JSON.parse(data);
+    }
+  }
+  
+  addItemToLocalStorage(key: string, data: any) {
+    localStorage.setItem(key, JSON.stringify(data));
+  }
+
   addItemToUserDB(collection: string, user: any, newItem: any) {
     const key = new Date().getTime().toString();
     this.getDocumentFromCollectionById(collection, user.uid).subscribe(items => {

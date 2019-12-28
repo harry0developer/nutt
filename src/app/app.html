@@ -1,22 +1,34 @@
 <ion-menu [content]="content"  persistent="true" >
-  <ion-content class="user-profile">
-    <div *ngIf="user" class="profile">
-      <img src="assets/imgs/users/user{{user.id}}.jpg"  alt="profile" class="profile-picture">
-      <h2>{{user.nickname}}</h2>
-      <p>{{user.race}}</p>
-      <p>{{user.gender}}</p>
+  <ion-content class="user-profile" *ngIf="profile">
+    <div class="profile">
+      <img [src]="getProfilePic()"  alt="profile" class="profile-picture">
+      <h2>{{profile.nickname}}</h2> 
     </div>
-    <ion-list *ngIf="user" class="menu">
-      <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages.usersPage)">
-        <!-- <ion-icon class="light" name="home" item-start></ion-icon> -->
+    <ion-list class="menu">
+      <ion-item menuClose ion-item icon-left *ngIf="isSeller()" (click)="nav.setRoot(pages.dashboardPage)">
+        <i class="fa fa-th-large" item-start></i>
+          Dashboard
+      </ion-item>
+      <ion-item menuClose ion-item icon-left *ngIf="isSeller()" (click)="nav.setRoot(pages.chatsPage)">
+        <i class="fa fa-comment" item-start></i>
+          Chats
+      </ion-item> 
+      <ion-item menuClose ion-item icon-left *ngIf="isSeller()" (click)="nav.setRoot(pages.ratedPage)">
+        <i class="fa fa-star" item-start></i>
+          Rated
+      </ion-item> 
+      <ion-item menuClose ion-item icon-left *ngIf="isSeller()" (click)="nav.setRoot(pages.viewedPage)">
+        <i class="fa fa-eye" item-start></i>
+          Viewed
+      </ion-item> 
+      <!-- <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages.usersPage)">
         <i class="fa fa-heart" item-start></i>
           Honeys
       </ion-item>
       <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages.requestsPage)">
-        <!-- <ion-icon class="light" name="people" item-start></ion-icon> -->
         <i class="fa fa-envelope" item-start></i>
         Requests
-      </ion-item> 
+      </ion-item>  -->
       <ion-item menuClose ion-item icon-left (click)="nav.setRoot(pages.profilePage)">
         <!-- <ion-icon class="light" name="person" item-start></ion-icon> -->
         <i class="fa fa-user" item-start></i>

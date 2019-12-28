@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform } from 'ionic-angular';
+import { Nav, Platform, Events, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -13,7 +13,17 @@ import { ImagePage } from '../pages/image/image';
 import { MultiLoginPage } from '../pages/multi-login/multi-login';
 import { AuthProvider } from '../providers/auth/auth';
 import { FeedbackProvider } from '../providers/feedback/feedback';
-import { MESSAGES } from '../utils/consts';
+import { MESSAGES, USER_TYPE } from '../utils/consts';
+import { User } from '../models/user';
+import { DashboardPage } from '../pages/dashboard/dashboard';
+import { ViewedPage } from '../pages/viewed/viewed';
+import { RatedPage } from '../pages/rated/rated';
+import { ChatsPage } from '../pages/chats/chats';
+import { DataProvider } from '../providers/data/data';
+
+import { EVENTS, STORAGE_KEY } from '../utils/consts';
+import { IntroPage } from '../pages/intro/intro';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,26 +33,25 @@ export class MyApp {
   rootPage: any = MultiLoginPage;
 
   pages: any;
-  user;
+  profile: User;
+
   constructor(
     public platform: Platform, 
     public statusBar: StatusBar, 
     public authProvider: AuthProvider,
+    public dataProvider: DataProvider,
     public feebackProvider: FeedbackProvider,
+    public ionEvents: Events,
+    public modalCtrl: ModalController,
     public splashScreen: SplashScreen) {
     this.initializeApp();
-
-    this.user = {
-      nickname: "Jon Snow",
-      id: 113,
-      dob: "1992-01-02",
-      gender: "male",
-      race: "white"
-
-    }
-
+ 
 
     this.pages = {
+      dashboardPage: DashboardPage,
+      viewedPage: ViewedPage,
+      ratedPagePage: RatedPage,
+      chatsPage: ChatsPage,
       usersPage: UsersPage,
       requestsPage: RequestsPage,
       profilePage: ProfilePage
@@ -51,11 +60,26 @@ export class MyApp {
   }
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
       this.splashScreen.hide();
+      this.statusBar.styleLightContent();
+      this.profile = this.authProvider.getStoredUser();
+      const intro = this.dataProvider.getItemFromLocalStorage(STORAGE_KEY.intro);
+      const a = Object.getOwnPropertyNames(intro).length;
+      if (a === 0)
+        this.openIntroPage();
+
+      this.ionEvents.subscribe(EVENTS.loggedIn, (user) => {
+        this.profile = user;
+      });
+      
     });
+  }
+
+  openIntroPage() {
+    const modal = this.modalCtrl.create(IntroPage);
+    modal.onDidDismiss(() => {
+    });
+    modal.present();
   }
 
   openPage(page) {
@@ -64,8 +88,12 @@ export class MyApp {
     this.nav.setRoot(page.component);
   }
 
-  getProfilePic(user) {
-    return `assets/imgs/users/${user.gender}.svg`;
+  getProfilePic() {
+    return `assets/imgs/users/${this.profile.gender}.svg`;
+  }
+
+  isSeller(): boolean {
+    return this.profile.userType === USER_TYPE.seller;
   }
 
   logout() {

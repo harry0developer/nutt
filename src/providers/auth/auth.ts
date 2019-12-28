@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { User } from '../../models/user';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { USER_TYPE, STORAGE_KEY } from '../../utils/consts';
+import { USER_TYPE, STORAGE_KEY, COLLECTION } from '../../utils/consts';
 import { auth } from 'firebase';
 
 @Injectable()
@@ -25,12 +25,7 @@ export class AuthProvider {
 
   forgotPassword(passwordResetEmail) {
     return this.afAuth.auth.sendPasswordResetEmail(passwordResetEmail);
-  }
-
-  logout() {
-    localStorage.removeItem(STORAGE_KEY.user);
-    return this.afAuth.auth.signOut();
-  }
+  } 
 
   googleAuth() {
     return this.authLogin(new auth.GoogleAuthProvider());
@@ -68,27 +63,28 @@ export class AuthProvider {
   updateUser(data: User) {
     const user = this.getStoredUser();
     const userData: User = null;
-    return this.afs.collection('users').doc(user.uid).set(userData);
+    return this.afs.collection(COLLECTION.users).doc(user.uid).set(userData);
   }
 
   getFirebaseUserData(uid): any {
-    return this.afs.collection('users').doc(uid).get();
+    return this.afs.collection(COLLECTION.users).doc(uid).get();
   }
 
   storeUser(user) {
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem(STORAGE_KEY.user, JSON.stringify(user));
   }
 
   getStoredUser(): User {
-    return JSON.parse(localStorage.getItem('user'));
+    return JSON.parse(localStorage.getItem(STORAGE_KEY.user));
   }
 
   isLoggedIn(): boolean {
     return !!this.getStoredUser();
   }
 
-  signOut() {
-    localStorage.removeItem('user');
+
+  logout() {
+    localStorage.removeItem(STORAGE_KEY.user);
     return this.afAuth.auth.signOut();
   }
 
