@@ -2,8 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, Events, ModalController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { LoginPage } from '../pages/login/login';
  
 import { UsersPage } from '../pages/users/users';
 import { RequestsPage } from '../pages/requests/requests';
@@ -23,6 +21,8 @@ import { DataProvider } from '../providers/data/data';
 
 import { EVENTS, STORAGE_KEY } from '../utils/consts';
 import { IntroPage } from '../pages/intro/intro';
+import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 
 @Component({
   templateUrl: 'app.html'
@@ -30,7 +30,7 @@ import { IntroPage } from '../pages/intro/intro';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = MultiLoginPage;
+  rootPage: any = LoginPage;
 
   pages: any;
   profile: User;

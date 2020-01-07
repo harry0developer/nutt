@@ -6,7 +6,6 @@ import { MyApp } from './app.component';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { LoginPage } from '../pages/login/login';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
@@ -39,11 +38,12 @@ import { ViewedPage } from '../pages/viewed/viewed';
 import { RatedPage } from '../pages/rated/rated';
 import { ChatsPage } from '../pages/chats/chats';
 import { IntroPage } from '../pages/intro/intro';
+import { HomePage } from '../pages/home/home';
+import { LoginPage } from '../pages/login/login';
 
 @NgModule({
   declarations: [
     MyApp,
-    LoginPage,
     SignupPage,
     ForgotPasswordPage,
     RequestsPage,
@@ -58,7 +58,9 @@ import { IntroPage } from '../pages/intro/intro';
     ViewedPage,
     RatedPage,
     ChatsPage,
-    IntroPage
+    IntroPage,
+    HomePage,
+    LoginPage
   ],
   imports: [
     BrowserModule,
@@ -72,7 +74,6 @@ import { IntroPage } from '../pages/intro/intro';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    LoginPage,
     SignupPage,
     ForgotPasswordPage,
     RequestsPage,
@@ -87,7 +88,9 @@ import { IntroPage } from '../pages/intro/intro';
     ViewedPage,
     RatedPage,
     ChatsPage,
-    IntroPage
+    IntroPage,
+    HomePage,
+    LoginPage
   ],
   providers: [
     StatusBar,

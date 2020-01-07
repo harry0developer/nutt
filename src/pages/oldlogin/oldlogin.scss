@@ -1,0 +1,41 @@
+page-oldlogin {
+
+    .brand   {
+        width: 160px;
+        margin: 8% auto;
+    }
+    .content {
+        background-color: $primary;
+        hr{
+            background-color: $secondary;
+        }
+    }
+
+    .validation {
+        color: $light-grey;
+    }
+
+
+
+    ion-item.item-input {
+        margin: 10px 0;
+    }
+
+    ion-label.label {
+        width: 120px;
+    }
+
+
+
+    .login-type {
+        margin-top: 40px;
+        p {
+            text-align: center;
+            color: $white;
+        }
+    }
+
+    .controls .col {
+        text-align: center;
+    } 
+}
