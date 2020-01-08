@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { Country } from '../../models/country';
 import { User } from '../../models/user';
+import { NationalityPage } from '../nationality/nationality';
  
 
 @IonicPage()
@@ -11,13 +12,18 @@ import { User } from '../../models/user';
 })
 export class LoginPage {
   
-  loginType: string = 'emailAddress';
+  loginType: string = '';
   data = {
     email: '',
     password: '',
     otpCode: '',
     phonenumber: '',
-    code: ''
+    phone: {
+      flag: "🇿🇦",
+      code: "+27",
+      number: ''
+    },
+    location: { address: '' }
   }
   type = 'password';
   showPass = false;
@@ -31,26 +37,21 @@ export class LoginPage {
   countries: any = [];
   users: User[] = [];
 
-
-  country: Country = {
-    name: "South Africa",
-    flag: "🇿🇦",
-    code: "ZA",
-    dialCode: "+27"
-  };
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public modalCtrl: ModalController) {
   }
 
   ionViewDidLoad() {
-    // this.loginType = this.navParams.get('loginType')
+    this.loginType = this.navParams.get('loginType');
+    console.log(this.loginType);
   }
 
   loginWithPhoneNumber() {
     console.log('loginWithPhoneNumber');
   }
 
-  signinWithEmailAndPassword() {
+  loginWithEmailAndPassword() {
     console.log('signinWithEmailAndPassword');
   }
 
@@ -65,5 +66,17 @@ export class LoginPage {
     } else {
       this.type = 'password';
     }
+  }
+
+  getCountryCode() {
+    let modal = this.modalCtrl.create(NationalityPage);
+    modal.onDidDismiss(data => {
+      if (data) {
+        this.data.phone.number = data.number;
+        this.data.phone.code = data.dial_code;
+        this.data.phone.flag = data.flag;
+      }
+    });
+    modal.present();
   }
 }

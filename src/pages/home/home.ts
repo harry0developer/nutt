@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular'
 import { LoginPage } from '../login/login';
+import { SignupPage } from '../signup/signup';
 
 @IonicPage()
 @Component({
@@ -21,19 +22,23 @@ export class HomePage {
 
 
   loginWithEmailAddress() {
-    this.navCtrl.push(LoginPage, {loginType: 'phoneNumber'});
-  }
-
-  loginWithPhoneNumber() {
+    console.log('Email');
+    
     this.navCtrl.push(LoginPage, {loginType: 'emailAddress'});
   }
 
+  loginWithPhoneNumber() {
+    console.log('Phone');
+    
+    this.navCtrl.push(LoginPage, {loginType: 'phoneNumber'});
+  }
+
   signupWithEmailAddress() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push(SignupPage, {signupType: 'emailAddress'});
   }
 
   signupWithPhoneNumber() {
-    this.navCtrl.push(LoginPage);
+    this.navCtrl.push(SignupPage, {signupType: 'phoneNumber'});
   }
 
   presentLoginActionSheet() {

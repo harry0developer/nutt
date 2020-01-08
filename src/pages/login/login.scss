@@ -23,13 +23,22 @@ page-login {
         border-radius: 40px !important;
     }
 
-    ion-item.item.item-input.round-input {
-        margin: 10px 0; 
-    }
+    ion-datetime {
+        position: absolute;
+        left: 40px;
+        width: 100%;
+    } 
     
+    ion-item.round-input, ion-row{
+        border-radius: 40px !important;
+        width: 90%;
+        margin: 10px auto;
+    }
+
     ion-item.item.item-input {
         border-radius: 40px !important;
     }
+ 
 
     h2 {
         margin-bottom: 20px;
@@ -45,6 +54,9 @@ page-login {
         ion-label {
             padding-left: 16px;
         }
+    }
+    ion-label i{ 
+        color: $primary;
     }
 
     .buttons-group { 
@@ -74,6 +86,8 @@ page-login {
         font-size: 1em;
         text-align: center;
         margin-top: 40px;
+        position: relative;
+        bottom: 0;
     }
 
 }

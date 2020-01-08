@@ -10,18 +10,18 @@
   </div>
 
   <ion-list>
-    <div padding class="phone-login" *ngIf="loginType=='phoneNumber'">  
+    <div padding *ngIf="loginType=='phoneNumber'">  
       <h2 >Login with phone number</h2>
       <ion-grid>
         <ion-row class="round-input">
           <ion-col col-3 class="country-code">
             <ion-item class="animated pulse">
-              <ion-input type="text" placeholder="+27" (ionFocus)="getCountryCode()" [(ngModel)]="country.flag" flag="flag" #flag="ngModel"></ion-input>
+              <ion-input type="text" placeholder="+27" (ionFocus)="getCountryCode()" [(ngModel)]="data.phone.flag" flag="flag" #flag="ngModel"></ion-input>
             </ion-item> 
           </ion-col>
           <ion-col col-9>
             <ion-item class="animated pulse">
-              <span class="dial-code" item-start>{{country.dialCode}}</span>
+              <span class="dial-code" item-start>{{data.phone.code}}</span>
               <ion-input [(ngModel)]="data.phonenumber"  [brmasker]="{mask:'000000000000000', len:15,  type:'num'}" placeholder="0820001234"  clearOnEdit=false required phonenumber="phonenumber" #phonenumber="ngModel" pattern=".{9,}"
               type="tel"></ion-input>
             </ion-item>
@@ -33,22 +33,20 @@
       <div [hidden]="phonenumber.valid || phonenumber.pristine" class="validation">
         <p class="animated fadeInLeft" [hidden]="!phonenumber.hasError('required')">Phone Number is required</p>
         <p class="animated fadeInLeft" [hidden]="!phonenumber.hasError('pattern')">Phone Number is too short</p>
-      </div>
-      <div [hidden]="!phonenumber.dirty || !phonenumber.valid && !country.dialCode" class="validation">
-        <p class="animated fadeInLeft" [hidden]="country.dialCode">Country is required</p>
-      </div>
+      </div> 
 
-      
+
       <div class="buttons-group">
-        <button ion-button small round [disabled]="!country.dialCode || !phonenumber.valid" (click)="signinWithPhoneNumber()"> Login</button>
+        <button ion-button small round [disabled]="!phonenumber.valid" (click)="loginWithPhoneNumber()"> Login</button>
         <button ion-button small round clear icon-start (click)="cancelLogin()">
           <ion-icon name="arrow-back"></ion-icon>
           Cancel
         </button>
-        <p class="terms">Terms and conditions apply</p>
       </div>
     </div>
+  </ion-list>
 
+  <ion-list>
     <div padding class="email-address" *ngIf="loginType=='emailAddress'">
       <h2>Login with email address</h2>
       <ion-item class="animated pulse round-input">
@@ -85,14 +83,15 @@
       </div> 
 
       <div class="buttons-group">
-        <button ion-button small round  [disabled]="!email.valid || !password.valid" (click)="loginWithEmailAddress()"> Login</button>
+        <button ion-button small round  [disabled]="!email.valid || !password.valid" (click)="loginWithEmailAndPassword()"> Login</button>
         <button ion-button small round clear icon-start (click)="cancelLogin()">
           <ion-icon name="arrow-back"></ion-icon>
           Cancel
         </button>
-        <p class="terms">Terms and conditions apply</p>
       </div>
     
     </div>
   </ion-list>
+  <p class="terms">Terms and conditions apply</p>
+
 </ion-content>
