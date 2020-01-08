@@ -13,7 +13,7 @@ page-home {
 
     .buttons-group {
         position: absolute;
-        bottom: 80px;
+        bottom: 40px;
         text-align: center;
         margin: 0 10px;
         .button {
@@ -30,4 +30,13 @@ page-home {
 
  .action-sheet-icon {
      font-size: 1em !important;
+ }
+
+ .terms {
+     margin-top: 40px;
+     .button {
+         font-size: .8em;
+         margin: 0 !important;
+         padding: 0 !important;
+     }
  }

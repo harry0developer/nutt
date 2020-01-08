@@ -40,6 +40,7 @@ import { ChatsPage } from '../pages/chats/chats';
 import { IntroPage } from '../pages/intro/intro';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
+import { TermsPage } from '../pages/terms/terms';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { LoginPage } from '../pages/login/login';
     ChatsPage,
     IntroPage,
     HomePage,
+    TermsPage,
     LoginPage
   ],
   imports: [
@@ -90,6 +92,7 @@ import { LoginPage } from '../pages/login/login';
     ChatsPage,
     IntroPage,
     HomePage,
+    TermsPage,
     LoginPage
   ],
   providers: [

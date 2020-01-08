@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { ActionSheetController } from 'ionic-angular'
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
+import { TermsPage } from '../terms/terms';
 
 @IonicPage()
 @Component({
@@ -101,5 +102,9 @@ export class HomePage {
     });
  
     actionSheet.present();
+  }
+
+  showTermsAndConditions() {
+    this.navCtrl.push(TermsPage);
   }
 }
