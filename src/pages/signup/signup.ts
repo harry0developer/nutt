@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angu
 import { Country } from '../../models/country';
 import { User } from '../../models/user';
 import { NationalityPage } from '../nationality/nationality';
+import { SetupPage } from '../setup/setup';
  
 
 @IonicPage()
@@ -54,7 +55,7 @@ export class SignupPage {
   }
 
   signupWithEmailAndPassword() {
-    console.log('signinWithEmailAndPassword');
+    this.navCtrl.push(SetupPage, {data: this.data});
   }
 
   cancelSignup() {

@@ -1,0 +1,102 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Setup</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <ion-list radio-group [(ngModel)]="data.gender">
+
+    <ion-card>
+      <ion-grid>
+        <ion-label stacked>
+          <h2>I am</h2>
+        </ion-label>
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>
+                <i class="fa fa-male" item-start></i>
+                Male
+              </ion-label>
+              <ion-radio checked="true" value="male" checked></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>
+                <i class="fa fa-female" item-start></i>Female
+              </ion-label>
+              <ion-radio value="female"></ion-radio>
+            </ion-item> 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card>
+      <ion-grid>
+        <ion-label stacked>
+          <h2>I am interested in</h2>
+        </ion-label>
+        <ion-row>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>
+                <i class="fa fa-male" item-start></i>
+                Male
+              </ion-label>
+              <ion-radio value="male"></ion-radio>
+            </ion-item>
+          </ion-col>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>
+                <i class="fa fa-female" item-start></i>Female
+              </ion-label>
+              <ion-radio checked="true" value="female"></ion-radio>
+            </ion-item> 
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card>
+      <ion-label stacked>
+        <h2>I was born in</h2>
+      </ion-label> 
+      <ion-item class="animated pulse round-input">
+        <ion-label>
+          <i class="fa fa-calendar" item-start></i>
+        </ion-label>
+        <ion-datetime placeholder="01/01/1999" displayFormat="DD/MM/YYYY" max="2001" [(ngModel)]="data.dob" required dob="dob" #dob="ngModel"></ion-datetime>
+      </ion-item>
+      <div [hidden]="dob.valid || dob.pristine" class="validation">
+        <p class="animated tada" [hidden]="!dob.hasError('required')">Date of birth is required</p>
+      </div>
+    </ion-card>
+
+    <ion-card>
+      <ion-label stacked>
+        <h2>My current location</h2>
+      </ion-label> 
+      <ion-item class="animated pulse round-input">
+        <ion-label>
+          <i class="fa fa-map-marker" item-start></i>
+        </ion-label>
+        <ion-input type="text" (tap)="showAddressModal()" [(ngModel)]="data.location.address" required location="location" #location="ngModel"  placeholder="5 main street, Cape Town"></ion-input>
+      </ion-item>
+    </ion-card>
+    
+  </ion-list>
+   
+  
+  <div class="controls" padding>
+    <button ion-button block round (click)="completeSignup()">Complete Signup</button>
+  </div>
+
+
+</ion-content>

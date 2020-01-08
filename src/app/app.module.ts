@@ -41,6 +41,8 @@ import { IntroPage } from '../pages/intro/intro';
 import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { TermsPage } from '../pages/terms/terms';
+import { SetupPage } from '../pages/setup/setup';
+import { PlacesPage } from '../pages/places/places';
 
 @NgModule({
   declarations: [
@@ -62,6 +64,8 @@ import { TermsPage } from '../pages/terms/terms';
     IntroPage,
     HomePage,
     TermsPage,
+    PlacesPage,
+    SetupPage,
     LoginPage
   ],
   imports: [
@@ -93,6 +97,8 @@ import { TermsPage } from '../pages/terms/terms';
     IntroPage,
     HomePage,
     TermsPage,
+    PlacesPage,
+    SetupPage,
     LoginPage
   ],
   providers: [
