@@ -12,7 +12,8 @@ import { PlacesPage } from '../places/places';
 export class SetupPage {
   data = {
     dob: '',
-    gender: '',
+    myGender: '',
+    otherGender: '',
     location: {
       address: '',
       geo: {
@@ -20,7 +21,6 @@ export class SetupPage {
         lng: ''
       }
     }
-
   }
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController, 
@@ -29,10 +29,13 @@ export class SetupPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SetupPage');
+    this.data = this.navParams.get('data');
+    console.log(this.data);
+    
   }
 
   completeSignup() {
-    this.navCtrl.pop();
+    console.log(this.data);
   }
 
   showAddressModal() {

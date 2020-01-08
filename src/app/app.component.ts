@@ -32,7 +32,7 @@ import { SetupPage } from '../pages/setup/setup';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SetupPage;
+  rootPage: any = HomePage;
 
   pages: any;
   profile: User;

@@ -12,21 +12,23 @@ import { SetupPage } from '../setup/setup';
   templateUrl: 'signup.html',
 })
 export class SignupPage {
-  
   signupType: string = '';
-  data = {
+
+  emailSignup = {
+    nickname: '',
     email: '',
-    password: '',
+    password: ''
+  }
+
+  phoneSignup = {
+    nickname: '',
     otpCode: '',
     phonenumber: '',
-    code: '',
-    dob: '',
     phone: {
       flag: "🇿🇦",
       code: "+27",
       number: ''
-    },
-    location: { address: '' }
+    }
   }
   type = 'password';
   showPass = false;
@@ -51,11 +53,11 @@ export class SignupPage {
   }
 
   signupWithPhoneNumber() {
-    console.log(this.data);
+    console.log(this.phoneSignup);
   }
 
   signupWithEmailAndPassword() {
-    this.navCtrl.push(SetupPage, {data: this.data});
+    this.navCtrl.push(SetupPage, {data: this.emailSignup});
   }
 
   cancelSignup() {
@@ -74,12 +76,10 @@ export class SignupPage {
   getCountryCode() {
     let modal = this.modalCtrl.create(NationalityPage);
     modal.onDidDismiss(data => {
-      console.log(data);
-      
       if (data) {
-        this.data.phone.number = data.number;
-        this.data.phone.code = data.dial_code;
-        this.data.phone.flag = data.flag;
+        this.phoneSignup.phone.number = data.number;
+        this.phoneSignup.phone.code = data.dial_code;
+        this.phoneSignup.phone.flag = data.flag;
       }
     });
     modal.present();

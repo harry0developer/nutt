@@ -17,35 +17,25 @@
         <ion-label>
           <i class="fa fa-user"></i>
         </ion-label>
-        <ion-input [(ngModel)]="data.nickname" placeholder="Nickname" required nickname="nickname" #nickname="ngModel" pattern=".{5,}"
+        <ion-input [(ngModel)]="phoneSignup.nickname" placeholder="Nickname" required nickname="nickname" #nickname="ngModel" pattern=".{5,}"
         type="text">
       </ion-input>
       </ion-item>
       <div [hidden]="nickname.valid || nickname.pristine" class="validation">
         <p class="animated fadeInLeft" [hidden]="!nickname.hasError('required')">Nickname is required</p>
         <p class="animated fadeInLeft" [hidden]="!nickname.hasError('pattern')">Nickname should be at least 5 characters</p>
-      </div>
-<!-- 
-      <ion-item class="animated pulse round-input">
-        <ion-label>
-          <i class="fa fa-calendar" item-start></i></ion-label>
-        <ion-datetime placeholder="Date of birth" displayFormat="DD/MM/YYYY" max="2001" [(ngModel)]="data.dob" required dob="dob" #dob="ngModel"></ion-datetime>
-      </ion-item>
-      <div [hidden]="dob.valid || dob.pristine" class="validation">
-        <p class="animated tada" [hidden]="!dob.hasError('required')">Date of birth is required</p>
-      </div> -->
-
+      </div> 
       <ion-grid>
         <ion-row class="round-input">
           <ion-col col-3 class="country-code">
             <ion-item class="animated pulse">
-              <ion-input type="text" placeholder="+27" (ionFocus)="getCountryCode()" [(ngModel)]="data.phone.flag" flag="flag" #flag="ngModel"></ion-input>
+              <ion-input type="text" placeholder="+27" (ionFocus)="getCountryCode()" [(ngModel)]="phoneSignup.phone.flag" flag="flag" #flag="ngModel"></ion-input>
             </ion-item> 
           </ion-col>
           <ion-col col-9>
             <ion-item class="animated pulse">
-              <span class="dial-code" item-start>{{data.phone.code}}</span>
-              <ion-input [(ngModel)]="data.phonenumber"  [brmasker]="{mask:'000000000000000', len:15,  type:'num'}" placeholder="0820001234"  clearOnEdit=false required phonenumber="phonenumber" #phonenumber="ngModel" pattern=".{9,}"
+              <span class="dial-code" item-start>{{phoneSignup.phone.code}}</span>
+              <ion-input [(ngModel)]="phoneSignup.phonenumber"  [brmasker]="{mask:'000000000000000', len:15,  type:'num'}" placeholder="0820001234"  clearOnEdit=false required phonenumber="phonenumber" #phonenumber="ngModel" pattern=".{9,}"
               type="tel"></ion-input>
             </ion-item>
             
@@ -76,29 +66,20 @@
         <ion-label>
           <i class="fa fa-user"></i>
         </ion-label>
-        <ion-input [(ngModel)]="data.nickname" placeholder="Nickname" required nickname="nickname" #nickname="ngModel" pattern=".{5,}"
+        <ion-input [(ngModel)]="emailSignup.nickname" placeholder="Nickname" required nickname="nickname" #nickname="ngModel" pattern=".{5,}"
         type="text">
       </ion-input>
       </ion-item>
       <div [hidden]="nickname.valid || nickname.pristine" class="validation">
         <p class="animated fadeInLeft" [hidden]="!nickname.hasError('required')">Nickname is required</p>
         <p class="animated fadeInLeft" [hidden]="!nickname.hasError('pattern')">Nickname should be at least 5 characters</p>
-      </div>
-<!-- 
-      <ion-item class="animated pulse round-input">
-        <ion-label>
-          <i class="fa fa-calendar" item-start></i></ion-label>
-        <ion-datetime placeholder="Date of birth" displayFormat="DD/MM/YYYY" max="2001" [(ngModel)]="data.dob" required dob="dob" #dob="ngModel"></ion-datetime>
-      </ion-item>
-      <div [hidden]="dob.valid || dob.pristine" class="validation">
-        <p class="animated tada" [hidden]="!dob.hasError('required')">Date of birth is required</p>
-      </div> -->
+      </div> 
 
       <ion-item class="animated pulse round-input">
         <ion-label>
           <i class="fa fa-envelope"></i>
         </ion-label>
-        <ion-input [(ngModel)]="data.email" placeholder="Email address" required email="email" #email="ngModel" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$"
+        <ion-input [(ngModel)]="emailSignup.email" placeholder="Email address" required email="email" #email="ngModel" pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$"
         type="email">
       </ion-input>
       </ion-item>
@@ -111,7 +92,7 @@
         <ion-label>
           <i class="fa fa-lock"></i>
         </ion-label>
-        <ion-input [(ngModel)]="data.password" placeholder="Password" required clearOnEdit=false
+        <ion-input [(ngModel)]="emailSignup.password" placeholder="Password" required clearOnEdit=false
          password="password" #password="ngModel" pattern=".{6,}"
         type="{{type}}"></ion-input>
         <button *ngIf="!showPass" ion-button clear color="dark" class="eye" item-right (click)="showPassword()">

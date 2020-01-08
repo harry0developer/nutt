@@ -8,8 +8,7 @@
 
 <ion-content>
 
-  <ion-list radio-group [(ngModel)]="data.gender">
-
+  <ion-list radio-group [(ngModel)]="data.myGender">
     <ion-card>
       <ion-grid>
         <ion-label stacked>
@@ -22,7 +21,7 @@
                 <i class="fa fa-male" item-start></i>
                 Male
               </ion-label>
-              <ion-radio checked="true" value="male" checked></ion-radio>
+              <ion-radio value="male"></ion-radio>
             </ion-item>
           </ion-col>
           <ion-col col-6>
@@ -36,7 +35,9 @@
         </ion-row>
       </ion-grid>
     </ion-card>
+  </ion-list>
 
+  <ion-list radio-group [(ngModel)]="data.otherGender">
     <ion-card>
       <ion-grid>
         <ion-label stacked>
@@ -57,7 +58,7 @@
               <ion-label>
                 <i class="fa fa-female" item-start></i>Female
               </ion-label>
-              <ion-radio checked="true" value="female"></ion-radio>
+              <ion-radio value="female"></ion-radio>
             </ion-item> 
           </ion-col>
         </ion-row>
@@ -95,7 +96,7 @@
    
   
   <div class="controls" padding>
-    <button ion-button block round (click)="completeSignup()">Complete Signup</button>
+    <button ion-button block round  [disabled]="!data.otherGender || !data.myGender || !data.dob || !data.location?.address" (click)="completeSignup()">Complete Signup</button>
   </div>
 
 

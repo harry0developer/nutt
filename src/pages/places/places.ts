@@ -66,6 +66,9 @@ export class PlacesPage {
         this.feedbackProvider.dismissLoading();
         this.dismiss(undefined)
       }
+    }, error => {
+      console.log(error);
+      
     });
   }
 
