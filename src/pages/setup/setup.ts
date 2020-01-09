@@ -17,16 +17,17 @@ export class SetupPage {
 
   loc: string;
   data = { 
-    gender: '',
     nickname: '',
+    gender: '',
+    age: '',
+    race: '', 
+    bodytype: '',
+    height: '',
     email: '',
     phone: '',
     password: '',
     uid: '',
     dateCreated: '',
-    age: '',
-    race: '',
-    bodytype: '',
     userType: '',
     location: {
       address: '',
@@ -36,8 +37,6 @@ export class SetupPage {
       }
     }
   }
-
-  bodyTypes = ['skinny', 'muscular / thick', 'fat'];
 
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController, 
@@ -49,26 +48,13 @@ export class SetupPage {
     console.log('ionViewDidLoad SetupPage');
     const data = this.navParams.get('data');
     this.data = {...data};
+    this.slides.lockSwipes(true);
+
   }
 
   completeSignup() {
-    const user = {
-      gender: '',
-      nickname: '',
-      email: '',
-      phone: '',
-      password: '',
-      uid: '',
-      dateCreated: '',
-      age: '',
-      race: '', 
-      userType: '',
-      location: {
-        address: '',
-        lat: '',
-        lng: ''
-      }
-    };
+    let user = this.data;
+    this.data.dateCreated = this.dataProvider.getDateTime();
     // this.dataProvider.addNewItem(COLLECTION.users, user).then(res => {
     //   console.log(res);
     // }).catch(err => {
@@ -77,16 +63,25 @@ export class SetupPage {
   }
 
   nextSlide() {
-    this.slides.slideNext(); 
+    this.slides.lockSwipes(false);
+    this.slides.slideNext();
+    this.slides.lockSwipes(true);
   }
 
   previousSlide() {
+    this.slides.lockSwipes(false);
     this.slides.slidePrev();
+    this.slides.lockSwipes(true);
   }
 
   isFirstSlide(): boolean {
     return this.slides.isBeginning();
   }
+
+  isLastSlide(): boolean {
+    return this.slides.isEnd();
+  }
+
   selected() {
     console.log(this.data);
   }

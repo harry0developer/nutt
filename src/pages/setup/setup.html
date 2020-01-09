@@ -6,7 +6,7 @@
 
 <ion-content>
   <ion-slides>
-    <ion-slide>
+    <ion-slide> <!-- Intro slide -->
       <ion-card>
         <img src="assets/icon/info.png" alt="">
         <h2>Please tell us a bit about yourself.</h2>
@@ -21,18 +21,48 @@
       </div>
     </ion-slide>
 
+    <ion-slide> <!-- user type slide-->
+      <ion-card>
+        <img src="assets/icon/info.png" alt="">
+        <ion-list radio-group [(ngModel)]="data.userType">
+          <ion-label stacked>
+            <h2>What's do you want to register as?</h2>
+            <h2 class="choice">{{data.userType}}</h2>
+          </ion-label> 
+          <ion-item no-lines >
+            <ion-label>
+              Hooker
+            </ion-label>
+            <ion-radio value="hooker"></ion-radio>
+          </ion-item>
+          <ion-item no-lines >
+            <ion-label>
+              Client
+            </ion-label>
+            <ion-radio value="client"></ion-radio>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+       <div padding class="controls">
+        <button ion-button block small round icon-end [disabled]="!data.userType" (click)="nextSlide()">
+          Next
+          <ion-icon name="arrow-forward"></ion-icon>
+        </button>
+      </div>
+    </ion-slide>
+
+
     <ion-slide> <!-- Gender slide -->
       <ion-list radio-group [(ngModel)]="data.gender">
         <ion-card>
           <img src="assets/icon/gender.png" alt="">
           <ion-label stacked>
             <h2>What's your gender?</h2>
-            <h2><b>{{data.gender}}</b></h2>
+            <h2 class="choice">{{data.gender}}</h2>
           </ion-label> 
 
           <ion-item>
             <ion-label>
-              <i class="fa fa-male" item-start></i>
               Male
             </ion-label>
             <ion-radio value="male"></ion-radio>
@@ -40,7 +70,6 @@
           
           <ion-item>
             <ion-label>
-              <i class="fa fa-female" item-start></i>
               Female
             </ion-label>
             <ion-radio value="female"></ion-radio>
@@ -48,7 +77,6 @@
 
           <ion-item>
             <ion-label>
-              <i class="fa fa-transgender" item-start></i>
               Other
             </ion-label>
             <ion-radio value="other"></ion-radio>
@@ -56,7 +84,7 @@
 
         </ion-card>
         <div padding class="controls">
-          <button ion-button block small round icon-end (click)="nextSlide()">
+          <button ion-button block small round icon-end [disabled]="!data.gender" (click)="nextSlide()">
             Next
             <ion-icon name="arrow-forward"></ion-icon>
           </button>
@@ -70,7 +98,7 @@
         <img src="assets/icon/age.png" alt="">
         <ion-label stacked>
           <h2>What's your age?</h2>
-          <h2><b>{{data.age || 18}} years</b></h2>
+          <h2 class="choice">{{data.age || 18}} years</h2>
         </ion-label> 
         <ion-item>
           <ion-range [(ngModel)]="data.age"  min="18" max="99" step="1" pin="true">
@@ -81,7 +109,7 @@
 
       </ion-card>
       <div padding class="controls">
-        <button ion-button block small round icon-end (click)="nextSlide()">
+        <button ion-button block small round icon-end [disabled]="!data.age" (click)="nextSlide()">
           Next
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
@@ -95,7 +123,7 @@
           <img src="assets/icon/race.png" alt="">
           <ion-label stacked>
             <h2>What's your race?</h2>
-            <h2><b>{{data.race}}</b></h2>
+            <h2 class="choice">{{data.race}}</h2>
           </ion-label> 
 
           <ion-item>
@@ -116,7 +144,7 @@
           </ion-item>
         </ion-card>
         <div padding class="controls">
-          <button ion-button block small round icon-end (click)="nextSlide()">
+          <button ion-button block small round icon-end [disabled]="!data.race" (click)="nextSlide()">
             Next
             <ion-icon name="arrow-forward"></ion-icon>
           </button>
@@ -132,7 +160,7 @@
           <img *ngIf="data.gender === 'other'" src="assets/icon/male-body.png" alt="">
           <ion-label stacked>
             <h2>What's your body type?</h2>
-            <h2><b>{{data.bodyType}}</b></h2>
+            <h2 class="choice">{{data.bodyType}}</h2>
           </ion-label> 
           <ion-item>
             <ion-label>Skinny</ion-label>
@@ -152,7 +180,7 @@
           </ion-item> 
         </ion-card>
         <div padding class="controls">
-          <button ion-button block small round icon-end (click)="nextSlide()">
+          <button ion-button block small round icon-end [disabled]="!data.bodyType" (click)="nextSlide()">
             Next
             <ion-icon name="arrow-forward"></ion-icon>
           </button>
@@ -165,7 +193,7 @@
         <img src="assets/icon/height.png" alt="">
         <ion-label stacked>
           <h2>What's your height?</h2>
-          <h2><b>{{data.height || 0}} cm</b></h2>
+          <h2 class="choice">{{data.height || 0}} cm</h2>
         </ion-label> 
         <ion-item>
           <ion-range [(ngModel)]="data.height"  min="30" max="300" step="1" pin="true">
@@ -175,9 +203,9 @@
         </ion-item>
 
       </ion-card>
-      <div padding class="controls">
-        <button ion-button block small round icon-end (click)="nextSlide()">
-          Next
+      <div padding class="controls" >
+        <button ion-button block small round icon-end [disabled]="!data.height" (click)="completeSignup()">
+          Done
           <ion-icon name="arrow-forward"></ion-icon>
         </button>
       </div>
@@ -187,7 +215,7 @@
 
 
 <ion-footer *ngIf="!isFirstSlide()">
-  <button ion-button block clear icon-start (click)="previousSlide()">
+  <button ion-button block clear color="light" icon-start (click)="previousSlide()">
     <ion-icon name="arrow-back"></ion-icon>
     Previous
   </button>

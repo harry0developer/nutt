@@ -23,6 +23,15 @@ page-setup {
         }
     }
 
+    .radio-ios .radio-icon {
+        border: 1px solid;
+        padding: 10px;
+    }
+
+    h2.choice {
+        font-weight: bold;
+        line-height: 1;
+    }
     // ion-datetime {
     //     position: absolute;
     //     width: 100%;
