@@ -6,10 +6,10 @@ export interface User {
     uid?: string;
     dateCreated?: string;
     dob: string;
-    gender: string;
+    gender: string,
     race: string;
-    bodytype: string;
-    type: string;
+    height: string,
+    bodyType: string;
     location: Location;
     userType: string; //buyer or seller
 };
@@ -20,4 +20,4 @@ export interface Location {
         lat: number,
         lng: number;
     }
-}
+} 

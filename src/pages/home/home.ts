@@ -11,7 +11,7 @@ import { TermsPage } from '../terms/terms';
   templateUrl: 'home.html',
 })
 export class HomePage {
-
+  readTCsAndCs: boolean = true;
   constructor(public navCtrl: NavController,
     public actionSheetCtrl: ActionSheetController,
      public navParams: NavParams) {
@@ -106,5 +106,9 @@ export class HomePage {
 
   showTermsAndConditions() {
     this.navCtrl.push(TermsPage);
+  }
+
+  getStatus(e) {
+    this.readTCsAndCs = e.checked;
   }
 }

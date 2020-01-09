@@ -12,18 +12,17 @@
   <ion-list>
     <div padding *ngIf="signupType=='phoneNumber'">  
       <h2 >Signup with phone number</h2>
-
       <ion-item class="animated pulse round-input">
         <ion-label>
           <i class="fa fa-user"></i>
         </ion-label>
-        <ion-input [(ngModel)]="phoneSignup.nickname" placeholder="Nickname" required nickname="nickname" #nickname="ngModel" pattern=".{5,}"
+        <ion-input [(ngModel)]="phoneSignup.nickname" placeholder="Nickname" required nickname="nickname" #nickname="ngModel" pattern=".{3,}"
         type="text">
       </ion-input>
       </ion-item>
       <div [hidden]="nickname.valid || nickname.pristine" class="validation">
         <p class="animated fadeInLeft" [hidden]="!nickname.hasError('required')">Nickname is required</p>
-        <p class="animated fadeInLeft" [hidden]="!nickname.hasError('pattern')">Nickname should be at least 5 characters</p>
+        <p class="animated fadeInLeft" [hidden]="!nickname.hasError('pattern')">Nickname should be at least 3 characters</p>
       </div> 
       <ion-grid>
         <ion-row class="round-input">
@@ -66,13 +65,13 @@
         <ion-label>
           <i class="fa fa-user"></i>
         </ion-label>
-        <ion-input [(ngModel)]="emailSignup.nickname" placeholder="Nickname" required nickname="nickname" #nickname="ngModel" pattern=".{5,}"
+        <ion-input [(ngModel)]="emailSignup.nickname" placeholder="Nickname" required nickname="nickname" #nickname="ngModel" pattern=".{3,}"
         type="text">
       </ion-input>
       </ion-item>
       <div [hidden]="nickname.valid || nickname.pristine" class="validation">
         <p class="animated fadeInLeft" [hidden]="!nickname.hasError('required')">Nickname is required</p>
-        <p class="animated fadeInLeft" [hidden]="!nickname.hasError('pattern')">Nickname should be at least 5 characters</p>
+        <p class="animated fadeInLeft" [hidden]="!nickname.hasError('pattern')">Nickname should be at least 3 characters</p>
       </div> 
 
       <ion-item class="animated pulse round-input">

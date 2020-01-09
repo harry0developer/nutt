@@ -1,7 +1,7 @@
 page-setup {
 
     .content {
-        background-color: $light;
+        background-color: #ff9b9b;
     }
     .toolbar-background {
         background: white !important;
@@ -10,17 +10,37 @@ page-setup {
     .header::after {
         display: none !important; 
     }
-
-    ion-datetime {
-        position: absolute;
-        width: 100%;
-        text-align: center;
-        margin-left: -20px;
-    } 
-
-    .label i {
-        color: $primary;
+ 
+    ion-card{
+        min-height: 300px;
+        padding: 20px;
+        h2 {
+            padding-bottom: 10px;
+        }
+        img {
+            margin: 0 auto;
+            padding-bottom: 20px;
+        }
     }
+
+    // ion-datetime {
+    //     position: absolute;
+    //     width: 100%;
+    //     text-align: center;
+    //     margin-left: -20px;
+    // } 
+
+    // ion-select {
+    //     position: absolute;
+    //     max-width: 100% !important; 
+    //     text-align: center;
+    //     margin-left: 16px;
+    //     padding: 0;
+    // }
+    
+    // .label i {
+    //     color: $primary;
+    // }
 
     .controls {
         .button {
@@ -29,4 +49,10 @@ page-setup {
             margin: 0 auto;
         }
     }
+
+
+    // .radio-ios .radio-icon {
+    //     width: 0;
+    // }
+ 
 }
