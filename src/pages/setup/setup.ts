@@ -82,10 +82,10 @@ export class SetupPage {
     return this.slides.isEnd();
   }
 
-  selected() {
-    console.log(this.data);
+  getSlideNumber(): string {
+    return `${this.slides.getActiveIndex()} of 6`;
   }
-
+ 
   showAddressModal() {
     let modal = this.modalCtrl.create(PlacesPage);
     modal.onDidDismiss(data => {

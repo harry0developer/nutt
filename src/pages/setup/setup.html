@@ -11,6 +11,7 @@
         <img src="assets/icon/info.png" alt="">
         <h2>Please tell us a bit about yourself.</h2>
         <p>This will help us filter users which match your preferences and improve your experience</p>
+        <h3 class="questions-count">Only 6 questions</h3>
       </ion-card>
 
       <div padding class="controls">
@@ -42,6 +43,7 @@
             <ion-radio value="client"></ion-radio>
           </ion-item>
         </ion-list>
+        <div class="slides-counter">{{getSlideNumber()}}</div>
       </ion-card>
        <div padding class="controls">
         <button ion-button block small round icon-end [disabled]="!data.userType" (click)="nextSlide()">
@@ -81,7 +83,7 @@
             </ion-label>
             <ion-radio value="other"></ion-radio>
           </ion-item>
-
+          <div class="slides-counter">{{getSlideNumber()}}</div>
         </ion-card>
         <div padding class="controls">
           <button ion-button block small round icon-end [disabled]="!data.gender" (click)="nextSlide()">
@@ -91,7 +93,6 @@
         </div>
       </ion-list>
     </ion-slide>
-
 
     <ion-slide> <!-- Age slide -->
       <ion-card>
@@ -106,7 +107,7 @@
             <ion-label range-right>99 yrs</ion-label>
           </ion-range>
         </ion-item>
-
+        <div class="slides-counter">{{getSlideNumber()}}</div>
       </ion-card>
       <div padding class="controls">
         <button ion-button block small round icon-end [disabled]="!data.age" (click)="nextSlide()">
@@ -142,6 +143,7 @@
             <ion-label>White</ion-label>
             <ion-radio value="white"></ion-radio>
           </ion-item>
+          <div class="slides-counter">{{getSlideNumber()}}</div>
         </ion-card>
         <div padding class="controls">
           <button ion-button block small round icon-end [disabled]="!data.race" (click)="nextSlide()">
@@ -178,6 +180,7 @@
             <ion-label>Fat</ion-label>
             <ion-radio value="fat"></ion-radio>
           </ion-item> 
+          <div class="slides-counter">{{getSlideNumber()}}</div>
         </ion-card>
         <div padding class="controls">
           <button ion-button block small round icon-end [disabled]="!data.bodyType" (click)="nextSlide()">
@@ -201,7 +204,7 @@
             <ion-label range-right>300 cm</ion-label>
           </ion-range>
         </ion-item>
-
+        <div class="slides-counter">{{getSlideNumber()}}</div>
       </ion-card>
       <div padding class="controls" >
         <button ion-button block small round icon-end [disabled]="!data.height" (click)="completeSignup()">
