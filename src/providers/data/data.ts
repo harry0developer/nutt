@@ -161,14 +161,9 @@ export class DataProvider {
     });
   }
 
-  updateCollection(collection, newItems, id) {
-    this.addNewItemWithId(collection, newItems, id).then(() => {
-      console.log('item added');
-    }).catch(err => {
-      console.log(err);
-    })
+  updateCollection(collection, newItems, id): Promise<any> {
+    return this.addNewItemWithId(collection, newItems, id);
   }
-
 
   addNewItemWithId(collectionName: string, data: any, id: string) {
     return this.afStore.collection(collectionName).doc<any>(id).set(data);

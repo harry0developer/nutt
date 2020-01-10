@@ -4,6 +4,10 @@ import { Country } from '../../models/country';
 import { User } from '../../models/user';
 import { NationalityPage } from '../nationality/nationality';
 import { SetupPage } from '../setup/setup';
+import { DataProvider } from '../../providers/data/data';
+import { AuthProvider } from '../../providers/auth/auth';
+import { FeedbackProvider } from '../../providers/feedback/feedback';
+import { EMAIL_EXISTS, MESSAGES } from '../../utils/consts';
  
 
 @IonicPage()
@@ -17,7 +21,8 @@ export class SignupPage {
   emailSignup = {
     nickname: '',
     email: '',
-    password: ''
+    password: '',
+    uid: ''
   }
 
   phoneSignup = {
@@ -44,7 +49,10 @@ export class SignupPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    private dataProvider: DataProvider,
+    private authProvider: AuthProvider,
+    public feedbackProvider: FeedbackProvider) {
   }
 
   ionViewDidLoad() {
@@ -57,7 +65,17 @@ export class SignupPage {
   }
 
   signupWithEmailAndPassword() {
-    this.navCtrl.push(SetupPage, {data: this.emailSignup});
+    this.feedbackProvider.presentLoading();
+    this.authProvider.signUpWithEmailAndPassword(this.emailSignup.email, this.emailSignup.password).then((u) => {
+      this.emailSignup.uid = u.user.uid
+      this.navCtrl.push(SetupPage, {data: this.emailSignup});
+      this.feedbackProvider.dismissLoading();
+    }).catch(err => {
+      this.feedbackProvider.dismissLoading();
+      if(err.code === EMAIL_EXISTS) {
+        this.feedbackProvider.presentAlert(MESSAGES.signupFailed, MESSAGES.emailAlreadyRegistered);
+      } 
+    });
   }
 
   cancelSignup() {

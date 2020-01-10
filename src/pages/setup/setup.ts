@@ -2,9 +2,12 @@ import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ModalController } from 'ionic-angular';
 import { PlacesPage } from '../places/places';
 import { DataProvider } from '../../providers/data/data';
-import { COLLECTION } from '../../utils/consts';
+import { COLLECTION, USER_TYPE, STORAGE_KEY } from '../../utils/consts';
 import { User } from '../../models/user';
 import { Slides } from 'ionic-angular';
+import { DashboardPage } from '../dashboard/dashboard';
+import { SellersPage } from '../sellers/sellers';
+import { FeedbackProvider } from '../../providers/feedback/feedback';
 
 @IonicPage()
 @Component({
@@ -16,12 +19,12 @@ export class SetupPage {
   @ViewChild(Slides) slides: Slides;
 
   loc: string;
-  data = { 
+  data: User = { 
     nickname: '',
     gender: '',
     age: '',
     race: '', 
-    bodytype: '',
+    bodyType: '',
     height: '',
     email: '',
     phone: '',
@@ -32,8 +35,8 @@ export class SetupPage {
     location: {
       address: '',
       geo: {
-        lat: '',
-        lng: ''
+        lat: 0,
+        lng: 0
       }
     }
   }
@@ -41,25 +44,47 @@ export class SetupPage {
   constructor(public navCtrl: NavController,
     public modalCtrl: ModalController, 
     public navParams: NavParams,
-    public dataProvider: DataProvider) {
+    public dataProvider: DataProvider, 
+    public feedbackProvider: FeedbackProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad SetupPage');
-    const data = this.navParams.get('data');
-    this.data = {...data};
     this.slides.lockSwipes(true);
-
+    const data = this.navParams.get('data');
+    if(data) {
+      if(data.nickname && data.email ) { //email signup
+        this.data.nickname = data.nickname;
+        this.data.email = data.email;
+        this.data.password = data.password,
+        this.data.uid = data.uid;
+      } else { //phone signup
+        this.data.nickname = data.nickname;
+        this.data.phone = data.phone;
+        this.data.uid = data.uid;
+      }
+    } else {
+      console.log('Cannot be here');
+    }
   }
 
   completeSignup() {
-    let user = this.data;
+    this.feedbackProvider.presentLoading();
     this.data.dateCreated = this.dataProvider.getDateTime();
-    // this.dataProvider.addNewItem(COLLECTION.users, user).then(res => {
-    //   console.log(res);
-    // }).catch(err => {
-    //   console.log(err);
-    // })
+    this.dataProvider.addNewItem(COLLECTION.users, this.data).then(res => {
+      this.feedbackProvider.presentLoading();
+      this.navigate();
+    }).catch(err => {
+      this.feedbackProvider.presentLoading();
+    });
+  }
+
+  navigate() {
+    this.dataProvider.addItemToLocalStorage(STORAGE_KEY.user, this.data);
+    if(this.data.userType === USER_TYPE.seller) {
+      this.navCtrl.setRoot(DashboardPage);
+    } else {
+      this.navCtrl.setRoot(SellersPage);
+    }
   }
 
   nextSlide() {

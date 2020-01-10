@@ -47,10 +47,8 @@ export class AuthProvider {
     return this.afAuth.auth.signInWithEmailAndPassword(email, password);
   }
 
-  signUpWithEmailAndPassword(user: User) {
-    return this.afAuth.auth.createUserWithEmailAndPassword(user.email, user.password).then(res => {
-      this.updateUser(user);
-    });
+  signUpWithEmailAndPassword(email: string, password: string){
+    return this.afAuth.auth.createUserWithEmailAndPassword(email, password);
   }
 
   signUpWithPhonenumber(phoneNumber, appVerifier) {
@@ -94,5 +92,10 @@ export class AuthProvider {
 
   isSeller(user): boolean {
     return user && user.type === USER_TYPE.seller;
+  }
+
+  isUserVerified(): boolean {
+    const auth = this.afAuth.auth;
+    return auth && auth.currentUser && auth.currentUser.emailVerified;
   }
 }

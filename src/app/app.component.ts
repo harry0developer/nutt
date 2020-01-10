@@ -32,7 +32,7 @@ import { SetupPage } from '../pages/setup/setup';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = SetupPage;
+  rootPage: any = HomePage;
 
   pages: any;
   profile: User;
@@ -47,7 +47,6 @@ export class MyApp {
     public modalCtrl: ModalController,
     public splashScreen: SplashScreen) {
     this.initializeApp();
- 
 
     this.pages = {
       dashboardPage: DashboardPage,
@@ -65,6 +64,8 @@ export class MyApp {
       this.splashScreen.hide();
       this.statusBar.styleLightContent();
       this.profile = this.authProvider.getStoredUser();
+      console.log(this.profile);
+      
       const intro = this.dataProvider.getItemFromLocalStorage(STORAGE_KEY.intro);
       const a = Object.getOwnPropertyNames(intro).length;
       if (a === 0)
@@ -100,7 +101,7 @@ export class MyApp {
 
   logout() {
     this.authProvider.logout().then(() => {
-      this.nav.setRoot(MultiLoginPage);
+      this.nav.setRoot(HomePage);
     }).catch(err => {
       this.feebackProvider.presentAlert(MESSAGES.logoutFailed, MESSAGES.oops);
     })

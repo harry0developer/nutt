@@ -43,6 +43,9 @@ import { LoginPage } from '../pages/login/login';
 import { TermsPage } from '../pages/terms/terms';
 import { SetupPage } from '../pages/setup/setup';
 import { PlacesPage } from '../pages/places/places';
+import { LocationProvider } from '../providers/location/location';
+
+import { Geolocation } from '@ionic-native/geolocation';
 
 @NgModule({
   declarations: [
@@ -112,7 +115,9 @@ import { PlacesPage } from '../pages/places/places';
     DataProvider,
     ImageProvider,
     Camera,
-    WindowProvider
+    WindowProvider,
+    LocationProvider,
+    Geolocation
   ]
 })
 export class AppModule { }

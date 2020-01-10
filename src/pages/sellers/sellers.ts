@@ -3,6 +3,8 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { SellerDetailsPage } from '../seller-details/seller-details';
 import { COLLECTION } from '../../utils/consts';
+import { User } from '../../models/user';
+import { AuthProvider } from '../../providers/auth/auth';
  
 
 @IonicPage()
@@ -12,15 +14,22 @@ import { COLLECTION } from '../../utils/consts';
 })
 export class SellersPage {
   sellers: any 
-  constructor(public navCtrl: NavController, public dataProvider: DataProvider) {
+  profile: User;
+
+  constructor(
+    public navCtrl: NavController,
+    public dataProvider: DataProvider,
+    public authProvider: AuthProvider) {
   }
 
   ionViewDidLoad() {
-    this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
-      this.sellers = users;
-      console.log(users);
-      
-    })
+    this.profile = this.authProvider.getStoredUser();
+    console.log(this.profile);
+    
+    // this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
+    //   this.sellers = users;
+    //   console.log(users);
+    // });
   }
 
   viewUserProfile(user) {

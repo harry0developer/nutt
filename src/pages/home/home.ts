@@ -4,6 +4,12 @@ import { ActionSheetController } from 'ionic-angular'
 import { LoginPage } from '../login/login';
 import { SignupPage } from '../signup/signup';
 import { TermsPage } from '../terms/terms';
+import { DataProvider } from '../../providers/data/data';
+import { STORAGE_KEY, COLLECTION, USER_TYPE } from '../../utils/consts';
+import { User } from '../../models/user';
+import { AuthProvider } from '../../providers/auth/auth';
+import { DashboardPage } from '../dashboard/dashboard';
+import { SellersPage } from '../sellers/sellers';
 
 @IonicPage()
 @Component({
@@ -12,19 +18,66 @@ import { TermsPage } from '../terms/terms';
 })
 export class HomePage {
   readTCsAndCs: boolean = true;
-  constructor(public navCtrl: NavController,
+  constructor(
+    public navCtrl: NavController,
     public actionSheetCtrl: ActionSheetController,
-     public navParams: NavParams) {
+    public navParams: NavParams,
+    public dataProvider: DataProvider,
+    public authProvider: AuthProvider) {
   }
-
+  
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HomePage');
+    const storedUser = this.authProvider.getStoredUser();
+    if (storedUser && storedUser.uid) {
+      this.navigate(storedUser);
+    }
+  } 
+
+  addUser() {
+    const data: User = { 
+      nickname: 'Big Cox',
+      gender: 'male',
+      age: '22',
+      race: 'white', 
+      bodyType: 'fat',
+      height: '165',
+      email: 'cox@test.com',
+      phone: '+27820000000',
+      password: '123456',
+      uid: '',
+      dateCreated: this.dataProvider.getDateTime(),
+      userType: 'buyer',
+      location: {
+        address: '',
+        geo: {
+          lat: 0,
+          lng: 0
+        }
+      }
+    }
+    this.authProvider.signUpWithEmailAndPassword(data.email, data.password).then(u => {
+      data.uid = u.user.uid;
+      this.dataProvider.addNewItemWithId(COLLECTION.users, data, data.uid).then(() => {
+        console.log('User added succesfully');
+      }).catch(err => {
+        console.log('ERROR occured', err);
+      });
+    }).catch(err => {
+      console.log('Signup err', err);
+      
+    })
   }
 
+  navigate(user: User) {
+    if(user.userType === USER_TYPE.seller) {
+      this.navCtrl.setRoot(DashboardPage)
+    } else {
+      this.navCtrl.setRoot(SellersPage);
+    }
+  }
 
   loginWithEmailAddress() {
     console.log('Email');
-    
     this.navCtrl.push(LoginPage, {loginType: 'emailAddress'});
   }
 

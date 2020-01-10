@@ -1,17 +1,23 @@
 export interface User {
     nickname: string;
+    gender: string;
+    age: string;
+    race: string; 
+    bodyType: string;
+    height: string;
     email: string;
     phone: string;
-    password?: string;
-    uid?: string;
-    dateCreated?: string;
-    dob: string;
-    gender: string,
-    race: string;
-    height: string,
-    bodyType: string;
-    location: Location;
-    userType: string; //buyer or seller
+    password: string;
+    uid: string;
+    dateCreated: string;
+    userType: string;
+    location: {
+      address: string;
+      geo: {
+        lat: number;
+        lng: number;
+      }
+    }
 };
 
 export interface Location {

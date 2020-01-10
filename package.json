@@ -26,6 +26,7 @@
     "@ionic-native/camera": "^4.20.0",
     "@ionic-native/core": "4.3.2",
     "@ionic-native/crop": "^5.18.0",
+    "@ionic-native/geolocation": "^4.20.0",
     "@ionic-native/image-picker": "^5.18.0",
     "@ionic-native/network": "^4.20.0",
     "@ionic-native/social-sharing": "^4.20.0",
@@ -40,6 +41,7 @@
     "cordova-plugin-crop": "^0.4.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-firebase": "^2.0.5",
+    "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-ionic-keyboard": "^2.1.3",
     "cordova-plugin-ionic-webview": "^3.1.2",
     "cordova-plugin-network-information": "^2.0.1",
@@ -90,7 +92,10 @@
       "cordova-plugin-telerik-imagepicker": {
         "PHOTO_LIBRARY_USAGE_DESCRIPTION": "pick image to upload"
       },
-      "cordova-plugin-crop": {}
+      "cordova-plugin-crop": {},
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "To locate you"
+      }
     },
     "platforms": [
       "android",
