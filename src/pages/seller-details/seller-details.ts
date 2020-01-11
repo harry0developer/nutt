@@ -33,7 +33,9 @@ export class SellerDetailsPage {
 
   ionViewDidLoad() {
     this.profile = this.navParams.get('user');
-    this.img = `assets/imgs/users/user${this.profile.id}.jpg`;
+    this.img = `assets/imgs/users/user3.jpg`;
+    console.log(this.profile);
+    
     // this.dataProvider.getDocumentFromCollectionById(COLLECTION.ratings, this.profile.id).subscribe(ratingsFromCollection => {
     //   const ratingsArray = this.dataProvider.getArrayFromObjectList(ratingsFromCollection);
     //   this.allRatings = ratingsArray;

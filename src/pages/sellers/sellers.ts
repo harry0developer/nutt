@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { DataProvider } from '../../providers/data/data';
 import { SellerDetailsPage } from '../seller-details/seller-details';
-import { COLLECTION } from '../../utils/consts';
+import { COLLECTION, USER_TYPE } from '../../utils/consts';
 import { User } from '../../models/user';
 import { AuthProvider } from '../../providers/auth/auth';
+import { MediaProvider } from '../../providers/media/media';
  
 
 @IonicPage()
@@ -19,17 +20,26 @@ export class SellersPage {
   constructor(
     public navCtrl: NavController,
     public dataProvider: DataProvider,
-    public authProvider: AuthProvider) {
+    public authProvider: AuthProvider,
+    public mediaProvider: MediaProvider) {
   }
 
   ionViewDidLoad() {
     this.profile = this.authProvider.getStoredUser();
-    console.log(this.profile);
-    
-    // this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
-    //   this.sellers = users;
-    //   console.log(users);
-    // });
+    this.dataProvider.getAllFromCollection(COLLECTION.users).subscribe(users => {
+      this.sellers = users.filter(u => u.userType === USER_TYPE.seller);
+    }); 
+  } 
+
+
+  selectPhoto() {
+    this.mediaProvider.selectPhoto();
+  }
+  takePhoto() {
+    this.mediaProvider.takePhoto();
+  }
+  ran() {
+    return Math.floor((Math.random() * 16) + 1);
   }
 
   viewUserProfile(user) {

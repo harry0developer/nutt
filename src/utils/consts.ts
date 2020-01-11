@@ -7,6 +7,10 @@ export const COLLECTION = {
     appInfo: 'appInfo'
 }
 
+export const DATABASE = {
+    images: 'images'
+}
+
 export const USER_TYPE = {
     buyer: 'buyer',
     seller: 'seller'

@@ -10,18 +10,20 @@
 <ion-content>
 
 
+  <button ion-button round (click)="takePhoto()">Take photo</button>
+  <button ion-button round (click)="selectPhoto()">Select photo</button>
   <!-- <ion-grid>
     <ion-row>
       <ion-col col-6 *ngFor="let user of sellers">
         <ion-card class="user" (tap)="viewUserProfile(user)">
-            <img src="assets/imgs/users/user{{user.id}}.jpg">
+            <img src="assets/imgs/users/user1.jpg">
             <ion-card-content>
               <ion-row>
                 <ion-col col-10>
                   <h2 class="name">{{user.nickname}}</h2>
                 </ion-col>
                 <ion-col col-2>
-                  <ion-badge class="age" item-end>{{getAge(user.dob)}}</ion-badge>
+                  <ion-badge class="age" item-end>{{user.age}}</ion-badge>
                 </ion-col>
               </ion-row> 
               <div class="info">

@@ -6,51 +6,36 @@
   
   <ion-content>
     <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + img +')'}"></div>
-    <div id="content" *ngIf="user">
+    <div id="content" *ngIf="profile">
     <div id="profile-info">
-      <img id="profile-image" src="assets/imgs/users/user{{user.id}}.jpg">
-      <h2 class="nickname">{{user.nickname}} 
-        <ion-badge class="age" item-end>{{getAge(user.dob)}}</ion-badge>
+      <img id="profile-image" src="assets/imgs/users/user3.jpg">
+      <h2 class="nickname">{{profile.nickname}} 
+        <ion-badge class="age" item-end>{{profile.age}}</ion-badge>
       </h2>
-      <p class="address"> <i class="fa fa-map-marker"></i>{{getDistance(user.location.geo)}} km away</p>
-      <rating [float]="true" [(ngModel)]="user.rating" [readonly]="true"></rating>
+      <p class="address"> <i class="fa fa-map-marker"></i>{{getDistance(profile.location.geo)}} km away</p>
+      <!-- <rating [float]="true" [(ngModel)]="profile.rating" [readonly]="true"></rating> -->
       <div class="tags">
-        <ion-badge primary>{{user.gender}}</ion-badge>
-        <ion-badge primary>{{user.race}}</ion-badge>
-        <ion-badge primary>{{user.bodyType}}</ion-badge>
+        <ion-badge primary>{{profile.gender}}</ion-badge>
+        <ion-badge primary>{{profile.race}}</ion-badge>
+        <ion-badge primary>{{profile.bodyType}}</ion-badge>
       </div>
-    </div>   
-  
-    <ion-row class="info">
-      <ion-col col-4>
-        <p>Followers</p>
-        <h2>120</h2>
-      </ion-col>
-      <ion-col col-4>
-        <p>Likes</p>
-        <h2>120</h2>
-      </ion-col>
-      <ion-col col-4>
-        <p>Requests</p>
-        <h2>120</h2>
-      </ion-col>
-    </ion-row>
+    </div>    
  
     <ion-row class="images">
       <ion-col col-4>
-          <img src="assets/imgs/users/user{{user.id}}.jpg">
+          <img src="assets/imgs/users/user1.jpg">
       </ion-col>
       <ion-col col-4>
-          <img src="assets/imgs/users/user{{user.id}}.jpg">
+          <img src="assets/imgs/users/user2.jpg">
       </ion-col>
       <ion-col col-4>
-          <img src="assets/imgs/users/user{{user.id}}.jpg">
+          <img src="assets/imgs/users/user3.jpg">
       </ion-col>
       <ion-col col-4>
-          <img src="assets/imgs/users/user{{user.id}}.jpg">
+          <img src="assets/imgs/users/user4.jpg">
       </ion-col>
       <ion-col col-4>
-          <img src="assets/imgs/users/user{{user.id}}.jpg">
+          <img src="assets/imgs/users/user5.jpg">
       </ion-col>
     </ion-row>    
   </div>
